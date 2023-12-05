@@ -1,0 +1,3 @@
+Licence document for this tiny app. Feel free to use this file however you want!
+
+Author: Ipaingo the C++ newbie

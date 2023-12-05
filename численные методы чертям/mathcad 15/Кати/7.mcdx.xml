@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConversionLog Date="20.09.2023 12:01:37">
+  <WorksheetData SourceVersion="14/15" Source="C:\Users\szime\учеба\численные методы чертям\mathcad 15\Кати\7.xmcd" Destination="C:\Users\szime\учеба\численные методы чертям\mathcad 15\Кати\7.mcdx" />
+  <Worksheet SourceRegionCount="42" WorksheetIssueCount="0" RegionsWithIssueCount="2"><IssueGroup Category="Расхождения в отображении" Count="3"><ConversionIssue Count="1" Text="Изображение оператора изменилось по сравнению с документом-источником. Точность результатов при этом сохраняется." /><ConversionIssue Count="1" Text="Отображение экспоненциального представления изменилось из исходного документа. Точность результатов при этом сохраняется." /><ConversionIssue Count="1" Text="В данной версии PTC Mathcad результаты не могут отображаться в виде таблиц. Результат отображается в виде матрицы. Его точность при этом сохраняется." /></IssueGroup></Worksheet>
+</ConversionLog>
