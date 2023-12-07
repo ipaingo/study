@@ -1,0 +1,182 @@
+MATCH (n) DETACH DELETE n
+
+MATCH r=()-[]-() RETURN r
+
+CREATE
+(poised_arrival:BusStop {name: 'Poised Arrival'}),
+(accomplished_jury:BusStop {name: 'Accomplished Jury'}),
+(clean_wind:BusStop {name: 'Clean Wind'}),
+(timely_wave:BusStop {name: 'Timely Wave'}),
+(present_rush:BusStop {name: 'Present Rush'}),
+(forked_save:BusStop {name: 'Forked Save'}),
+(formal_feel:BusStop {name: 'Formal Feel'}),
+(attractive_fortune:BusStop {name: 'Attractive Fortune'}),
+(heavenly_trash:BusStop {name: 'Heavenly Trash'}),
+(pessimistic_spot:BusStop {name: 'Pessimistic Spot'}),
+(fortunate_blank:BusStop {name: 'Fortunate Blank'}),
+(spiffy_telephone:BusStop {name: 'Spiffy Telephone'}),
+(fitting_bell:BusStop {name: 'Fitting Bell'}),
+(best_salt:BusStop {name: 'Best Salt'}),
+(royal_feature:BusStop {name: 'Royal Feature'}),
+(cuddly_can:BusStop {name: 'Cuddly Can'}),
+(rewarding_presentation:BusStop {name: 'Rewarding Presentation'}),
+(extra_small_partner:BusStop {name: 'Extra small Partner'}),
+(awkward_difficulty:BusStop {name: 'Awkward Difficulty'}),
+(lonely_fish:BusStop {name: 'Lonely Fish'})
+
+CREATE
+(ordinary_code:Organization {name: 'Ordinary Code', type: 'Store'}) -[:NEAR {dist: 3}]->(fortunate_blank),
+(lumpy_you:Organization {name: 'Lumpy You', type: 'Mall'}) -[:NEAR {dist: 3}]->(fortunate_blank),
+(gifted_potato:Organization {name: 'Gifted Potato', type: 'Mall'}) -[:NEAR {dist: 2}]->(pessimistic_spot),
+(cylindrical_factor:Organization {name: 'Cylindrical Factor', type: 'Office Building'}) -[:NEAR {dist: 1}]->(fortunate_blank),
+(physical_permission:Organization {name: 'Physical Permission', type: 'Grocery'}) -[:NEAR {dist: 2}]->(rewarding_presentation),
+(gripping_university:Organization {name: 'Gripping University', type: 'Grocery'}) -[:NEAR {dist: 2}]->(formal_feel),
+(determined_home:Organization {name: 'Determined Home', type: 'Mall'}) -[:NEAR {dist: 2}]->(poised_arrival),
+(mean_air:Organization {name: 'Mean Air', type: 'College'}) -[:NEAR {dist: 3}]->(royal_feature),
+(jolly_preparation:Organization {name: 'Jolly Preparation', type: 'Mall'}) -[:NEAR {dist: 2}]->(timely_wave),
+(esteemed_hurry:Organization {name: 'Esteemed Hurry', type: 'College'}) -[:NEAR {dist: 2}]->(lonely_fish),
+(muted_word:Organization {name: 'Muted Word', type: 'Office Building'}) -[:NEAR {dist: 2}]->(royal_feature),
+(affectionate_requirement:Organization {name: 'Affectionate Requirement', type: 'Store'}) -[:NEAR {dist: 5}]->(cuddly_can),
+(illustrious_cold:Organization {name: 'Illustrious Cold', type: 'Mall'}) -[:NEAR {dist: 3}]->(clean_wind),
+(elderly_resolve:Organization {name: 'Elderly Resolve', type: 'School'}) -[:NEAR {dist: 5}]->(poised_arrival),
+(zigzag_bridge:Organization {name: 'Zigzag Bridge', type: 'Store'}) -[:NEAR {dist: 2}]->(heavenly_trash),
+(scornful_transition:Organization {name: 'Scornful Transition', type: 'School'}) -[:NEAR {dist: 2}]->(fitting_bell),
+(nutritious_drop:Organization {name: 'Nutritious Drop', type: 'Grocery'}) -[:NEAR {dist: 5}]->(spiffy_telephone),
+(exalted_mom:Organization {name: 'Exalted Mom', type: 'Mall'}) -[:NEAR {dist: 5}]->(accomplished_jury),
+(bad_chapter:Organization {name: 'Bad Chapter', type: 'Grocery'}) -[:NEAR {dist: 4}]->(attractive_fortune),
+(round_card:Organization {name: 'Round Card', type: 'Mall'}) -[:NEAR {dist: 2}]->(accomplished_jury)
+
+CREATE
+(poised_arrival) -[:LEAD_TO {route: '#1', dist: 4}]->(clean_wind),
+(clean_wind) -[:LEAD_TO {route: '#1', dist: 2}]->(present_rush),
+(present_rush) -[:LEAD_TO {route: '#1', dist: 3}]->(formal_feel),
+(formal_feel) -[:LEAD_TO {route: '#1', dist: 3}]->(heavenly_trash),
+(heavenly_trash) -[:LEAD_TO {route: '#1', dist: 3}]->(fortunate_blank),
+(fortunate_blank) -[:LEAD_TO {route: '#1', dist: 2}]->(fitting_bell),
+(fitting_bell) -[:LEAD_TO {route: '#1', dist: 3}]->(royal_feature),
+(royal_feature) -[:LEAD_TO {route: '#1', dist: 3}]->(rewarding_presentation),
+(rewarding_presentation) -[:LEAD_TO {route: '#1', dist: 2}]->(awkward_difficulty),
+(accomplished_jury) -[:LEAD_TO {route: '#2', dist: 1}]->(present_rush),
+(present_rush) -[:LEAD_TO {route: '#2', dist: 2}]->(attractive_fortune),
+(attractive_fortune) -[:LEAD_TO {route: '#2', dist: 2}]->(fortunate_blank),
+(fortunate_blank) -[:LEAD_TO {route: '#2', dist: 5}]->(best_salt),
+(best_salt) -[:LEAD_TO {route: '#2', dist: 2}]->(rewarding_presentation),
+(rewarding_presentation) -[:LEAD_TO {route: '#2', dist: 4}]->(lonely_fish),
+(clean_wind) -[:LEAD_TO {route: '#3', dist: 4}]->(timely_wave),
+(timely_wave) -[:LEAD_TO {route: '#3', dist: 4}]->(present_rush),
+(present_rush) -[:LEAD_TO {route: '#3', dist: 3}]->(formal_feel),
+(formal_feel) -[:LEAD_TO {route: '#3', dist: 3}]->(pessimistic_spot),
+(pessimistic_spot) -[:LEAD_TO {route: '#3', dist: 2}]->(fortunate_blank),
+(fortunate_blank) -[:LEAD_TO {route: '#3', dist: 5}]->(fitting_bell),
+(fitting_bell) -[:LEAD_TO {route: '#3', dist: 1}]->(cuddly_can),
+(cuddly_can) -[:LEAD_TO {route: '#3', dist: 2}]->(rewarding_presentation),
+(timely_wave) -[:LEAD_TO {route: '#4', dist: 2}]->(present_rush),
+(present_rush) -[:LEAD_TO {route: '#4', dist: 1}]->(forked_save),
+(forked_save) -[:LEAD_TO {route: '#4', dist: 2}]->(fortunate_blank),
+(fortunate_blank) -[:LEAD_TO {route: '#4', dist: 1}]->(spiffy_telephone),
+(spiffy_telephone) -[:LEAD_TO {route: '#4', dist: 5}]->(rewarding_presentation),
+(rewarding_presentation) -[:LEAD_TO {route: '#4', dist: 5}]->(extra_small_partner),
+(present_rush) -[:LEAD_TO {route: '#5', dist: 2}]->(formal_feel),
+(formal_feel) -[:LEAD_TO {route: '#5', dist: 2}]->(heavenly_trash),
+(heavenly_trash) -[:LEAD_TO {route: '#5', dist: 5}]->(fitting_bell),
+(fitting_bell) -[:LEAD_TO {route: '#5', dist: 3}]->(royal_feature),
+(royal_feature) -[:LEAD_TO {route: '#5', dist: 5}]->(awkward_difficulty)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1)
+MATCH p=()-[:LEAD_TO {route: "#1"}]->() RETURN p;
+
+
+2)
+MATCH (BusStop {name: ""})<-[:NEAR]-(p) RETURN p;
+
+
+3)
+MATCH (p:BusStop)
+WHERE COUNT{
+    MATCH k=(p)-[:LEAD_TO]->()
+    RETURN k
+} >= 2
+RETURN p;
+
+
+4)
+MATCH (p:BusStop)
+WHERE COUNT{
+    MATCH k=(p)-[:LEAD_TO]->()
+    RETURN k
+} <= 1
+AND COUNT{
+    MATCH k=(p)<-[:LEAD_TO]-()
+    RETURN k
+} <= 1 
+RETURN p;
+
+
+5)
+MATCH p=(k:Organization)-[:NEAR]->(s:BusStop) 
+WHERE k.type = "School" OR k.type = "College"
+RETURN p;
+
+
+6)
+MATCH p=(BusStop {name: ""})-[:LEAD_TO*1.. {route: "#1"}]->({name: ""}) RETURN p;
+
+
+7)
+MATCH p=shortestPath((BusStop {name: ""})-[:LEAD_TO*1..]->({name: ""})) RETURN p;
+
+
+8)
+MATCH p=(BusStop {name: ""})-[:LEAD_TO*1.. ]->({name: ""})-[:LEAD_TO*1.. ]->({name: ""}) RETURN p;
+
+
+9)
+MATCH p=()-[n:LEAD_TO*0..]->()
+RETURN p, count{
+  WITH DISTINCT nodes(p) as nds
+  UNWIND nds as nd
+  MATCH p3=(nd)<-[:NEAR]-(s)
+  WHERE s.type="Mall" or s.type="Store" or s.type="Grocery"
+  WITH s
+  RETURN DISTINCT s
+} as shop_am
+ORDER BY shop_am DESC LIMIT 1
+
+
+10)
+MATCH p=(BusStop {name: ""})-[r:LEAD_TO*1..]->({name: ""}) 
+RETURN p, reduce(dist = 0, r in relationships(p) | dist+r.dist) AS dist
+ORDER BY dist LIMIT 1
+
+
+11) 
+MATCH p=(BusStop {name: ""})-[:LEAD_TO*3]->()<-[:NEAR]-(n) RETURN n;
+
+
+12)
+MATCH p=(BusStop)-[r:LEAD_TO*1..]->() 
+WITH p, reduce(dist = 0, r in relationships(p) | dist+r.dist) AS dist
+WHERE dist > 30
+RETURN DISTINCT p, dist
+ORDER BY dist DESC
