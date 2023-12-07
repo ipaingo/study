@@ -1,0 +1,84 @@
+1) Получить последовательность остановок (названия остановки и номер по порядку) для заданного маршрута.
+
+match (a)-[r:Route1]-(b) return a, r / match (a)-[r:Route1]-() return distinct a.name
+
+2) Получить названия организаций, расположенных рядом с заданной остановкой.
+
+match (a)-[r:Near]-(b:Station{name:"Спасская"}) return a.name
+
+3) Найти все названия остановок, на которых возможны пересадки на другой маршрут.
+
+match (a:Station)-[r]-(b:Station)
+with a, count(distinct type(r)) as r_count
+where r_count > 1
+return a.name
+
+4) Найти все названия остановок, на которых останавливается только один маршрут.
+
+match (a:Station)-[r]-(b:Station)
+with a, count(distinct type(r)) as r_count
+where r_count = 1
+return a.name
+
+5) Найти названия учебных организаций и названия остановок, около которых они расположены.
+
+match (a:Station)-[r:Near]-(b:Org)
+where b.type = "Образование"
+return b.name, a.name
+
+6) Получить все маршруты от одной заданной остановки до другой заданной остановки:
+	1) Остановки лежат на одном маршруте;
+		
+match p=(a:Station{name:"Невский проспект"})-[*]->(b:Station{name:"Площадь восстания"})
+return p		
+  
+	2) Остановки лежат на разных маршрутах.
+		
+match p=(a:Station{name:"Невский проспект"})-[*]->(b:Station{name:"Достоевская"})
+return p
+
+
+7) Получить минимальный по количеству остановок маршрут от одной заданной остановки до другой заданной остановки:
+	1) Остановки лежат на одном маршруте;
+
+match path=shortestpath((a:Station{name:"Невский проспект"})-[*]->(b:Station{name:"Площадь восстания"})) 
+return path
+
+	2) Остановки лежат на разных маршрутах.
+
+match path=shortestpath((a:Station{name:"Невский проспект"})-[*]->(b:Station{name:"Площадь Александра Невского"})) 
+return path
+
+8) Получить все маршруты, которые проходят через 3 заданные остановки.
+
+match p=(a:Station{name:"Невский проспект"})-[*]->(b:Station{name:"Достоевская"})-[*]->(c:Station{name:"Ладожская"})
+return p
+
+9) Получить маршрут, который проходит рядом с максимальным количеством магазинов.
+
+match (:Org {type: "Магазин"})-[:Near]->(shop:Station)
+with COLLECT(distinct shop) as shops
+match path = (:Station)-[:Route1|Route2|Route3|Route4|Route5*]->(:Station)
+with path, 
+     reduce(s = 0, node IN nodes(path) | s + case when node in shops then 1 else 0 end) as numShops
+order by numShops desc
+limit 1
+return path, numShops;
+
+10) Получить минимальный по расстоянию маршрут от одной заданной остановки до другой заданной остановки.
+
+match path = (:Station {name: 'Невский проспект'})-[:Route1|Route2|Route3|Route4|Route5*]->(:Station {name: 'Достоевская'})
+return path, reduce(s = 0, rel in relationships(path) | s + rel.distance) as totalDistance
+order by totalDistance asc
+limit 1;
+
+11) Найти названия организаций, расположенных рядом с третьей по счету остановкой от заданной остановки.
+
+match (a:Station{name:"Петроградская"})-[:Route1|Route2|Route3|Route4|Route5*3]->(b:Station)-[r:Near]-(c:Org)
+return c.name, b.name
+
+12)Найти все маршруты, длина которых превышает 10 км.
+
+match path = (:Station)-[r:Route1|Route2|Route3|Route4|Route5*]->(:Station)
+where reduce(s = 0, rel in relationships(path) | s + rel.distance) > 10
+return path;
