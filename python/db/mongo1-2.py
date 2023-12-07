@@ -72,7 +72,7 @@ def process_command():
                 "count": {"$sum": 1}
             }
         }
-    ]
+        ]
     doc.delete("1.0", END)
     if txt_cond.get() == "":
         command = "True"

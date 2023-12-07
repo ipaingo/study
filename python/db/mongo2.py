@@ -253,6 +253,33 @@ def fill_items():
                     "date_bought": "09-01-2023"
                 }
             ]
+        },
+
+        {
+            "name": "Samsung Galaxy",
+            "manufacturer": "Samsung",
+            "price": "80000",
+            "features": {
+                "category": "mobile phones",
+                "weight": "900",
+                "type": "S",
+                "colour": "metallic",
+                "level of pointlessness": "2/10",
+            },
+            "buyers": [
+                {
+                    "name": "Petr Petrov",
+                    "delivery": "Post",
+                    "review": "It's not so expensive.",
+                    "date_bought": "05-07-2023"
+                },
+                {
+                    "name": "Ksenia Petrova",
+                    "delivery": "Train",
+                    "review": "",
+                    "date_bought": "09-01-2023"
+                }
+            ]
         }
     ]:
         collection.insert_one(i)
