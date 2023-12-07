@@ -43,7 +43,7 @@ def process_command():
 
     a = dict()
     print(txt_query.get("1.0", END))
-    aaa = json.loads(txt_query.get("1.0", END))
+    text_search = json.loads(txt_query.get("1.0", END))
 
     print("fegh")
     count = 0
@@ -80,7 +80,7 @@ def process_command():
         command = txt_cond.get()
     print(command)
     res = ""
-    for item in db[table].aggregate(aaa):
+    for item in db[table].aggregate(text_search):
         if eval(command):
             res += f"{item}\n"
         count += 1
