@@ -108,7 +108,7 @@ MATCH p=()-[:LEAD_TO {route: "#1"}]->() RETURN p;
 
 
 2)
-MATCH (BusStop {name: ""})<-[:NEAR]-(p) RETURN p;
+MATCH (BusStop {name: 'Fortunate Blank'})-[]-(p:Organization) RETURN p;
 
 
 3)
@@ -140,15 +140,28 @@ RETURN p;
 
 
 6)
-MATCH p=(BusStop {name: ""})-[:LEAD_TO*1.. {route: "#1"}]->({name: ""}) RETURN p;
+MATCH p=(BusStop {name: "Poised Arrival"})-[:LEAD_TO*1.. {route: "#1"}]->({name: "Fitting Bell"}) RETURN p;
+
+MATCH(a:BusStop {name: "Poised Arrival"})-[r1]->(),(b:BusStop {name: "Fitting Bell"})-[r2]-() 
+WHERE type(r1) = type(r2) 
+RETURN DISTINCT type(r1)
+
+MATCH p = (a:Station{name:'наб. Варкауса'})-[*]->(b:Station{name:'ул. Московская'}) 
+WITH relationships(p) AS p
+CALL{
+    WITH p
+    UNWIND p AS n
+    RETURN collect(DISTINCT type(n)) AS cn 
+}
+RETURN DISTINCT cn AS nameRoute 
 
 
 7)
-MATCH p=shortestPath((BusStop {name: ""})-[:LEAD_TO*1..]->({name: ""})) RETURN p;
+MATCH p=shortestPath((BusStop {name: "Poised Arrival"})-[:LEAD_TO*1..]->({name: "Lonely Fish"})) RETURN p;
 
 
 8)
-MATCH p=(BusStop {name: ""})-[:LEAD_TO*1.. ]->({name: ""})-[:LEAD_TO*1.. ]->({name: ""}) RETURN p;
+MATCH p=(BusStop {name: "Timely Wave"})-[:LEAD_TO*1.. ]->({name: "Present Rush"})-[:LEAD_TO*1.. ]->({name: "Formal Feel"}) RETURN p;
 
 
 9)
