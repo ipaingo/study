@@ -1,6 +1,8 @@
 import graphviz
 import stanza
 import time
+stanza.download("ru")
+
 
 nlp = stanza.Pipeline('ru', download_method=False, warnings=False)
 

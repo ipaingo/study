@@ -8,6 +8,7 @@ stop_words = []
 
 
 def calc_frequency(ref_words, text_words):
+    """вспомогательная функция для подсчета частот."""
     res = 0
     for word1 in ref_words:
         if word1 in text_words:
@@ -16,6 +17,8 @@ def calc_frequency(ref_words, text_words):
 
 
 def get_rouges(ref, text):
+    """функция подсчета метрик ROUGE."""
+    #
     ref = ref.lower()
     ref_unigrams = nltk.word_tokenize(ref)
     temp = []
@@ -55,28 +58,28 @@ def main():
 
     morpher = pymorphy3.MorphAnalyzer()
     sentences_lemmatized = []
-    dict_word_frequence = {}
+    dict_word_frequency = {}
 
     for sentence in tokens:
         current_sentences = []
         for word in sentence:
             if word not in stop_words:
                 word = morpher.normal_forms(word)[0]
-                if word in dict_word_frequence:
-                    dict_word_frequence[word] += 1
+                if word in dict_word_frequency:
+                    dict_word_frequency[word] += 1
                 else:
-                    dict_word_frequence[word] = 1
+                    dict_word_frequency[word] = 1
                 current_sentences.append(word)
         sentences_lemmatized.append(current_sentences)
 
-    dict_word_frequence = dict(sorted(dict_word_frequence.items(), key=lambda item: item[1], reverse=True))
+    dict_word_frequency = dict(sorted(dict_word_frequency.items(), key=lambda item: item[1], reverse=True))
 
     dict_sentence_weights = {}
 
     for i in range(len(sentences_lemmatized)):
         weight = 0
         for word in sentences_lemmatized[i]:
-            weight += dict_word_frequence[word]
+            weight += dict_word_frequency[word]
         dict_sentence_weights[sentences[i]] = (weight / len(sentences_lemmatized[i]), i)
 
     dict_sentence_weights = dict(sorted(dict_sentence_weights.items(), key=lambda item: item[1][0], reverse=True))
@@ -98,7 +101,6 @@ def main():
     for k in dict_top.keys():
         report += k + "\n"
 
-
     savename = str(input("Сохранить реферат как: "))
     with open(savename, 'w', encoding='utf-8') as file:
         file.write(report)
@@ -106,44 +108,45 @@ def main():
     with open('ref_txt.txt', encoding='utf-8') as file:
         ref = file.read()
     with open('visualworld.txt', encoding='utf-8') as file:
-        visualworld = file.read()
+        visual_world = file.read()
     with open('splitbrain.txt', encoding='utf-8') as file:
         splitbrain = file.read()
+
     summa_text = summarizer.summarize(text, ratio=0.25)
 
-    print("======Реферат======")
+    print("Реферат:")
     for sent in report.split("\n"):
         print(sent)
-    print("\n======Splitbrain======")
+    print("\nSplitbrain:")
     for sent in splitbrain.split("\n"):
         print(sent)
-    print("\n======Визуальный Мир======")
-    for sent in visualworld.split("\n"):
+    print("\nВизуальный Мир:")
+    for sent in visual_world.split("\n"):
         print(sent)
 
-    print("\n======summa======")
+    print("\nSumma:")
     for sent in summa_text.split("\n"):
         print(sent)
 
-    print("===================\n")
+    print("\n")
 
     rouge_save = str(input("Сохранить rouge-отчет как: "))
     file = open(rouge_save, "w", encoding="utf-8")
 
     print()
-    rouges = f"=========Реферат=========\n{get_rouges(ref, report)}"
+    rouges = f"Реферат:\n{get_rouges(ref, report)}"
     print(rouges)
     file.write(rouges+"\n")
 
-    rouges = f"========Splitbrain========\n{get_rouges(ref, splitbrain)}"
+    rouges = f"Splitbrain:\n{get_rouges(ref, splitbrain)}"
     print(rouges)
     file.write(rouges+"\n")
 
-    rouges = f"======Визуальный Мир======\n{get_rouges(ref, visualworld)}"
+    rouges = f"Визуальный Мир:\n{get_rouges(ref, visual_world)}"
     print(rouges)
     file.write(rouges+"\n")
 
-    rouges = f"==========Summa==========\n{get_rouges(ref, summa_text)}"
+    rouges = f"Summa:\n{get_rouges(ref, summa_text)}"
     print(rouges)
     file.write(rouges)
 
