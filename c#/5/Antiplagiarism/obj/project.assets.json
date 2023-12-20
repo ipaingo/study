@@ -910,11 +910,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Софья Зименкова\\учёба\\c#\\мое\\5\\Antiplagiarism\\Antiplagiarism.csproj",
+      "projectUniqueName": "D:\\Софья Зименкова\\учёба\\5 сем\\c#\\5\\Antiplagiarism\\Antiplagiarism.csproj",
       "projectName": "Antiplagiarism",
-      "projectPath": "D:\\Софья Зименкова\\учёба\\c#\\мое\\5\\Antiplagiarism\\Antiplagiarism.csproj",
+      "projectPath": "D:\\Софья Зименкова\\учёба\\5 сем\\c#\\5\\Antiplagiarism\\Antiplagiarism.csproj",
       "packagesPath": "C:\\Users\\Софья Зименкова\\.nuget\\packages\\",
-      "outputPath": "D:\\Софья Зименкова\\учёба\\c#\\мое\\5\\Antiplagiarism\\obj\\",
+      "outputPath": "D:\\Софья Зименкова\\учёба\\5 сем\\c#\\5\\Antiplagiarism\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NAW76jEujlO9EwAxf2eXbbw/uYYXdlybr08p7Qa8X4ns5bQtiSKUq9L4i6Qo+ENVaRFflotf4MlDcg8CQ41LVA==",
+  "dgSpecHash": "VnIvCDOXfvUoKLrx4885TVy7gGbWDcO8rU51vWMMdyd+Vcb6kF9O1D0sRsSlpsR0bZkuokqmFKIWydtsbOpiXA==",
   "success": true,
-  "projectFilePath": "D:\\Софья Зименкова\\учёба\\c#\\мое\\5\\Antiplagiarism\\Antiplagiarism.csproj",
+  "projectFilePath": "D:\\Софья Зименкова\\учёба\\5 сем\\c#\\5\\Antiplagiarism\\Antiplagiarism.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Софья Зименкова\\.nuget\\packages\\microsoft.codecoverage\\17.4.1\\microsoft.codecoverage.17.4.1.nupkg.sha512",
     "C:\\Users\\Софья Зименкова\\.nuget\\packages\\microsoft.net.test.sdk\\17.4.1\\microsoft.net.test.sdk.17.4.1.nupkg.sha512",

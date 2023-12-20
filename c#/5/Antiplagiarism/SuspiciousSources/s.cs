@@ -1,59 +1,125 @@
-﻿using System;
+﻿using NUnit.Framework.Constraints;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
-namespace Antiplagiarism
+namespace BinaryTrees;
+public class BinaryTree<T> : IEnumerable<T> where T : IComparable
 {
-    public static class LongestCommonSubsequenceCalculator
+
+    public T Value { get; set; }
+    public BinaryTree<T> LeftSon { get; set; }
+    public BinaryTree<T> RightSon { get; set; }
+    public int Length { get; set; }
+    public BinaryTree() { }
+    public BinaryTree(T value)
     {
-        public static List<string> Calculate(List<string> first, List<string> second)
-        {
-            var table = CreateOptimizationTable(first, second);
-            var ans = RestoreAnswer(table, first, second);
-            ans.Reverse();
+        Value = value;
+        LeftSon = null;
+        RightSon = null;
+        Length = 1;
+    }
 
-            return ans;
+    private BinaryTree<T> init;
+
+    public void Add(T value)
+    {
+        if (init == null)
+        {
+            init = new BinaryTree<T>(value);
+            return;
         }
 
-        private static int[,] CreateOptimizationTable(List<string> first, List<string> second)
-        {
-            var table = new int[first.Count + 1, second.Count + 1]; // состояние.
-            // база. работает и без нее (нули все-таки),
-            // но вдруг там окажется какой-нибудь мусор - лучше все же очистить.
-            for (int i = 0; i <= first.Count; i++)
-                table[i, 0] = 0;
-            for (int i = 0; i <= second.Count; i++)
-                table[0, i] = 0;
+        BinaryTree<T> current = init;
 
-            for (int i = 1; i <= first.Count; i++) // порядок пересчета.
-                for (int j = 1; j <= second.Count; j++)
-                {   // переход.
-                    int match = 0;
-                    if (first[i - 1] == second[j - 1])
-                        match = 1;
-                    table[i, j] = Math.Max(Math.Max(table[i - 1, j], table[i, j - 1]), table[i - 1, j - 1] + match);
-                }
-            // ответ.
-            return table;
-        }
-
-        private static List<string> RestoreAnswer(int[,] table, List<string> first, List<string> second)
+        while (current != null)
         {
-            var ans = new List<string>();
-            // идем в обратном порядке, по таблице восстанавливая наибольшую общую последовательность.
-            // как с Левенштейном получается...
-            for (int i = first.Count, j = second.Count; i > 0 && j > 0;)
-                if (first[i - 1] == second[j - 1])
-                {
-                    ans.Add(first[i - 1]);
-                    i = i - 1;
-                    j = j - 1;
-                }
-                else if (table[i - 1, j] > table[i, j - 1])
-                    i = i - 1;
+            current.Length++;
+            if (current.Value.CompareTo(value) < 0)
+            {
+                if (current.LeftSon != null)
+                    current = current.LeftSon;
                 else
-                    j = j - 1;
+                {
+                    current.LeftSon = new BinaryTree<T>(value);
+                    return;
+                }
+            }
+            else
+            {
+                if (current.RightSon != null)
+                    current = current.RightSon;
+                else
+                {
+                    current.RightSon = new BinaryTree<T>(value);
+                    return;
+                }
+            }
+        }
+    }
 
-            return ans;
+    public bool Contains(T key)
+    {
+        BinaryTree<T> current = init;
+        while (current != null)
+        {
+            int compareResult = key.CompareTo(current.Value);
+
+            if (compareResult == 0)
+                return true;
+            else if (compareResult > 0)
+                current = current.LeftSon;
+            else
+                current = current.RightSon;
+        }
+
+        return false;
+    }
+
+    public IEnumerator<T> GetEnumerator() => EnumeratorNode(init);
+    private IEnumerator<T> EnumeratorNode(BinaryTree<T> Node)
+    {
+        if (Node == null)
+            yield break;
+
+        var right = EnumeratorNode(Node.RightSon);
+        while (right.MoveNext())
+            yield return right.Current;
+
+        yield return Node.Value;
+
+        var left = EnumeratorNode(Node.LeftSon);
+        while (left.MoveNext())
+            yield return left.Current;
+    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public T this[int i]
+    {
+        get
+        {
+            var current = init;
+            int currentLength = 0;
+            int currentIndex;
+
+            while (true)
+            {
+                if (current.RightSon == null)
+                    currentIndex = currentLength;
+                else
+                    currentIndex = current.RightSon.Length + currentLength;
+
+                if (i == currentIndex)
+                    return current.Value;
+                if (i < currentIndex)
+                    current = current.RightSon;
+                else
+                {
+                    current = current.LeftSon;
+                    currentLength = currentIndex + 1;
+                }
+            }
         }
     }
 }
