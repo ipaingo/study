@@ -7,7 +7,7 @@ import networkx as nx
 nlp = spacy.load("ru_core_news_sm")
 morph = pymorphy3.MorphAnalyzer(lang='ru')
 
-# парсим свои, ручные грамматические основы.
+# парсим самодельные грамматические основы.
 gr_basis = []
 with open('basis.txt', 'r', encoding="utf-8") as go:
     for line in go:
@@ -66,7 +66,7 @@ for sentence in doc.sents:
             predicate.append(token.text)
         if token.dep_ == "parataxis" and token.pos_ == "VERB" and case not in wrong_case and token.text[-2:] != "сь":
             predicate.append(token.text)
-        # сказуемое в 1 лице.
+        # сказуемое в первом лице.
         if token.dep_ == "obj" and token.pos_ == "VERB" and case == None and token.text[-2:] != "сь":
             predicate.append(token.text)
 
@@ -80,20 +80,26 @@ for sentence in doc.sents:
 count = 0
 for i in range(len(lib_gr_basis)):
     if lib_gr_basis[i] == gr_basis[i]:
-        print("\033[1m\033[32m{}".format(f"{lib_gr_basis[i]} *** {gr_basis[i]}"))
+        # совпадает с самодельным разбором.
+        print("O: ", lib_gr_basis[i], " ------- ", gr_basis[i])
         count += 1
     else:
-        print("\033[1m\033[31m{}".format(f"{lib_gr_basis[i]} *** {gr_basis[i]}"))
-print(f"{count}/58")
+        # есть расхождения.
+        print("X: ", lib_gr_basis[i], " ------- ", gr_basis[i])
 
-print('Точность работы алгоритма: ' + str(round(count/58, 2)))
+print("---------------------")
+print(count)
+print("Точность работы: ", str(round(count/58, 2)))
+print("---------------------")
 
+# вывод предложений, по которым строятся графы.
 for sentence in doc.sents:
-    print("\033[30m{}".format(sentence))
+    print(sentence)
     for token in sentence:
-        print("\033[30m{}".format(f"{token.text} {token.dep_} {token.tag_} {token.pos_} {morph.parse(token.text)[0].tag.case}"))
+        print(token.text, token.dep_, token.tag_, token.pos_, morph.parse(token.text)[0].tag.case)
     print()
 
+# собственно, рисуем сами графы.
 i = 0
 for sentence in sentences[:4]:
     sent = nlp(sentence)
