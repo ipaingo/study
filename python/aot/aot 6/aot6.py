@@ -1,5 +1,6 @@
-import string
 import nltk
+# nltk.download('stopwords')
+# nltk.download('punkt')
 from nltk.corpus import stopwords
 import pymorphy3
 from summa import summarizer
@@ -7,8 +8,8 @@ from summa import summarizer
 stop_words = []
 
 
+# вспомогательная функция для подсчета частот.
 def calc_frequency(ref_words, text_words):
-    """вспомогательная функция для подсчета частот."""
     res = 0
     for word1 in ref_words:
         if word1 in text_words:
@@ -16,9 +17,8 @@ def calc_frequency(ref_words, text_words):
     return res / len(ref_words)
 
 
+# функция подсчета метрик ROUGE. все по формулкам.
 def get_rouges(ref, text):
-    """функция подсчета метрик ROUGE."""
-    #
     ref = ref.lower()
     ref_unigrams = nltk.word_tokenize(ref)
     temp = []
@@ -46,14 +46,14 @@ def get_rouges(ref, text):
 
 
 def main():
+    # стоп-слова - слова, которые не вносят никакой дополнительной информации в текст: предлоги, союзы, междометия.
     global stop_words
-    filename = str(input("Путь до файла с тексом: "))
-    with open(filename, encoding='utf-8') as file:
+    with open("text.txt", encoding='utf-8') as file:
         text = file.read().lower()
     stop_words = stopwords.words('russian') + "'-,./&^:;{}[]()*?!@#%+=«»–—…".split()
 
+    # разбиваем на слова.
     sentences = nltk.sent_tokenize(text)
-
     tokens = [nltk.word_tokenize(sentence) for sentence in sentences]
 
     morpher = pymorphy3.MorphAnalyzer()
@@ -61,17 +61,18 @@ def main():
     dict_word_frequency = {}
 
     for sentence in tokens:
-        current_sentences = []
+        current_sentence = []
         for word in sentence:
             if word not in stop_words:
-                word = morpher.normal_forms(word)[0]
-                if word in dict_word_frequency:
+                word = morpher.normal_forms(word)[0]  # записываем начальные формы,
+                if word in dict_word_frequency:  # и как часто они встречаются.
                     dict_word_frequency[word] += 1
                 else:
                     dict_word_frequency[word] = 1
-                current_sentences.append(word)
-        sentences_lemmatized.append(current_sentences)
+                current_sentence.append(word)
+        sentences_lemmatized.append(current_sentence)
 
+    # будем сортировать предложения по их важности (суммарному весу их слов).
     dict_word_frequency = dict(sorted(dict_word_frequency.items(), key=lambda item: item[1], reverse=True))
 
     dict_sentence_weights = {}
@@ -84,8 +85,9 @@ def main():
 
     dict_sentence_weights = dict(sorted(dict_sentence_weights.items(), key=lambda item: item[1][0], reverse=True))
 
-    d = float(input("Объем реферата (от 0 до 1): "))
+    d = float(input("Введите желаемый объем реферата (от 0 до 1): "))
 
+    # мы оставим только желаемый процент объема, и запишем самые важные предложения в полученный реферат.
     limit = int(len(sentences) * d)
     report = ""
     count = 0
@@ -101,13 +103,13 @@ def main():
     for k in dict_top.keys():
         report += k + "\n"
 
-    savename = str(input("Сохранить реферат как: "))
-    with open(savename, 'w', encoding='utf-8') as file:
+    with open("summary.txt", 'w', encoding='utf-8') as file:
         file.write(report)
 
+    # сравниваем с рефератами от других библиотек.
     with open('ref_txt.txt', encoding='utf-8') as file:
         ref = file.read()
-    with open('visualworld.txt', encoding='utf-8') as file:
+    with open('visual_world.txt', encoding='utf-8') as file:
         visual_world = file.read()
     with open('splitbrain.txt', encoding='utf-8') as file:
         splitbrain = file.read()
@@ -115,43 +117,53 @@ def main():
     summa_text = summarizer.summarize(text, ratio=0.25)
 
     print("Реферат:")
-    for sent in report.split("\n"):
-        print(sent)
-    print("\nSplitbrain:")
-    for sent in splitbrain.split("\n"):
-        print(sent)
-    print("\nВизуальный Мир:")
-    for sent in visual_world.split("\n"):
-        print(sent)
+    for sentence in report.split("\n"):
+        print(sentence)
+    print()
+    print("---------------------")
+    print()
 
-    print("\nSumma:")
-    for sent in summa_text.split("\n"):
-        print(sent)
+    print("Splitbrain:")
+    for sentence in splitbrain.split("\n"):
+        print(sentence)
+    print()
+    print("---------------------")
+    print()
 
-    print("\n")
+    print("Визуальный мир:")
+    for sentence in visual_world.split("\n"):
+        print(sentence)
+    print()
+    print("---------------------")
+    print()
 
-    rouge_save = str(input("Сохранить rouge-отчет как: "))
-    file = open(rouge_save, "w", encoding="utf-8")
+    print("Summa:")
+    for sentence in summa_text.split("\n"):
+        print(sentence)
+    print()
+
+
+    file = open("rouge.txt", "w", encoding="utf-8")
 
     print()
     rouges = f"Реферат:\n{get_rouges(ref, report)}"
     print(rouges)
-    file.write(rouges+"\n")
+    file.write(rouges + "\n")
 
     rouges = f"Splitbrain:\n{get_rouges(ref, splitbrain)}"
     print(rouges)
-    file.write(rouges+"\n")
+    file.write(rouges + "\n")
 
     rouges = f"Визуальный Мир:\n{get_rouges(ref, visual_world)}"
     print(rouges)
-    file.write(rouges+"\n")
+    file.write(rouges + "\n")
 
     rouges = f"Summa:\n{get_rouges(ref, summa_text)}"
     print(rouges)
     file.write(rouges)
 
     file.close()
-
+    print("ROUGE-отчет сохранен как rouge.txt.")
 
 if __name__ == "__main__":
     main()
