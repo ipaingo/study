@@ -43,7 +43,7 @@ for sentence in doc.sents:
     for token in sentence:
         case = morph.parse(token.text)[0].tag.case
         # ROOT - корень.
-        # nsubj - подлежащее глагола
+        # nsubj - подлежащее глагола.
         if (token.dep_ == "nsubj" or token.dep_ == "nsubj:pass") and (case not in wrong_case or case == 'loct') and case != None:
             subject.append(token.text)
         if token.dep_ == "conj" and token.pos_ == "NOUN" and case != None and case not in wrong_case:
@@ -66,7 +66,7 @@ for sentence in doc.sents:
             predicate.append(token.text)
         if token.dep_ == "parataxis" and token.pos_ == "VERB" and case not in wrong_case and token.text[-2:] != "сь":
             predicate.append(token.text)
-        # сказуемое в 1 лице
+        # сказуемое в 1 лице.
         if token.dep_ == "obj" and token.pos_ == "VERB" and case == None and token.text[-2:] != "сь":
             predicate.append(token.text)
 
@@ -77,7 +77,7 @@ for sentence in doc.sents:
     pred_sort = sorted(predicate)
     lib_gr_basis.append([subj_sort, pred_sort])
 
-count  = 0
+count = 0
 for i in range(len(lib_gr_basis)):
     if lib_gr_basis[i] == gr_basis[i]:
         print("\033[1m\033[32m{}".format(f"{lib_gr_basis[i]} *** {gr_basis[i]}"))
