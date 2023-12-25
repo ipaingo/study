@@ -92,7 +92,7 @@ print(count)
 print("Точность работы: ", str(round(count/58, 2)))
 print("---------------------")
 
-# вывод предложений, по которым строятся графы.
+# вывод предложений, по которым будем строить графы.
 for sentence in doc.sents:
     print(sentence)
     for token in sentence:
