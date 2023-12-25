@@ -1,7 +1,13 @@
+# дурацкий графвиз... его надо отдельно ставить на комп +
+# устанавливать в PATH + указывать здесь как переменную PATH.
+# только после этого работает. я на всякий случай нагенерила картинок,
+# так что не придется мучиться с ним, чтобы посмотреть результат работы.
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 import graphviz
 import stanza
 import time
-stanza.download("ru")
+# stanza.download("ru")
 
 
 nlp = stanza.Pipeline('ru', download_method=False, warnings=False)
@@ -34,24 +40,25 @@ def uposify(upos):
     return upos
 
 
-# filename = str(input("Путь до файла: "))
-filename = "text_short.txt"
+# filename = str(input("Имя файла: "))
+filename = "text.txt"
 with open(filename, "r", encoding="utf-8") as file:
     text = file.read()
 
 time_start = time.time()
 doc = nlp(text)
-print("\nDone processing!")
-print(f"Time spent: {time.time() - time_start}")
+time_end = time.time() - time_start
+print("\nТекст обработан.")
+print("Время работы: ", time_end)
 count = 0
 for sentence in doc.sentences:
     words = sentence.words
     for word in sentence.words:
         upos1 = uposify(word.upos)
-        if upos1 not in ["PUNCT", "SYM", "PART"]:
+        if upos1 not in ["PUNCT", "SYM", "PART", "INTJ", "X"]:
             if upos1 not in dict_transition:
                 dict_transition[upos1] = dict()
-            if word.head != 0 and words[word.head - 1].upos not in ["PUNCT", "SYM", "PART"]:
+            if word.head != 0 and words[word.head - 1].upos not in ["PUNCT", "SYM", "PART", "INTJ", "X"]:
                 word2 = words[word.head - 1]
 
                 upos2 = uposify(word2.upos)
