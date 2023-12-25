@@ -142,7 +142,6 @@ def main():
         print(sentence)
     print()
 
-
     file = open("rouge.txt", "w", encoding="utf-8")
 
     print()
@@ -164,6 +163,7 @@ def main():
 
     file.close()
     print("ROUGE-отчет сохранен как rouge.txt.")
+
 
 if __name__ == "__main__":
     main()
