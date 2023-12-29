@@ -71,5 +71,5 @@ if __name__ == "__main__":
 
         # print(calculate_statistics(divided_data))
 
-        for i in range(len(calculate_statistics(divided_data))):
+        for i in range(len(calculate_statistics(divided_data))):    
             print(calculate_statistics(divided_data)[i])
