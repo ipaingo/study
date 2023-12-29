@@ -1,0 +1,3 @@
+            result.append(",".join([str(start), data_stat[i - 1].split()[0],
+                                    str(len(data)), str(statistics.mean(data)),
+                                    str(statistics.median(data))]))
