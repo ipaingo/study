@@ -184,7 +184,7 @@ namespace Inheritance.Geometry.Virtual
         {
             var compoundBody = new CompoundBody(new[]
             {
-                new RectangularCuboid(new Vector3(x0, y0, z0), 4, 4, 4), 
+                new RectangularCuboid(new Vector3(x0, y0, z0), 4, 4, 4),
                 new RectangularCuboid(new Vector3(x1, y1, z1), 4, 4, 4),
             });
             var boundingBox = compoundBody.GetBoundingBox();

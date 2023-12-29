@@ -71,5 +71,5 @@ set breakpoints and watch variables, [follow these steps](https://github.com/nun
 
 ## Announcements
 * From version 3.9 the NUnit3TestAdapter will stop supporting Visual Studio 2012 RTM (!), note only RTM, the later updates will still be supported fully. If you're using VS 2012 and want to update NUnit3TestAdapter, please update your Visual Studio RTM to any of the subsequent updates (Update 1-5)
-* From version 3.16 the NUnit3TestAdapter will stop supporting .net core 1 
+* From version 3.16 the NUnit3TestAdapter will stop supporting .net core 1
 * From version 4.0 the NUnit3TestAdapter will only be released as a nuget package, the VSIX is deprecated.

@@ -45,7 +45,7 @@ public class GreedyPathFinder : IPathFinder
             }
             else // пустой список, если нет пути до сундука.
                 return new List<Point>();
-            
+
             goal = goal - 1; // приближаемся к плановому количеству сундуков.
         }
 

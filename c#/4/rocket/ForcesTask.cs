@@ -7,7 +7,7 @@ public class ForcesTask
     /// <summary>
     /// Создает делегат, возвращающий по ракете вектор силы тяги двигателей этой ракеты.
     /// Сила тяги направлена вдоль ракеты и равна по модулю forceValue.
-	/// 
+	///
     /// координаты: x = F * cos, y = F * sin.
     /// </summary>
     public static RocketForce GetThrustForce(double forceValue) => r => new Vector(forceValue * Math.Cos(r.Direction), forceValue * Math.Sin(r.Direction));

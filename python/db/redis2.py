@@ -49,7 +49,13 @@ def clear_tables():
 
 
 def fill_tables():
-    sp = ["Васильев Андрей", "Иванов Петр", "Соколов Роман", "Суконников Егор", "Московский Вячеслав"]
+    sp = [
+        "Васильев Андрей",
+        "Иванов Петр",
+        "Соколов Роман",
+        "Суконников Егор",
+        "Московский Вячеслав",
+    ]
     for person in sp:
         db.hset(sportsmen_table, person, "0")
 
@@ -64,9 +70,15 @@ def add_line():
     if current is None:
         current = "0"
     current = int(current)
-    db.hset(combobox_jury.get(), combobox_sportsman.get(), str(current + int(entry_result.get())))
+    db.hset(
+        combobox_jury.get(),
+        combobox_sportsman.get(),
+        str(current + int(entry_result.get())),
+    )
     score = int(db.hget(sportsmen_table, combobox_sportsman.get()))
-    db.hset(sportsmen_table, combobox_sportsman.get(), str(score + int(entry_result.get())))
+    db.hset(
+        sportsmen_table, combobox_sportsman.get(), str(score + int(entry_result.get()))
+    )
 
     update_table()
 
@@ -91,12 +103,16 @@ def main():
 
     Label(frame_add_points, text="Судья").pack(anchor=NW, side=LEFT)
     jury_var = StringVar(value=juries_list[0])
-    combobox_jury = ttk.Combobox(frame_add_points, values=juries_list, textvariable=jury_var, width=50)
+    combobox_jury = ttk.Combobox(
+        frame_add_points, values=juries_list, textvariable=jury_var, width=50
+    )
     combobox_jury.pack(anchor=NE, side=LEFT, padx=5)
 
     Label(frame_add_points, text="Спортсмен").pack(anchor=NW, side=LEFT)
     sportsman_var = StringVar(value=sportsmen_list[0])
-    combobox_sportsman = ttk.Combobox(frame_add_points, values=sportsmen_list, textvariable=sportsman_var, width=50)
+    combobox_sportsman = ttk.Combobox(
+        frame_add_points, values=sportsmen_list, textvariable=sportsman_var, width=50
+    )
     combobox_sportsman.pack(anchor=NE, side=LEFT, padx=5)
 
     entry_result = Entry(frame_add_points)

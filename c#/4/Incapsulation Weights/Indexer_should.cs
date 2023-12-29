@@ -54,7 +54,7 @@ namespace Incapsulation.Weights
         [TestCase(4, 1)]
         public void ConstructorFails_WhenRangeIsInvalid(int start, int length)
         {
-            Assert.Catch<ArgumentException>(() => new Indexer(range1to4, start, length), 
+            Assert.Catch<ArgumentException>(() => new Indexer(range1to4, start, length),
                 "Constructor should throw ArgumentException, when range is invalid!\n");
         }
 

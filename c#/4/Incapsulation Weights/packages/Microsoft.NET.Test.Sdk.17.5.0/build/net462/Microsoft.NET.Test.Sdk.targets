@@ -6,7 +6,7 @@
            created a backup copy.  Incorrect changes to this file will make it
            impossible to load or build your projects from the command-line or the IDE.
 
- Copyright (c) .NET Foundation. All rights reserved. 
+ Copyright (c) .NET Foundation. All rights reserved.
  ***********************************************************************************************
 -->
 
@@ -15,7 +15,7 @@
   <!--
      Generate config file for test project targeting .NET Framework. This config file has binding redirect which is needed at time of running tests.
      Added below two lines because msbuild has following check:
-     https://github.com/Microsoft/msbuild/blob/dd5e8bc3f86ac98bd77d8971b00a6ad14f122f1a/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L2027 
+     https://github.com/Microsoft/msbuild/blob/dd5e8bc3f86ac98bd77d8971b00a6ad14f122f1a/src/XMakeTasks/Microsoft.Common.CurrentVersion.targets#L2027
    -->
   <PropertyGroup>
     <AutoGenerateBindingRedirects Condition="'$(AutoGenerateBindingRedirects)' == ''">true</AutoGenerateBindingRedirects>

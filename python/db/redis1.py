@@ -41,7 +41,11 @@ def add_line():
     font_size = entry_fontsize.get()
     font_weight = combobox_weight.get()
     print(" ".join([font_name, font_size, font_weight, font_colour]))
-    db.hset(users_table, username, ";".join([font_name, font_size, font_weight, font_colour]))
+    db.hset(
+        users_table,
+        username,
+        ";".join([font_name, font_size, font_weight, font_colour]),
+    )
     update_list_of_users()
 
 
@@ -70,8 +74,7 @@ def update_list_of_users():
 def main():
     # delete_all()
     update_list_of_users()
-    global entry_username, entry_fontsize, combobox_colour, combobox_font, combobox_weight, window, combobox_user, \
-        combobox_weight, entry_result, label_sample, label_result
+    global entry_username, entry_fontsize, combobox_colour, combobox_font, combobox_weight, window, combobox_user, combobox_weight, entry_result, label_sample, label_result
     window.title("RedisDB")
     window.geometry("1000x320")
     fnt = ("Montserrat", 12)
@@ -110,7 +113,9 @@ def main():
     combobox_user = ttk.Combobox(window, values=users)
     combobox_user.grid(row=3, column=1)
 
-    btn_search_user_info = Button(window, text="Применить", command=show_user_info, font=fnt)
+    btn_search_user_info = Button(
+        window, text="Применить", command=show_user_info, font=fnt
+    )
     btn_search_user_info.grid(row=3, column=2)
 
     label_result = Label(window, font=("Arial", 12))

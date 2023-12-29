@@ -32,7 +32,7 @@ namespace Inheritance.DataStructure
                     Assert.AreEqual(i == j, a[i].Equals(a[j]), $"Error on {i} {j}");
             Assert.True(A11.Equals(A11_copy));
         }
-        
+
         [Test]
         public void ImplementGetHashCodeCorrectly()
         {

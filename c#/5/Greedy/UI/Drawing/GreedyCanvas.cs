@@ -151,7 +151,7 @@ public class GreedyCanvas : Canvas
 		painter.Paint(drawingContext, ZoomScale);
 
 		if (mouseLogicalPos.X == 0 || mouseLogicalPos.Y == 0) return;
-		
+
 		var typeface = new Typeface("Segoe UI Light");
 		const int fontSize = 16;
 		var formattedText = new FormattedText(

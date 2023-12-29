@@ -17,15 +17,15 @@ namespace MyPhotoshop
 		Panel parametersPanel;
 		List<NumericUpDown> parametersControls;
 		Button apply;
-		
+
 		public MainWindow ()
 		{
 			original=new PictureBox();
 			Controls.Add (original);
-			
+
             processed=new PictureBox();
 			Controls.Add(processed);
-			
+
             filtersSelect=new ComboBox();
 			filtersSelect.DropDownStyle = ComboBoxStyle.DropDownList;
 			filtersSelect.SelectedIndexChanged+=FilterChanged;
@@ -40,7 +40,7 @@ namespace MyPhotoshop
             Text="Photoshop pre-alpha release";
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 
-            
+
 
             LoadBitmap((Bitmap)Image.FromFile("cat.jpg"));
 		}
@@ -75,7 +75,7 @@ namespace MyPhotoshop
             FilterChanged(null, EventArgs.Empty);
         }
 
-        		
+
 		public void AddFilter(IFilter filter)
 		{
 			filtersSelect.Items.Add(filter);
@@ -85,7 +85,7 @@ namespace MyPhotoshop
 				apply.Enabled=true;
 			}
 		}
-		
+
 		void FilterChanged(object sender, EventArgs e)
 		{
 			var filter=(IFilter)filtersSelect.SelectedItem;
@@ -97,9 +97,9 @@ namespace MyPhotoshop
 			parametersPanel.Top=filtersSelect.Bottom+10;
 			parametersPanel.Width=filtersSelect.Width;
 			parametersPanel.Height=ClientSize.Height-parametersPanel.Top;
-			
+
 			int y=0;
-			
+
 			foreach(var param in filter.GetParameters ())
 			{
 				var label=new Label();
@@ -109,7 +109,7 @@ namespace MyPhotoshop
 				label.Height=20;
 				label.Text=param.Name;
 				parametersPanel.Controls.Add (label);
-				
+
 				var box=new NumericUpDown();
 				box.Left=label.Right;
 				box.Top=y;
@@ -126,8 +126,8 @@ namespace MyPhotoshop
 			}
 			Controls.Add (parametersPanel);
 		}
-		
-		
+
+
 		void Process(object sender, EventArgs empty)
 		{
 			var data=parametersControls.Select(z=>(double)z.Value).ToArray();
@@ -145,10 +145,10 @@ namespace MyPhotoshop
 				}
 				resultBmp = newBmp;
 			}
-				
+
 			processed.Image=resultBmp;
 		}
 
-        
+
 	}
 }

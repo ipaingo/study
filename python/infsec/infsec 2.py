@@ -5,7 +5,7 @@ def get_err_codes(seq):
     checksums = []
 
     for i in range(4):
-        p = 2 ** i
+        p = 2**i
         tmp = [(j // p) % 2 for j in range(len(seq))]
         checksums.append(tmp)
 
@@ -20,7 +20,7 @@ def get_err_codes(seq):
 # создание матрицы контрольной суммы.
 def matrix_sum(str_length):
     control_byte = [1, 2, 4, 8, 16]  # массив позиций контрольных битов.
-    str_line = ['', '', '', '', '', '']
+    str_line = ["", "", "", "", "", ""]
     for i in range(1, 5):
         j = 1
         # расставляем нули и единицы.
@@ -29,15 +29,15 @@ def matrix_sum(str_length):
                 for k in range(control_byte[i - 1]):
                     if j >= str_length:
                         break
-                    str_line[i] += '1'
+                    str_line[i] += "1"
                     j += 1
                 for k in range(control_byte[i - 1]):
                     if j >= str_length:
                         break
-                    str_line[i] += '0'
+                    str_line[i] += "0"
                     j += 1
             else:
-                str_line[i] += '0'
+                str_line[i] += "0"
                 j += 1
     return str_line
 
@@ -63,7 +63,7 @@ def gen_code(seq):
 
     # расставляем контрольные биты.
     for i in range(len(bits)):
-        p = 2 ** i
+        p = 2**i
         try:
             initial_vector[p] = bits[i]
         except IndexError:  # для вводимых строк меньше чем 2^len(bits) длины.
@@ -79,7 +79,7 @@ def gen_code(seq):
 def check_code(seq):
     bits = get_err_codes(seq)
     bits = [str(bits[-1 - i]) for i in range(4)]
-    idx = int(''.join(bits), 2)
+    idx = int("".join(bits), 2)
     global_parity = sum(seq) % 2
     if idx != 0 and global_parity != 0:  # 1 ошибка.
         return idx  # возвращаем индекс позиции с ошибкой.
@@ -95,8 +95,10 @@ def main():
     while not exit_flag:
         # ввод действия.
         while True:
-            print("Выберите действие:\n1 - сгенерировать последовательность,\n2 - проверить последовательность,"
-                  "\n3 - выход.")
+            print(
+                "Выберите действие:\n1 - сгенерировать последовательность,\n2 - проверить последовательность,"
+                "\n3 - выход."
+            )
             try:
                 optype = int(input())
             except ValueError:
@@ -139,7 +141,7 @@ def main():
         while True:
             print("Введите код: (вводите биты через пробел)")
             rawseq = input()
-            seq = list(map(int, rawseq.split(' ')))
+            seq = list(map(int, rawseq.split(" ")))
             if len(seq) != length:
                 print("Введённый код не соответствует заданной длине.")
                 continue
@@ -184,5 +186,5 @@ def main():
             break
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

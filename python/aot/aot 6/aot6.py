@@ -1,4 +1,5 @@
 import nltk
+
 # nltk.download('stopwords')
 # nltk.download('punkt')
 from nltk.corpus import stopwords
@@ -48,9 +49,9 @@ def get_rouges(ref, text):
 def main():
     # стоп-слова - слова, которые не вносят никакой дополнительной информации в текст: предлоги, союзы, междометия.
     global stop_words
-    with open("text.txt", encoding='utf-8') as file:
+    with open("text.txt", encoding="utf-8") as file:
         text = file.read().lower()
-    stop_words = stopwords.words('russian') + "'-,./&^:;{}[]()*?!@#%+=«»–—…".split()
+    stop_words = stopwords.words("russian") + "'-,./&^:;{}[]()*?!@#%+=«»–—…".split()
 
     # разбиваем на слова.
     sentences = nltk.sent_tokenize(text)
@@ -73,7 +74,9 @@ def main():
         sentences_lemmatized.append(current_sentence)
 
     # будем сортировать предложения по их важности (суммарному весу их слов).
-    dict_word_frequency = dict(sorted(dict_word_frequency.items(), key=lambda item: item[1], reverse=True))
+    dict_word_frequency = dict(
+        sorted(dict_word_frequency.items(), key=lambda item: item[1], reverse=True)
+    )
 
     dict_sentence_weights = {}
 
@@ -83,7 +86,9 @@ def main():
             weight += dict_word_frequency[word]
         dict_sentence_weights[sentences[i]] = (weight / len(sentences_lemmatized[i]), i)
 
-    dict_sentence_weights = dict(sorted(dict_sentence_weights.items(), key=lambda item: item[1][0], reverse=True))
+    dict_sentence_weights = dict(
+        sorted(dict_sentence_weights.items(), key=lambda item: item[1][0], reverse=True)
+    )
 
     d = float(input("Введите желаемый объем реферата (от 0 до 1): "))
 
@@ -103,15 +108,15 @@ def main():
     for k in dict_top.keys():
         report += k + "\n"
 
-    with open("summary.txt", 'w', encoding='utf-8') as file:
+    with open("summary.txt", "w", encoding="utf-8") as file:
         file.write(report)
 
     # сравниваем с рефератами от других библиотек.
-    with open('ref_txt.txt', encoding='utf-8') as file:
+    with open("ref_txt.txt", encoding="utf-8") as file:
         ref = file.read()
-    with open('visual_world.txt', encoding='utf-8') as file:
+    with open("visual_world.txt", encoding="utf-8") as file:
         visual_world = file.read()
-    with open('splitbrain.txt', encoding='utf-8') as file:
+    with open("splitbrain.txt", encoding="utf-8") as file:
         splitbrain = file.read()
 
     summa_text = summarizer.summarize(text, ratio=0.25)

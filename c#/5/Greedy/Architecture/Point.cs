@@ -10,7 +10,7 @@ public readonly struct Point
 		X = x;
 		Y = y;
 	}
-	
+
 	public static bool operator ==(Point point, Point other) => point.X == other.X && point.Y == other.Y;
 	public static bool operator !=(Point point, Point other) => point.X != other.X || point.Y != other.Y;
 	public static Point operator +(Point point, Point other) => new(point.X + other.X, point.Y + other.Y);
@@ -18,10 +18,10 @@ public readonly struct Point
 
 	public override int GetHashCode()
 		=> X * Y + X;
-	
+
 	public override string ToString()
 		=> $"x: {X}; y: {Y};";
-	
+
 	public bool Equals(Point other)
 	{
 		return X == other.X && Y == other.Y;

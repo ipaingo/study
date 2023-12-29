@@ -26,7 +26,7 @@ public class Physics
 			Turn.Right => maxTurnRate,
 			_ => 0
 		};
-		
+
 		var dir = rocket.Direction + turnRate * dt;
 		var velocity = rocket.Velocity + force(rocket) * dt / mass;
 		if (velocity.Length > maxVelocity) velocity = velocity.Normalize() * maxVelocity;

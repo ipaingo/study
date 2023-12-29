@@ -33,13 +33,18 @@ def generate_random_seed():
         b += 2
         b = int(b)
 
-    c = current_time.microsecond + current_time.day + current_time.month + current_time.year
+    c = (
+        current_time.microsecond
+        + current_time.day
+        + current_time.month
+        + current_time.year
+    )
     c = int(c)
 
     return [a, b, c, m]
 
 
-# создает объект-генератор. 
+# создает объект-генератор.
 def generate_number(a, b, c, m):
     return (a * c + b) % m
 
@@ -114,7 +119,7 @@ def gamma():
     print(f"Затраченное время: {(end_time - start_time):0.4f} секунд")
 
     # записываем результат в новый файл.
-    with open(f'{change}{f}', "w", encoding="utf-8") as file:
+    with open(f"{change}{f}", "w", encoding="utf-8") as file:
         file.write(new_string)
 
 
@@ -124,11 +129,13 @@ def main():
         # небольшой интерфейс.
         print()
         print(f"Текущий сид: {int(sum([i for i in current_seed]))}")
-        print("""
+        print(
+            """
               1 - Сгенерировать новый сид;
               2 - Выполнить шифрование;
               0 - Выход.
-              """)
+              """
+        )
 
         choice = input("Введите действие: ")
 

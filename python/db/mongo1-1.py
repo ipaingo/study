@@ -23,58 +23,31 @@ def fill_teams():
             "city": "Petrozavodsk",
             "coach": "Alkin Ruslan Valerievich",
             "players": [
-                {
-                    "name": "Krishtalenko Mikola",
-                    "position": "1"
-                },
-                {
-                    "name": "Leaf Anton",
-                    "position": "2"
-                },
-                {
-                    "name": "Badcoder Dan",
-                    "position": "3"
-                }
-            ]
+                {"name": "Krishtalenko Mikola", "position": "1"},
+                {"name": "Leaf Anton", "position": "2"},
+                {"name": "Badcoder Dan", "position": "3"},
+            ],
         },
         {
             "name": "ITMO 1",
             "city": "Saint Petersburg",
             "coach": "Stankevich Andrei Sergeevich",
             "players": [
-                {
-                    "name": "Korotkevich Gennadiy",
-                    "position": "1"
-                },
-                {
-                    "name": "Vasilyev Artem",
-                    "position": "2"
-                },
-                {
-                    "name": "Minaev Boris",
-                    "position": "3"
-                }
-            ]
+                {"name": "Korotkevich Gennadiy", "position": "1"},
+                {"name": "Vasilyev Artem", "position": "2"},
+                {"name": "Minaev Boris", "position": "3"},
+            ],
         },
         {
             "name": "Positive Attitude",
             "city": "Petrozavodsk",
             "coach": "Alkin Ruslan Valerievich",
             "players": [
-                {
-                    "name": "Onesimus Nikita",
-                    "position": "1"
-                },
-                {
-                    "name": "Supersonic Eugeny",
-                    "position": "2"
-                },
-                {
-                    "name": "Moskvich Natalia",
-                    "position": "3"
-                }
-            ]
-        }
+                {"name": "Onesimus Nikita", "position": "1"},
+                {"name": "Supersonic Eugeny", "position": "2"},
+                {"name": "Moskvich Natalia", "position": "3"},
+            ],
+        },
     ]:
         collection.insert_one(i)
 
@@ -93,51 +66,51 @@ def fill_matches():
                     "player": "Krishtalenko Mikola",
                     "time": "10:10",
                     "type": "red",
-                    "reason": "Fought with his team"
+                    "reason": "Fought with his team",
                 },
                 {
                     "player": "Moskvich Natalia",
                     "time": "12:50",
                     "type": "yellow",
-                    "reason": "unsportsmanlike conduct"
+                    "reason": "unsportsmanlike conduct",
                 },
                 {
                     "player": "Onesimus Nikita",
                     "time": "12:50",
                     "type": "yellow",
-                    "reason": "Kicked the ball out of the field"
+                    "reason": "Kicked the ball out of the field",
                 },
                 {
                     "player": "Supersonic Eugeny",
                     "time": "16:30",
                     "type": "red",
-                    "reason": "Provoked the opposing team"
-                }
+                    "reason": "Provoked the opposing team",
+                },
             ],
             "goal approaches": [
                 {
                     "hero": "Leaf Anton",
                     "pass": "Badcoder Dan",
                     "time": "1:01",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Supersonic Eugeny",
                     "pass": "Onesimus Nikita",
                     "time": "15:21",
-                    "scoring_team": "Positive Attitude"
+                    "scoring_team": "Positive Attitude",
                 },
                 {
                     "hero": "Krishtalenko Mikola",
                     "pass": "Leaf Anton",
                     "time": "30:12",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Onesimus Nikita",
                     "pass": "Moskvich Natalia",
                     "time": "19:21",
-                    "scoring_team": "Positive Attitude"
+                    "scoring_team": "Positive Attitude",
                 },
             ],
             "goals": [
@@ -145,29 +118,29 @@ def fill_matches():
                     "hero": "Leaf Anton",
                     "pass": "Badcoder Dan",
                     "time": "1:01",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Krishtalenko Mikola",
                     "pass": "Leaf Anton",
                     "time": "30:12",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Onesimus Nikita",
                     "pass": "Moskvich Natalia",
                     "time": "19:21",
-                    "scoring_team": "Positive Attitude"
-                }
+                    "scoring_team": "Positive Attitude",
+                },
             ],
             "penalties": [
                 {
                     "hero": "Onesimus Nikita",
                     "pass": "Moskvich Natalia",
                     "time": "15:21",
-                    "scoring_team": "Positive Attitude"
+                    "scoring_team": "Positive Attitude",
                 }
-            ]
+            ],
         },
         {
             "date": "19.11.2023",
@@ -178,80 +151,82 @@ def fill_matches():
                     "player": "Krishtalenko Mikola",
                     "time": "01:49",
                     "type": "red",
-                    "reason": "Was late to the competition"
+                    "reason": "Was late to the competition",
                 },
                 {
                     "player": "Korotkevich Gennadiy",
                     "time": "12:50",
                     "type": "yellow",
-                    "reason": "Obtained too many prizes"
+                    "reason": "Obtained too many prizes",
                 },
                 {
                     "player": "Badcoder Dan",
                     "time": "12:50",
                     "type": "yellow",
-                    "reason": "Forgot how to play"
-                }
+                    "reason": "Forgot how to play",
+                },
             ],
             "goal approaches": [
                 {
                     "hero": "Korotkevich Gennadiy",
                     "pass": "Vasilyev Artem",
                     "time": "15:21",
-                    "scoring_team": "ITMO 1"
+                    "scoring_team": "ITMO 1",
                 },
                 {
                     "hero": "Minaev Boris",
                     "pass": "Korotkevich Gennadiy",
                     "time": "30:12",
-                    "scoring_team": "ITMO 1"
+                    "scoring_team": "ITMO 1",
                 },
                 {
                     "hero": "Leaf Anton",
                     "pass": "Krishtalenko Mikola",
                     "time": "19:21",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Krishtalenko Mikola",
                     "pass": "Badcoder Dan",
                     "time": "19:21",
-                    "scoring_team": "C 3 2 pi"
-                }
+                    "scoring_team": "C 3 2 pi",
+                },
             ],
             "goals": [
                 {
                     "hero": "Korotkevich Gennadiy",
                     "pass": "Vasilyev Artem",
                     "time": "15:21",
-                    "scoring_team": "ITMO 1"
+                    "scoring_team": "ITMO 1",
                 },
                 {
                     "hero": "Minaev Boris",
                     "pass": "Korotkevich Gennadiy",
                     "time": "30:12",
-                    "scoring_team": "ITMO 1"
+                    "scoring_team": "ITMO 1",
                 },
                 {
                     "hero": "Krishtalenko Mikola",
                     "pass": "Badcoder Dan",
                     "time": "19:21",
-                    "scoring_team": "C 3 2 pi"
+                    "scoring_team": "C 3 2 pi",
                 },
                 {
                     "hero": "Leaf Anton",
                     "pass": "Krishtalenko Mikola",
                     "time": "19:21",
-                    "scoring_team": "C 3 2 pi"
-                }
+                    "scoring_team": "C 3 2 pi",
+                },
             ],
-            "penalties": [{
+            "penalties": [
+                {
                     "hero": "Korotkevich Gennadiy",
                     "pass": "Vasilyev Artem",
                     "time": "19:21",
-                    "scoring_team": "ITMO 1"
-                }]
-        }
+                    "scoring_team": "ITMO 1",
+                }
+            ],
+        },
     ]:
         collection.insert_one(i)
 
@@ -268,7 +243,7 @@ def add_field():
     if "." not in key:
         d[key] += value
     else:
-        temp = key.split('.')
+        temp = key.split(".")
         to_where = temp[0]
         what = temp[1]
         dict_sec = d[to_where]
@@ -311,7 +286,7 @@ def show_doc():
 
 def clear_doc():
     global dict_match, dict_team
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     dict_match = def_match
     dict_team = def_team
 
@@ -344,7 +319,7 @@ dict_match = {
     "violations": {},
     "goal approaches": {},
     "goals": {},
-    "penalties": {}
+    "penalties": {},
 }
 
 def_team = dict_team.copy()
@@ -381,16 +356,37 @@ frame_values.pack(anchor=SW, padx=5, pady=5)
 Label(frame_values, text="Key: ").pack(anchor=NW, side=LEFT, padx=5, pady=5)
 
 teams_values = ["name", "city", "coach", "players.name", "players.position"]
-matches_values = ["date", "team1", "team1.name", "team1.score", "team2", "team2.name", "team2.score", "violations",
-                  "violations.player",
-                  "violations.time", "violations.type", "violations.reason", "goal_approaches", "goal_approaches.id",
-                  "goal_approaches.hero", "goal_approaches.pass", "goal_approaches.time",
-                  "goal_approaches.scoring_team", "goals",
-                  "goals.hero", "goals.pass", "goals.time",
-                  "goals.scoring_team",
-                  "penalties", "penalties.id",
-                  "penalties.hero", "penalties.pass", "penalties.time",
-                  "penalties.scoring_team"]
+matches_values = [
+    "date",
+    "team1",
+    "team1.name",
+    "team1.score",
+    "team2",
+    "team2.name",
+    "team2.score",
+    "violations",
+    "violations.player",
+    "violations.time",
+    "violations.type",
+    "violations.reason",
+    "goal_approaches",
+    "goal_approaches.id",
+    "goal_approaches.hero",
+    "goal_approaches.pass",
+    "goal_approaches.time",
+    "goal_approaches.scoring_team",
+    "goals",
+    "goals.hero",
+    "goals.pass",
+    "goals.time",
+    "goals.scoring_team",
+    "penalties",
+    "penalties.id",
+    "penalties.hero",
+    "penalties.pass",
+    "penalties.time",
+    "penalties.scoring_team",
+]
 comb_key = ttk.Combobox(frame_values, values=teams_values)
 comb_key.pack(anchor=NW, side=LEFT, padx=5, pady=5)
 

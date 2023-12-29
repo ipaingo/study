@@ -49,7 +49,7 @@ public class BinaryTree<T> : IEnumerable<T> where T : IComparable {
     public bool Contains(T key) {
         var cur = root;
         while (cur != null) {
-            if (cur.value.Equals(key)) 
+            if (cur.value.Equals(key))
                 return true;
 
             cur = (cur.value.CompareTo(key) < 0 ? cur.left : cur.right);

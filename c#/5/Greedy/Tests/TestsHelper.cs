@@ -31,7 +31,7 @@ public static class TestsHelper
 		var path = pathFinder.FindPathToCompleteGoal(stateForStudent);
 		return path;
 	}
-	
+
 	public static string ReadFile(string stateName)
 	{
 		var assembly = Assembly.GetExecutingAssembly();

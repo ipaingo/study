@@ -47,7 +47,7 @@ public partial class MainWindow : Window
                 }
             })
             { IsBackground = true };
-        
+
         thread.Start();
     }
 }

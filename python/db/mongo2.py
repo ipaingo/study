@@ -16,24 +16,23 @@ def fill_items():
                 "category": "clothes",
                 "weight": "1000",
                 "type": "men",
-                "colour": "red"
+                "colour": "red",
             },
             "buyers": [
                 {
                     "name": "Ivan Ivanov",
                     "delivery": "Courier",
                     "review": "Great coat!",
-                    "date_bought": "01-01-2023"
+                    "date_bought": "01-01-2023",
                 },
                 {
                     "name": "Petr Petrov",
                     "delivery": "Post",
                     "review": "Didn't fit.",
-                    "date_bought": "02-01-2023"
-                }
-            ]
+                    "date_bought": "02-01-2023",
+                },
+            ],
         },
-
         {
             "name": "Women's coat",
             "manufacturer": "OSTIN",
@@ -42,24 +41,23 @@ def fill_items():
                 "category": "clothes",
                 "weight": "1500",
                 "type": "women",
-                "colour": "grey"
+                "colour": "grey",
             },
             "buyers": [
                 {
                     "name": "Alina Ivanova",
                     "delivery": "Post",
                     "review": "Not bad at all.",
-                    "date_bought": "04-01-2023"
+                    "date_bought": "04-01-2023",
                 },
                 {
                     "name": "Ksenia Petrova",
                     "delivery": "CDEK",
                     "review": "Cheap and looks good.",
-                    "date_bought": "04-02-2023"
-                }
-            ]
+                    "date_bought": "04-02-2023",
+                },
+            ],
         },
-
         {
             "name": "Kid's hat",
             "manufacturer": "RESERVED",
@@ -68,18 +66,17 @@ def fill_items():
                 "category": "clothes",
                 "weight": "300",
                 "type": "kids",
-                "colour": "sky-blue pink"
+                "colour": "sky-blue pink",
             },
             "buyers": [
                 {
                     "name": "Alina Ivanova",
                     "delivery": "Post",
                     "review": "Fits well.",
-                    "date_bought": "01-01-2023"
+                    "date_bought": "01-01-2023",
                 }
-            ]
+            ],
         },
-
         {
             "name": "Round plate",
             "manufacturer": "Kuchenland",
@@ -88,24 +85,23 @@ def fill_items():
                 "category": "tableware",
                 "weight": "1000",
                 "type": "dishes",
-                "colour": "white"
+                "colour": "white",
             },
             "buyers": [
                 {
                     "name": "Ksenia Petrova",
                     "delivery": "CDEK",
                     "review": "Came broken.",
-                    "date_bought": "01-01-2023"
+                    "date_bought": "01-01-2023",
                 },
                 {
                     "name": "Ivan Ivanov",
                     "delivery": "Courier",
                     "review": "Simple, looks nice, usable.",
-                    "date_bought": "08-01-2023"
-                }
-            ]
+                    "date_bought": "08-01-2023",
+                },
+            ],
         },
-
         {
             "name": "Set of forks",
             "manufacturer": "Prizma",
@@ -114,24 +110,23 @@ def fill_items():
                 "category": "tableware",
                 "weight": "500",
                 "type": "cutlery",
-                "colour": "metallic"
+                "colour": "metallic",
             },
             "buyers": [
                 {
                     "name": "Alina Ivanova",
                     "delivery": "CDEK",
                     "review": "Fine",
-                    "date_bought": "05-01-2023"
+                    "date_bought": "05-01-2023",
                 },
                 {
                     "name": "Petr Petrov",
                     "delivery": "Post",
                     "review": "Good",
-                    "date_bought": "06-01-2023"
-                }
-            ]
+                    "date_bought": "06-01-2023",
+                },
+            ],
         },
-
         {
             "name": "Set of spoons",
             "manufacturer": "Prizma",
@@ -140,22 +135,22 @@ def fill_items():
                 "category": "tableware",
                 "weight": "500",
                 "type": "cutlery",
-                "colour": "metallic"
+                "colour": "metallic",
             },
             "buyers": [
                 {
                     "name": "Ivan Ivanov",
                     "delivery": "CDEK",
                     "review": "I cut my hand with it",
-                    "date_bought": "05-01-2023"
+                    "date_bought": "05-01-2023",
                 },
                 {
                     "name": "Alina Ivanova",
                     "delivery": "CDEK",
                     "review": "Ordered some more after my husband threw them away in anger",
-                    "date_bought": "09-01-2023"
+                    "date_bought": "09-01-2023",
                 },
-            ]
+            ],
         },
         {
             "name": "Car engine",
@@ -165,18 +160,17 @@ def fill_items():
                 "category": "auto parts",
                 "weight": "500000",
                 "type": "engine",
-                "colour": "no colour"
+                "colour": "no colour",
             },
             "buyers": [
                 {
                     "name": "Ivan Ivanov",
                     "delivery": "Train",
                     "review": "Spent all my money on it",
-                    "date_bought": "05-01-2023"
+                    "date_bought": "05-01-2023",
                 },
-            ]
+            ],
         },
-
         {
             "name": "Car window cleaner",
             "manufacturer": "Toyota",
@@ -192,15 +186,15 @@ def fill_items():
                     "name": "Petr Petrov",
                     "delivery": "Post",
                     "review": "Works well",
-                    "date_bought": "05-07-2023"
+                    "date_bought": "05-07-2023",
                 },
                 {
                     "name": "Ivan Ivanov",
                     "delivery": "Train",
                     "review": "It's so cheap.",
-                    "date_bought": "09-01-2023"
-                }
-            ]
+                    "date_bought": "09-01-2023",
+                },
+            ],
         },
         {
             "name": "Car wing",
@@ -217,11 +211,10 @@ def fill_items():
                     "name": "Ksenia Petrova",
                     "delivery": "Post",
                     "review": "Looks good as new.",
-                    "date_bought": "05-07-2023"
+                    "date_bought": "05-07-2023",
                 },
-            ]
+            ],
         },
-
         {
             "name": "iPhone",
             "manufacturer": "Apple",
@@ -238,23 +231,22 @@ def fill_items():
                     "name": "Ivan Ivanov",
                     "delivery": "CDEK",
                     "review": "It's so expensive.",
-                    "date_bought": "05-07-2023"
+                    "date_bought": "05-07-2023",
                 },
                 {
                     "name": "Petr Petrov",
                     "delivery": "CDEK",
                     "review": "",
-                    "date_bought": "09-01-2023"
+                    "date_bought": "09-01-2023",
                 },
                 {
                     "name": "Alina Ivanova",
                     "delivery": "Post",
                     "review": "My son was very happy.",
-                    "date_bought": "09-01-2023"
-                }
-            ]
+                    "date_bought": "09-01-2023",
+                },
+            ],
         },
-
         {
             "name": "Samsung Galaxy",
             "manufacturer": "Samsung",
@@ -271,16 +263,16 @@ def fill_items():
                     "name": "Petr Petrov",
                     "delivery": "Post",
                     "review": "It's not so expensive.",
-                    "date_bought": "05-07-2023"
+                    "date_bought": "05-07-2023",
                 },
                 {
                     "name": "Ksenia Petrova",
                     "delivery": "Train",
                     "review": "",
-                    "date_bought": "09-01-2023"
-                }
-            ]
-        }
+                    "date_bought": "09-01-2023",
+                },
+            ],
+        },
     ]:
         collection.insert_one(i)
 
@@ -303,7 +295,7 @@ def beautify(lst):
 
 
 def category_do(value, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     for i in table.find({"features.category": value}):
         doc.insert(END, f'{i["name"]}\n')
 
@@ -325,7 +317,7 @@ def category(frame):
 
 
 def characteristics_do(value, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     i = table.find({"features.category": value})[0]
     d = dict(i["features"]).keys()
     doc.insert(END, beautify(list(d)))
@@ -348,7 +340,7 @@ def characteristics(frame):
 
 
 def users_do(value, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     for i in table.find({"buyers.name": value}):
         doc.insert(END, f'{i["name"]}, {i["price"]}\n')
 
@@ -370,7 +362,7 @@ def users(frame):
 
 
 def colour_do(value, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     for i in table.find({"features.colour": value}):
 
         doc.insert(END, f'{i["name"]}, {i["manufacturer"]} {i["price"]}\n')
@@ -415,13 +407,13 @@ def item_category(frame):
 
 
 def user_item_do(value, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     t = set()
     for i in table.find({"name": value}):
         for j in i["buyers"]:
             t.add(j["name"])
     for item in t:
-        doc.insert(END, f'{item}\n')
+        doc.insert(END, f"{item}\n")
 
 
 def user_item(frame):
@@ -441,14 +433,14 @@ def user_item(frame):
 
 
 def delivery_item_do(value1, value2, doc):
-    doc.delete('1.0', END)
+    doc.delete("1.0", END)
     t = set()
     for i in table.find({"name": value1}):
         for j in i["buyers"]:
             if j["delivery"] == value2:
                 t.add(j["name"])
     for m in t:
-        doc.insert(END, f'{m}\n')
+        doc.insert(END, f"{m}\n")
 
 
 def delivery_item(frame):
@@ -555,12 +547,16 @@ dict_queries = {
     "Total sold": sold,
     "Total by category": item_category,
     "Buyers of an item": user_item,
-    "Buyers of an item by delivery": delivery_item
+    "Buyers of an item by delivery": delivery_item,
 }
 query_var = StringVar(value="Products by category")
 Label(frame_main, text="Table: ").pack(anchor=NE, side=LEFT, pady=5)
-comb_table = ttk.Combobox(frame_main, width=50, values=list(dict_queries.keys()), textvariable=query_var)
+comb_table = ttk.Combobox(
+    frame_main, width=50, values=list(dict_queries.keys()), textvariable=query_var
+)
 comb_table.pack(anchor=NE, side=LEFT, padx=5, pady=5)
 
-Button(frame_main, text="Choose category", command=draw).pack(anchor=NE, side=LEFT, padx=5, pady=5)
+Button(frame_main, text="Choose category", command=draw).pack(
+    anchor=NE, side=LEFT, padx=5, pady=5
+)
 root.mainloop()

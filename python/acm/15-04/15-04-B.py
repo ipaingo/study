@@ -1,6 +1,6 @@
 def build(a, v, tl, tr):
     if tl == tr:
-        if a[tl] == '>':
+        if a[tl] == ">":
             t[v] = 1
         else:
             t[v] = -1
@@ -50,4 +50,4 @@ for i in sorted(v):
             ans[j] = cnt
             cnt += 1
 
-print(' '.join(map(str, ans)))
+print(" ".join(map(str, ans)))

@@ -45,7 +45,9 @@ def get_chars_frequency(filename):
     if filename != "":
         with open(filename, "w", encoding="utf-8") as f:
             f.write("всего символов: " + str(count) + "\n")
-            for char in dict(sorted(dict_chars.items(), key=lambda item: item[1])).__reversed__():
+            for char in dict(
+                sorted(dict_chars.items(), key=lambda item: item[1])
+            ).__reversed__():
                 f.write(str(char) + " " + str(dict_chars[char]) + "\n")
 
 
@@ -58,13 +60,13 @@ def process_word(word):
         return ""
 
     if word[len(word) - 1] == "-":
-        word = word[0:len(word) - 1]
+        word = word[0 : len(word) - 1]
 
     if word == "":
         return ""
 
     if word[0] == "-":
-        word = word[1:len(word)]
+        word = word[1 : len(word)]
 
     if len(word) == 0:
         return ""
@@ -101,7 +103,7 @@ def get_words_frequency(filename):
         for word in "',./&^:;{}[]()*?!@#%+=«»–—":
             truncated_text = truncated_text.replace(word, "")
         truncated_text = truncated_text.replace("\n", " ").lower()
-        for word in truncated_text.split(' '):
+        for word in truncated_text.split(" "):
             word = process_word(word)
             if word not in ["", " ", "-"]:
                 count += 1
@@ -113,7 +115,9 @@ def get_words_frequency(filename):
     if filename != "":
         with open(filename, "w", encoding="utf-8") as f:
             f.write(f"всего слов: {count}\n")
-            for word in dict(sorted(dict_words.items(), key=lambda item: item[1])).__reversed__():
+            for word in dict(
+                sorted(dict_words.items(), key=lambda item: item[1])
+            ).__reversed__():
                 f.write(str(word) + " " + str(dict_words[word]) + "\n")
 
 
@@ -123,13 +127,15 @@ def main():
     text_loaded = False
 
     while True:
-        print("нажмите кнопку действия:\n"
-              "1. добавить текст;\n"
-              "2. словарь символов;\n"
-              "3. частотный словарь символов;\n"
-              "4. словарь слов;\n"
-              "5. частотный словарь слов;\n"
-              "6. выход.")
+        print(
+            "нажмите кнопку действия:\n"
+            "1. добавить текст;\n"
+            "2. словарь символов;\n"
+            "3. частотный словарь символов;\n"
+            "4. словарь слов;\n"
+            "5. частотный словарь слов;\n"
+            "6. выход."
+        )
 
         x = int(input("ввод: "))
 
@@ -141,7 +147,9 @@ def main():
                 text_loaded = True
             else:
                 if text_loaded:
-                    filename = str(input("введите путь до файла сохраняемого словаря: "))
+                    filename = str(
+                        input("введите путь до файла сохраняемого словаря: ")
+                    )
                     if x == 2:
                         create_char_dict(filename)
                     elif x == 3:

@@ -111,7 +111,7 @@ namespace BinaryTrees
             yield return root.valueNode;
             // Рекурсивный вызов правого потомка
             enumeratorTreeNode = EnumeratorNode(root.rightSon);
-            
+
             while (enumeratorTreeNode.MoveNext())
                 yield return enumeratorTreeNode.Current;
         }
@@ -136,8 +136,8 @@ namespace BinaryTrees
                     int currentNodeIndex = 0;
                     if (current.leftSon == null)
                         currentNodeIndex = 0;
-                    else  
-                        currentNodeIndex = current.leftSon.weight; 
+                    else
+                        currentNodeIndex = current.leftSon.weight;
                     currentNodeIndex += parentWeight;
 
                     if (i == currentNodeIndex)

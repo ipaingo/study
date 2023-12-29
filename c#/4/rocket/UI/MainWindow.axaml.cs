@@ -69,7 +69,7 @@ public partial class MainWindow : Window
 
 		Canvas.InvalidateVisual();
 	}
-	
+
 	protected override void OnKeyDown(KeyEventArgs e)
 	{
 		base.OnKeyDown(e);

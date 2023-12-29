@@ -3,14 +3,16 @@
 # только после этого работает. я на всякий случай нагенерила картинок,
 # так что не придется мучиться с ним, чтобы посмотреть результат работы.
 import os
-os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
+
+os.environ["PATH"] += os.pathsep + "C:/Program Files/Graphviz/bin/"
 import graphviz
 import stanza
 import time
+
 # stanza.download("ru")
 
 
-nlp = stanza.Pipeline('ru', download_method=False, warnings=False)
+nlp = stanza.Pipeline("ru", download_method=False, warnings=False)
 
 dict_transition = dict()
 
@@ -58,7 +60,13 @@ for sentence in doc.sentences:
         if upos1 not in ["PUNCT", "SYM", "PART", "INTJ", "X"]:
             if upos1 not in dict_transition:
                 dict_transition[upos1] = dict()
-            if word.head != 0 and words[word.head - 1].upos not in ["PUNCT", "SYM", "PART", "INTJ", "X"]:
+            if word.head != 0 and words[word.head - 1].upos not in [
+                "PUNCT",
+                "SYM",
+                "PART",
+                "INTJ",
+                "X",
+            ]:
                 word2 = words[word.head - 1]
 
                 upos2 = uposify(word2.upos)
@@ -99,4 +107,4 @@ for k, v in dict_transition.items():
         dot.node(dict_translate[k1])
         dot.edge(dict_translate[k], dict_translate[k1], label="{:.5f}".format(v1))
 
-dot.render('doctest-output/upos.png').replace('\\', '/')
+dot.render("doctest-output/upos.png").replace("\\", "/")

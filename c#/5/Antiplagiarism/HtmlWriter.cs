@@ -20,7 +20,7 @@ public class HtmlWriter : StringWriter
 * {padding-top:0;margin-top:0;border-top:0;}
 .Common {background-color: #ff9999;}
 tr, td {vertical-align: top; border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;}
-th {background-color: #ddd} 
+th {background-color: #ddd}
 </style>
 </head>
 <body>

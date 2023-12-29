@@ -9,9 +9,9 @@ public class LevelsTask
 
 	public static IEnumerable<Level> CreateLevels()
 	{
-		yield return new Level("Zero", 
+		yield return new Level("Zero",
 			new Rocket(new Vector(200, 500), Vector.Zero, -0.5 * Math.PI),
-			new Vector(600, 200), 
+			new Vector(600, 200),
 			(size, v) => Vector.Zero, standardPhysics);
 
         yield return new Level("Heavy",
@@ -19,7 +19,7 @@ public class LevelsTask
             new Vector(600, 200),
             (size, v) => new Vector(0, 0.9), standardPhysics);
 
-        yield return new Level("Up", 
+        yield return new Level("Up",
 			new Rocket(new Vector(200, 500), Vector.Zero, -0.5 * Math.PI),
 			new Vector(700, 500),
             // с плюсом - вниз, с минусом - вверх.

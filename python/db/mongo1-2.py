@@ -48,31 +48,15 @@ def process_command():
     print("fegh")
     count = 0
     a = [
-        {
-            "$unwind": "$players"
-        },
-        {
-            "$match": {
-                "players.position": {
-                    "$gt": "1"
-                }
-            }
-        },
-        {
-            "$count": "pass"
-        }]
+        {"$unwind": "$players"},
+        {"$match": {"players.position": {"$gt": "1"}}},
+        {"$count": "pass"},
+    ]
 
     a = [
-        {
-            "$unwind": "$goals"
-        },
-        {
-            "$group": {
-                "_id": "$goals.hero",
-                "count": {"$sum": 1}
-            }
-        }
-        ]
+        {"$unwind": "$goals"},
+        {"$group": {"_id": "$goals.hero", "count": {"$sum": 1}}},
+    ]
     doc.delete("1.0", END)
     if txt_cond.get() == "":
         command = "True"
@@ -111,27 +95,42 @@ comb_table = ttk.Combobox(frame_data, values=tables, textvariable=table_var)
 comb_table.pack(padx=5, pady=5)
 
 teams_values = ["name", "city", "coach", "players", "players.name", "players.position"]
-matches_values = ["date", "team1", "team1.name", "team1.score", "team2", "team2.name", "team2.score", "violations",
-                  "violations.player",
-                  "violations.time", "violations.type", "violations.reason", "goal_approaches", "goal_approaches.id",
-                  "goal_approaches.hero", "goal_approaches.pass", "goal_approaches.time",
-                  "goal_approaches.scoring_team", "goals",
-                  "goals.hero", "goals.pass", "goals.time",
-                  "goals.scoring_team",
-                  "penalties", "penalties.id",
-                  "penalties.hero", "penalties.pass", "penalties.time",
-                  "penalties.scoring_team"]
+matches_values = [
+    "date",
+    "team1",
+    "team1.name",
+    "team1.score",
+    "team2",
+    "team2.name",
+    "team2.score",
+    "violations",
+    "violations.player",
+    "violations.time",
+    "violations.type",
+    "violations.reason",
+    "goal_approaches",
+    "goal_approaches.id",
+    "goal_approaches.hero",
+    "goal_approaches.pass",
+    "goal_approaches.time",
+    "goal_approaches.scoring_team",
+    "goals",
+    "goals.hero",
+    "goals.pass",
+    "goals.time",
+    "goals.scoring_team",
+    "penalties",
+    "penalties.id",
+    "penalties.hero",
+    "penalties.pass",
+    "penalties.time",
+    "penalties.scoring_team",
+]
 Label(frame_data, text="Key: ").pack(padx=5, pady=5)
 comb_key = ttk.Combobox(frame_data, values=teams_values)
 comb_key.pack(padx=5, pady=5)
 
-dict_signs = {
-    "<": "$lt",
-    ">": "$gt",
-    "=": "equals",
-    "<=": "$lte",
-    ">=": "$gte"
-}
+dict_signs = {"<": "$lt", ">": "$gt", "=": "equals", "<=": "$lte", ">=": "$gte"}
 Label(frame_data, text="Sign: ").pack(padx=5, pady=5)
 comb_sign = ttk.Combobox(frame_data, values=list(dict_signs.keys()))
 comb_sign.pack(padx=5, pady=5)
@@ -147,7 +146,7 @@ frame_find2 = ttk.Frame(frame_jopa, borderwidth=2, relief="ridge")
 frame_find2.pack(side=LEFT, anchor=NW, padx=30)
 
 table_var2 = StringVar(value=tables[0])
-Label(frame_find2, text="Table: ").pack( pady=5)
+Label(frame_find2, text="Table: ").pack(pady=5)
 comb_table2 = ttk.Combobox(frame_find2, values=tables, textvariable=table_var2)
 comb_table2.pack(padx=5, pady=5)
 

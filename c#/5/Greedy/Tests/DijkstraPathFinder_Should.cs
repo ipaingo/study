@@ -17,7 +17,7 @@ public class DijkstraPathFinder_Should
         pathFinder = new DijkstraPathFinder();
     }
 
-    // Формат описания лабиринтов в тестах смотрите в файле states-for-students\Readme.md 
+    // Формат описания лабиринтов в тестах смотрите в файле states-for-students\Readme.md
     // Там же находятся все лабиринты, использующиеся при запуске приложения.
     // goal и energy в этой задаче не используются.
     [TestCase(@"202

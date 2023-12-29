@@ -32,7 +32,7 @@ def create_dict(default_name, text):
             else:
                 dict_lemmas[lemma] = 1
 
-    dict_lemmas = list(reversed(sorted(dict_lemmas.items(), key=lambda x:x[1])))
+    dict_lemmas = list(reversed(sorted(dict_lemmas.items(), key=lambda x: x[1])))
 
     values = [None for _ in range(len(dict_lemmas))]
     c_sum = 0
@@ -45,7 +45,7 @@ def create_dict(default_name, text):
     print(s)
     if filename != "":
         with open(filename, "w", encoding="utf-8") as file:
-            file.write(s+"\n")
+            file.write(s + "\n")
             file.write("Всего лемм: " + str(word_count) + "\n")
             for char in dict_lemmas:
                 file.write(str(char[0]) + " " + str(char[1]) + "\n")

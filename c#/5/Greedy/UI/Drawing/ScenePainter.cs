@@ -53,9 +53,9 @@ public class ScenePainter : IScenePainter
 		{
 			var logicalLocation = new Point(x, y);
 			var realPosition =  new Avalonia.Point(x * CellSize.Width, y * CellSize.Height);
-			
+
 			if (state.IsWallAt(logicalLocation)) continue;
-			
+
 			var drawDigits = zoomScale > 0.5;
 			if (state.IsChestAt(logicalLocation))
 			{
@@ -124,7 +124,7 @@ public class ScenePainter : IScenePainter
 
 		var height = state.MapHeight;
 		var width = state.MapWidth;
-		
+
 		for (var y = 0; y < height; y++)
 		for (var x = 0; x < width; x++)
 		{

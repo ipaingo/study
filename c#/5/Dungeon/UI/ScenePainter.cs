@@ -78,14 +78,14 @@ public class ScenePainter : Canvas
 		pathsToChests = null;
 		if (!currentMap.InBounds(position) ||
 		    currentMap.Dungeon[lastMouseClick.X, lastMouseClick.Y] != MapCell.Empty) return;
-		
+
 		pathsToChests = BfsTask.FindPaths(currentMap, lastMouseClick, currentMap.Chests)
 			.Select(x => x.ToList()).ToList();
-		
+
 		foreach (var pathsToChest in pathsToChests)
 			pathsToChest.Reverse();
 	}
-	
+
 	protected override void OnPointerReleased(PointerReleasedEventArgs e)
 	{
 		pathsToChests = null;

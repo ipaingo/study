@@ -20,7 +20,7 @@ public class LevenshteinCalculator_Tests
 
 	[Order(0)]
 	[TestCase("aa", "bb", 1)]
-	[TestCase("aa", "ab", 0.5)] 
+	[TestCase("aa", "ab", 0.5)]
 	[TestCase("aaaa", "abbb", 0.5)]
 	[TestCase("abcd", "1234", 1)]
 	[TestCase("abcd", "a1234", 7.0 / 8)]

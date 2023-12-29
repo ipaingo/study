@@ -3,7 +3,7 @@ using System;
 namespace MyPhotoshop
 {
 
-	
+
 	public interface IFilter
 	{
         /// <summary>
@@ -22,4 +22,3 @@ namespace MyPhotoshop
 		Photo Process(Photo original, double[] parameters);
 	}
 }
-

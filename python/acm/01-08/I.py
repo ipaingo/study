@@ -9,10 +9,10 @@ for i in range(n):
 for i in range(n):
     b[i] = list(map(int, input().split()))
 
-temp = ''
+temp = ""
 
 for i in range(n):
     for j in range(m):
-        temp += str(a[i][j] + b[i][j]) + ' '
-    print(temp[:len(temp)-1])
-    temp = ''
+        temp += str(a[i][j] + b[i][j]) + " "
+    print(temp[: len(temp) - 1])
+    temp = ""

@@ -8,11 +8,11 @@ import networkx as nx
 
 # загрузка модели.
 nlp = spacy.load("ru_core_news_sm")
-morph = pymorphy3.MorphAnalyzer(lang='ru')
+morph = pymorphy3.MorphAnalyzer(lang="ru")
 
 # парсим самодельные грамматические основы.
 gr_basis = []
-with open('basis.txt', 'r', encoding="utf-8") as go:
+with open("basis.txt", "r", encoding="utf-8") as go:
     for line in go:
         bases = line.rstrip().split(",")
         subject_list = []
@@ -38,7 +38,7 @@ sentences = [sent.text for sent in doc.sents]
 # находим подлежащее и сказуемое.
 lib_gr_basis = []
 # дательный, творительный, родительный, предложный.
-wrong_case = ['datv', 'ablt', 'gent', 'loct']
+wrong_case = ["datv", "ablt", "gent", "loct"]
 
 for sentence in doc.sents:
     subject = []
@@ -47,30 +47,74 @@ for sentence in doc.sents:
         case = morph.parse(token.text)[0].tag.case
         # ROOT - корень.
         # nsubj - подлежащее глагола.
-        if (token.dep_ == "nsubj" or token.dep_ == "nsubj:pass") and (case not in wrong_case or case == 'loct') and case != None:
+        if (
+            (token.dep_ == "nsubj" or token.dep_ == "nsubj:pass")
+            and (case not in wrong_case or case == "loct")
+            and case != None
+        ):
             subject.append(token.text)
-        if token.dep_ == "conj" and token.pos_ == "NOUN" and case != None and case not in wrong_case:
+        if (
+            token.dep_ == "conj"
+            and token.pos_ == "NOUN"
+            and case != None
+            and case not in wrong_case
+        ):
             subject.append(token.text)
-        if token.dep_ == "nmod" and token.pos_ == "ADJ" and case == "nomn" and case not in wrong_case:
+        if (
+            token.dep_ == "nmod"
+            and token.pos_ == "ADJ"
+            and case == "nomn"
+            and case not in wrong_case
+        ):
             subject.append(token.text)
         if token.dep_ == "ROOT" and case not in wrong_case and token.pos_ == "NOUN":
             subject.append(token.text)
         if token.dep_ == "obj" and case not in wrong_case and token.pos_ == "PROPN":
             subject.append(token.text)
 
-        if token.dep_ == "ROOT" and case not in wrong_case and token.pos_ != "NOUN" and token.text[-2:] != "сь":
+        if (
+            token.dep_ == "ROOT"
+            and case not in wrong_case
+            and token.pos_ != "NOUN"
+            and token.text[-2:] != "сь"
+        ):
             predicate.append(token.text)
-        if token.dep_ == "conj" and token.pos_ in ["VERB", "ADJ"] and case not in wrong_case and token.text[-2:] != "сь"\
-                and token.text[-2:] not in ["ый", "ий", "ая", "яя", "ое", "ее"]:
+        if (
+            token.dep_ == "conj"
+            and token.pos_ in ["VERB", "ADJ"]
+            and case not in wrong_case
+            and token.text[-2:] != "сь"
+            and token.text[-2:] not in ["ый", "ий", "ая", "яя", "ое", "ее"]
+        ):
             predicate.append(token.text)
-        if token.dep_ == "cop" and token.pos_ == "AUX" and case not in wrong_case and token.text[-2:] != "сь":
+        if (
+            token.dep_ == "cop"
+            and token.pos_ == "AUX"
+            and case not in wrong_case
+            and token.text[-2:] != "сь"
+        ):
             predicate.append(token.text)
-        if token.dep_ == "ccomp" and token.pos_ == "VERB" and case not in wrong_case and token.text[-2:] != "сь":
+        if (
+            token.dep_ == "ccomp"
+            and token.pos_ == "VERB"
+            and case not in wrong_case
+            and token.text[-2:] != "сь"
+        ):
             predicate.append(token.text)
-        if token.dep_ == "parataxis" and token.pos_ == "VERB" and case not in wrong_case and token.text[-2:] != "сь":
+        if (
+            token.dep_ == "parataxis"
+            and token.pos_ == "VERB"
+            and case not in wrong_case
+            and token.text[-2:] != "сь"
+        ):
             predicate.append(token.text)
         # сказуемое в первом лице.
-        if token.dep_ == "obj" and token.pos_ == "VERB" and case == None and token.text[-2:] != "сь":
+        if (
+            token.dep_ == "obj"
+            and token.pos_ == "VERB"
+            and case == None
+            and token.text[-2:] != "сь"
+        ):
             predicate.append(token.text)
 
         # инфинитив.
@@ -92,14 +136,20 @@ for i in range(len(lib_gr_basis)):
 
 print("---------------------")
 print(count)
-print("Точность работы: ", str(round(count/58, 2)))
+print("Точность работы: ", str(round(count / 58, 2)))
 print("---------------------")
 
 # вывод предложений, по которым будем строить графы.
 for sentence in doc.sents:
     print(sentence)
     for token in sentence:
-        print(token.text, token.dep_, token.tag_, token.pos_, morph.parse(token.text)[0].tag.case)
+        print(
+            token.text,
+            token.dep_,
+            token.tag_,
+            token.pos_,
+            morph.parse(token.text)[0].tag.case,
+        )
     print()
 
 # собственно, рисуем сами графы.
@@ -109,26 +159,31 @@ for sentence in sentences[:4]:
     tok = []
     deps = []
     for token in sent:
-            tok.append([token.text, token.head.text])
-            deps.append(token.dep_)
+        tok.append([token.text, token.head.text])
+        deps.append(token.dep_)
 
     G = nx.Graph()
     G.add_edges_from(tok)
     pos = nx.spring_layout(G)
     plt.figure(figsize=(20, 6))
-    nx.draw(G, pos, edge_color='black',
-            width=1,
-            linewidths=1,
-            node_size=400,
-            node_color='#5390fe',
-            alpha=0.9,
-            labels={node:node for node in G.nodes()})
+    nx.draw(
+        G,
+        pos,
+        edge_color="black",
+        width=1,
+        linewidths=1,
+        node_size=400,
+        node_color="#5390fe",
+        alpha=0.9,
+        labels={node: node for node in G.nodes()},
+    )
     k = 0
     for d in deps:
-        nx.draw_networkx_edge_labels(G, pos, edge_labels={tuple(tok[k]) :d}, font_color='#14145b')
+        nx.draw_networkx_edge_labels(
+            G, pos, edge_labels={tuple(tok[k]): d}, font_color="#14145b"
+        )
         k += 1
-    plt.axis('off')
-    plt.savefig('sentence {}.png'.format(i+1))
+    plt.axis("off")
+    plt.savefig("sentence {}.png".format(i + 1))
     plt.show()
     i += 1
-

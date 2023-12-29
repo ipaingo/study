@@ -9,4 +9,3 @@ namespace MyPhotoshop
 		public double[,,] data;
 	}
 }
-

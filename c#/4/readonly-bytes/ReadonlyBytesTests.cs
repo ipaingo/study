@@ -40,7 +40,7 @@ public class ReadonlyBytesTests
 	public void IndexOutOfRangeException()
 	{
 		var items = new ReadonlyBytes(4, 1, 2);
-		// Обращение к индексу за границами исходного массива должно приводить 
+		// Обращение к индексу за границами исходного массива должно приводить
 		// к исключению типа IndexOutOfRangeException
 		Assert.Throws<IndexOutOfRangeException>(() =>
 		{

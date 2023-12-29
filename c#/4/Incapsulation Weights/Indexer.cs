@@ -15,7 +15,7 @@ namespace Incapsulation.Weights
 
         public Indexer(double[] array, int start, int length)
         {
-            // если входные данные противоречат здравому смыслу, исключение. 
+            // если входные данные противоречат здравому смыслу, исключение.
             if (start + length > array.Length || start < 0 || length < 0)
                 throw new ArgumentException();
             Length = length;

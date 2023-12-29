@@ -7,12 +7,14 @@ dict_texts = dict()
 # проверяет, является ли входная строка line новой главой, сопоставляя её с регулярными выражениями.
 # у рассказа! главы! ужас.
 def is_chapter_name(line):
-    return match('Глава.*[IV]', line) \
-        or match('[IV].*', line) \
-        or match('Случай [^ ]*$', line) \
-        or match('Действие [^ ]*$', line) \
-        or match('Пролог.*', line) \
-        or match('Эпилог.*', line)
+    return (
+        match("Глава.*[IV]", line)
+        or match("[IV].*", line)
+        or match("Случай [^ ]*$", line)
+        or match("Действие [^ ]*$", line)
+        or match("Пролог.*", line)
+        or match("Эпилог.*", line)
+    )
 
 
 def is_empty_line(line):
@@ -69,11 +71,15 @@ def main():
         text = file.readlines()
     option = -1
     while option not in [1, 2, 3]:
-        option = int(input("Что вы хотите сделать с файлом?\n"
-                           "1. Создать csv файл заголовков;\n"
-                           "2. Создать файл заголовков и разделить рассказы по файлам;\n"
-                           "3. Выйти из программы.\n"
-                           "Ввод: "))
+        option = int(
+            input(
+                "Что вы хотите сделать с файлом?\n"
+                "1. Создать csv файл заголовков;\n"
+                "2. Создать файл заголовков и разделить рассказы по файлам;\n"
+                "3. Выйти из программы.\n"
+                "Ввод: "
+            )
+        )
         if option not in [1, 2, 3]:
             print("Неверная опция!")
 
@@ -83,7 +89,12 @@ def main():
     current_text = []
     is_new_text = True
     for line in text:
-        if not starts_with_tab(line) and not is_chapter_name(line) and len(current_text) != 0 and not is_new_text:
+        if (
+            not starts_with_tab(line)
+            and not is_chapter_name(line)
+            and len(current_text) != 0
+            and not is_new_text
+        ):
             add_to_dict(current_text)
             current_text = []
             is_new_text = True
@@ -102,7 +113,7 @@ def main():
     # csv выпендривается.
     arr = [[i] for i in sorted(dict_texts.keys())]
     if filename != "":
-        with open(filename, "w", newline='', encoding="utf-8") as f:
+        with open(filename, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["Названия рассказов"])
             writer.writerows(arr)
@@ -113,7 +124,7 @@ def main():
             header = i[0].split("\n")[0]
             if len(header) > 100:
                 header = f"{header[:100]}"
-            path = directory + "\\" + sub(r'[^\w«»_. -]', '', header.strip()) + ".txt"
+            path = directory + "\\" + sub(r"[^\w«»_. -]", "", header.strip()) + ".txt"
             print(path)
             with open(path, "w", encoding="utf-8") as f:
                 for j in dict_texts[i[0]]:

@@ -19,7 +19,7 @@ def find_correct(word, dictionary):
     # замена каждой буквы.
     for i in range(word_length):
         for j in range_ascii:
-            new_s = word[0:i] + chr(j) + word[i + 1:word_length]
+            new_s = word[0:i] + chr(j) + word[i + 1 : word_length]
             check_dictionary(new_s, dictionary)
 
     # вставка новой буквы.
@@ -30,12 +30,12 @@ def find_correct(word, dictionary):
 
     # удаление буквы.
     for i in range(word_length):
-        new_s = word[0:i] + word[i + 1:word_length]
+        new_s = word[0:i] + word[i + 1 : word_length]
         check_dictionary(new_s, dictionary)
 
     # перемещение соседних букв.
     for i in range(word_length - 1):
-        new_s = word[0:i] + word[i + 1] + word[i] + word[i + 2:word_length]
+        new_s = word[0:i] + word[i + 1] + word[i] + word[i + 2 : word_length]
         check_dictionary(new_s, dictionary)
 
 

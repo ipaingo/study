@@ -9,10 +9,10 @@ public class DijkstraPathFinder
 {
     public IEnumerable<PathWithCost> GetPathsByDijkstra(State state, Point start, IEnumerable<Point> targets)
     {
-        // будем использовать очередь с приоритетом. таким образом мы сможем определять путь с наименьшей длиной. 
+        // будем использовать очередь с приоритетом. таким образом мы сможем определять путь с наименьшей длиной.
         var queue = new PriorityQueue<(Point Current, Point Previous, int Cost, int Length), int>();
         var visited = new HashSet<Point>();
-            
+
         // начнем... с начала...
         queue.Enqueue((start, start, 0, 1), 0);
         visited.Add(start);
@@ -25,7 +25,7 @@ public class DijkstraPathFinder
             var node = queue.Dequeue();
 
             prevPoints[node.Current] = (node.Previous, node.Cost, node.Length);
-                
+
             // если мы дошли до сундука - возвращаем маршрут.
             if (state.IsChestAt(node.Current) && targets.Contains(node.Current))
             {

@@ -109,7 +109,7 @@ namespace Reflection.Randomness
         {
 			FailWithInformativeMessageOnType<T4>("List", "Exception message should be informative and contain at least the name of problematic type");
         }
-        
+
         public void FailWithInformativeMessageOnType<T>(string expectedMessageSubstring, string failMessage) where T : new()
         {
 	        ArgumentException exception = null;

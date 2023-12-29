@@ -30,7 +30,9 @@ def s(t, v, tl, tr, l, r):
     if (l == tl) and (r == tr):
         return t[v]
     tm = (tl + tr) // 2
-    return s(t, v * 2, tl, tm, l, min(r, tm)) + s(t, v * 2 + 1, tm + 1, tr, max(l, tm + 1), r)
+    return s(t, v * 2, tl, tm, l, min(r, tm)) + s(
+        t, v * 2 + 1, tm + 1, tr, max(l, tm + 1), r
+    )
 
 
 n = 5

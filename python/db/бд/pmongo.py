@@ -2,8 +2,8 @@ import pymongo
 
 
 # Подключение
-client = pymongo.MongoClient('192.168.112.103')
-database = client['22306']
+client = pymongo.MongoClient("192.168.112.103")
+database = client["22306"]
 
 # Список коллекций в базе данных
 print(database.list_collection_names())
@@ -12,10 +12,13 @@ print(database.list_collection_names())
 # Создание коллекции
 collection_name = database["test"]
 
-#print(client.list_database_names())
-#print(client['22306'])
+# print(client.list_database_names())
+# print(client['22306'])
 
-team = {"couch": {"name": "John", "s_name": "Connor", "address": "Highway 37" }, "players": {"first": "I'm", "second": "you"}}
+team = {
+    "couch": {"name": "John", "s_name": "Connor", "address": "Highway 37"},
+    "players": {"first": "I'm", "second": "you"},
+}
 collection_name.insert_one(team)
 x = collection_name.find_one()
 print(x)
@@ -30,7 +33,7 @@ print(x)
 
 # Сортировка
 # mydoc = collection_name.find().sort("name")
-'''
+"""
 Удаление одного
 myquery = { "address": "Mountain 21" }
 collection_name.delete_one(myquery)
@@ -41,6 +44,6 @@ myquery = { "address": "Valley 345" }
 newvalues = { "$set": { "address": "Canyon 123" } }
 
 collection_name.update_one(myquery, newvalues)
-'''
+"""
 
 collection_name.drop()  # Удалить коллекцию

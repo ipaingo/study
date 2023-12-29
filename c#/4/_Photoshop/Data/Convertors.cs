@@ -21,14 +21,14 @@ namespace MyPhotoshop
 				}
 			return photo;
 		}
-		
+
 		static int ToChannel(double val)
 		{
             if (val<0 || val>1)
                 throw new Exception(string.Format("Wrong channel value {0} (the value must be between 0 and 1", val));
 			return (int)(val * 255);
 		}
-		
+
 		public static Bitmap Photo2Bitmap(Photo photo)
 		{
 			var bmp=new Bitmap(photo.width,photo.height);
@@ -38,9 +38,8 @@ namespace MyPhotoshop
 						ToChannel (photo.data[x,y,0]),
 						ToChannel (photo.data[x,y,1]),
 						ToChannel (photo.data[x,y,2]) ));
-					       		
+
 			return bmp;
 		}
 	}
 }
-

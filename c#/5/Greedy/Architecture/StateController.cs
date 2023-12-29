@@ -86,7 +86,7 @@ public class StateController
 	private void CollectChestIfStandingOnIt()
 	{
 		if (!Chests.Contains(State.Position)) return;
-		
+
 		State.Scores++;
 		VisitedChests.Add(State.Position);
 		Chests.Remove(State.Position);
@@ -100,7 +100,7 @@ public class StateController
 	private bool SetGameOverMessageIfOutOfEnergy()
 	{
 		if (State.Energy >= 0) return false;
-		
+
 		GameLostMessage = "Out of energy";
 		return true;
 

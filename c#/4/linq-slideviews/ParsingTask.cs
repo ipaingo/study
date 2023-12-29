@@ -22,12 +22,12 @@ public class ParsingTask
 				// разделяем по точкам с запятой.
 				var line = l.Split(';');
 
-				// проверяем на корректность. если строка битая - будет нулл, иначе запись о слайде. 
+				// проверяем на корректность. если строка битая - будет нулл, иначе запись о слайде.
 				if ((line.Length != 3) || (!int.TryParse(line[0], out int id)) ||
 				(line[1].Length == 0))
 					return null;
 
-                
+
                 line[1] = line[1].First().ToString().ToUpper() + String.Join("", line[1].Skip(1));
 				if (!Enum.TryParse(line[1], out SlideType type))
 					return null;
@@ -39,7 +39,7 @@ public class ParsingTask
 	}
 
 	/// <param name="lines">Все строки файла, которые нужно распарсить. Первая строка — заголовочная.</param>
-	/// <param name="slides">Словарь информации о слайдах по идентификатору слайда. 
+	/// <param name="slides">Словарь информации о слайдах по идентификатору слайда.
 	/// Такой словарь можно получить методом ParseSlideRecords.</param>
 	/// <returns>Список информации о посещениях.</returns>
 	/// <exception cref="FormatException">Если среди строк есть некорректные.</exception>

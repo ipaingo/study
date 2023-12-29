@@ -17,7 +17,7 @@ namespace Inheritance.Geometry.Visitor
             var expectedBox = new RectangularCuboid(start, side, side, side);
             AssertCuboidsEqual(expectedBox, box);
         }
-        
+
         [Test]
         public void RectangularCuboid_BoxifyVisitor_IsCorrect()
         {

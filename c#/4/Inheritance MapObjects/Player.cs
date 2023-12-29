@@ -10,7 +10,7 @@ namespace Inheritance.MapObjects
         {
             return army.Power < 5;
         }
-            
+
         public int Id { get; set; }
 
         public void Consume(Treasure treasure)
