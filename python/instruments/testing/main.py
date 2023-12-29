@@ -37,23 +37,14 @@ def calculate_statistics(data_stat):
         # проверяем, является ли следующий элемент разделителем.
         if float(data_stat[i].split()[0]) == -1:
 
-            # если так, запишем длинную строку из нужных нам значений, разделенных запятой.
-            result.append(
-                ",".join(
-                    [
-                        str(start),
-                        data_stat[i - 1].split()[0],
-                        str(len(data)),
-                        str(statistics.mean(data)),
-                        str(statistics.median(data)),
-                    ]
-                )
-            )
 
+            # если так, запишем длинную строку из нужных нам значений, разделенных запятой.
+            result.append(",".join([str(start), data_stat[i - 1].split()[0], str(len(data)),str(statistics.mean(data)), str(statistics.median(data))]))
             # обновим массив данных для статистики.
             data = []
 
         elif not data:
+
 
             # костыль. обновим начало.
             start = float(data_stat[i].split()[0])
