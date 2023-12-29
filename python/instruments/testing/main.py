@@ -13,7 +13,7 @@ def read_data_from_file(filename):
 
         # для удобства при выполнении split будем разделять данные в строчках пробелом.
         for row in read_csv:
-            rows_csv.append(' '.join(row))
+            rows_csv.append(" ".join(row))
 
     rows_csv.pop(0)
     return rows_csv
@@ -37,10 +37,18 @@ def calculate_statistics(data_stat):
         # проверяем, является ли следующий элемент разделителем.
         if float(data_stat[i].split()[0]) == -1:
 
-            # если так, запишем длинную строку из нужных нам значений, разделенных запятой.
-            # мода не работает в линуксе, поэтому пришлось ее убрать.
-            result.append(",".join([str(start), data_stat[i - 1].split()[0], str(len(data)), str(statistics.mean(data)),
-                                    str(statistics.median(data))]))
+            # если так, запишем длинную строку из нужных нам значений, разделенных запятой. мода не работает в линуксе, поэтому пришлось ее убрать.
+            result.append(
+                ",".join(
+                    [
+                        str(start),
+                        data_stat[i - 1].split()[0],
+                        str(len(data)),
+                        str(statistics.mean(data)),
+                        str(statistics.median(data)),
+                    ]
+                )
+            )
 
             # обновим массив данных для статистики.
             data = []
@@ -58,7 +66,7 @@ def calculate_statistics(data_stat):
     return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Неправильное количество аргументов")
     else:
