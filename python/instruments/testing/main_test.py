@@ -3,10 +3,6 @@
 # но быстрее, проще и нагляднее просто посчитать значения для маленького массива,
 # чем для всего example.csv.
 
-# последним трем тестам не стала давать неправильные результаты,
-# поэтому pytest отработает с 5 failed, 3 passed.
-# (пробовала все испортить - тогда 8 failed.)
-
 import statistics
 import pytest
 from main import *  # сами функции, собственно.
@@ -23,7 +19,7 @@ def test_read_data_from_file():  # 1. проверка на отсутствие
 def test_roots():  # 2. проверка на отсутствие доступа к файлу.
     try:
         read_data_from_file('err.csv')
-    except PermissionError:  # проверяется с помощью zimenkov/inf/2sem/lab5/err.csv (к нему закрыт доступ).
+    except PermissionError:
         pytest.fail('Файл недоступен для чтения.')
 
 
