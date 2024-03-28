@@ -1,14 +1,14 @@
-graph = [[0] * (6)] * (6)
-print("Введите матрицу: ")
-for j in range(6):
-    graph[j] = list(map(int, input().split()))
+# graph = [[0] * (6)] * (6)
+# print("Введите матрицу: ")
+# for j in range(6):
+#     graph[j] = list(map(int, input().split()))
 
-# graph = [[0, 1, 9, 8, 8, 6],
-#          [1, 0, 4, 7, 6, 7],
-#          [7, 3, 0, 8, 7, 4],
-#          [3, 2, 4, 0, 6, 6],
-#          [1, 3, 2, 1, 0, 4],
-#          [3, 4, 8, 7, 5, 0]]
+graph = [[0, 1, 9, 8, 8, 6],
+         [1, 0, 4, 7, 6, 7],
+         [7, 3, 0, 8, 7, 4],
+         [3, 2, 4, 0, 6, 6],
+         [1, 3, 2, 1, 0, 4],
+         [3, 4, 8, 7, 5, 0]]
 paths = []
 curr_index = 0
 min_path = 1000000000
@@ -27,9 +27,9 @@ for i1 in range(6):
                                 and (i3 != i4) and (i3 != i5) and (i3 != i6)
                                 and (i4 != i5) and (i4 != i6)
                                 and (i5 != i6)):
-                            paths.append(str(i1 + 1) + str(i2 + 1) + str(i3 + 1) + str(i4 + 1) + str(i5 + 1) + str(i6 + 1))
+                            paths.append(str(i1 + 1) + str(i2 + 1) + str(i3 + 1) + str(i4 + 1) + str(i5 + 1) + str(i6 + 1) + str(i1 + 1))
                             # print(paths[curr_index])
-                            curr_path = graph[i1][i2] + graph[i2][i3] + graph[i3][i4] + graph[i4][i5] + graph[i5][i6]
+                            curr_path = graph[i1][i2] + graph[i2][i3] + graph[i3][i4] + graph[i4][i5] + graph[i5][i6] + graph[i6][i1]
                             if curr_path < min_path:
                                 min_path = curr_path
                                 # print(min_path)
