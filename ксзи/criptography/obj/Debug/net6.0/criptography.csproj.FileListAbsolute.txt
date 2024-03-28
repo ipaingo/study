@@ -1,0 +1,14 @@
+C:\git\study\ксзи\criptography\bin\Debug\net6.0\criptography.exe
+C:\git\study\ксзи\criptography\bin\Debug\net6.0\criptography.deps.json
+C:\git\study\ксзи\criptography\bin\Debug\net6.0\criptography.runtimeconfig.json
+C:\git\study\ксзи\criptography\bin\Debug\net6.0\criptography.dll
+C:\git\study\ксзи\criptography\bin\Debug\net6.0\criptography.pdb
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.AssemblyInfoInputs.cache
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.AssemblyInfo.cs
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.csproj.CoreCompileInputs.cache
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.dll
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\refint\criptography.dll
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.pdb
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.genruntimeconfig.cache
+C:\git\study\ксзи\criptography\obj\Debug\net6.0\ref\criptography.dll
