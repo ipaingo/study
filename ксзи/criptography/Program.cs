@@ -45,9 +45,7 @@ bool isMaybePrime(BigInteger prime)
         if (lp == prime)
             return true;
         if (prime % lp == 0)
-        {
             return false;
-        }
     }
 
     int s = 0;
@@ -79,15 +77,13 @@ bool isMaybePrime(BigInteger prime)
             }
         }
         if (flag)
-        {
             return false;
-        }
     }
 
     return true;
 }
 
-// генерирует случайное число в заданном отрезке.
+// генерирует БОЛЬШОЕ случайное число в заданном отрезке.
 BigInteger RandBigIntegerInRange(BigInteger minValue, BigInteger maxValue)
 {
     if (minValue == maxValue) return minValue;
@@ -98,9 +94,7 @@ BigInteger RandBigIntegerInRange(BigInteger minValue, BigInteger maxValue)
 
     byte lastByteMask = 0b11111111;
     for (byte mask = 0b10000000; mask > 0; mask >>= 1, lastByteMask >>= 1)
-    {
         if ((bytes[bytes.Length - 1] & mask) == mask) break;
-    }
 
     while (true)
     {
@@ -125,6 +119,7 @@ BigInteger getRandomPrime()
             min *= 2;
             max *= 2;
         }
+
         min++;
         max--;
         var prime = RandBigIntegerInRange(min, max);
@@ -177,7 +172,8 @@ void generateRSAKeys(BigInteger e, out BigInteger d, out BigInteger n, out BigIn
         q = getRandomPrime();
         n = p * q;
         f = (p - 1) * (q - 1);
-    } while (GCD(e, f) != 1);
+    }
+    while (GCD(e, f) != 1);
 
     // закрытый ключ d генерируется с помощью расширенного алгоритма Евклида.
     GCDex(e, f, out d, out BigInteger y);
@@ -209,7 +205,7 @@ bool validateCert(in BigInteger m, in BigInteger cert, in BigInteger e, BigInteg
 
 
 BigInteger m = 1111;
-BigInteger e = 1399;
+BigInteger e = 65537;
 BigInteger n, d, p, q;
 generateRSAKeys(e, out d, out n, out p, out q);
 
@@ -222,19 +218,11 @@ Console.WriteLine("Электронная подпись:");
 Console.WriteLine(cert);
 
 if (validateCert(m, cert, e, n))
-{
     Console.WriteLine("Электронная подпись действительна.");
-}
 else
-{
     Console.WriteLine("Электронная подпись недействительна.");
-}
 
 if (validateCert(m, cert + 4, e, n))
-{
     Console.WriteLine("Измененная электронная подпись действительна.");
-}
 else
-{
     Console.WriteLine("Измененная электронная подпись недействительна.");
-}
