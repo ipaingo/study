@@ -12,3 +12,18 @@ C:\git\study\ксзи\criptography\obj\Debug\net6.0\refint\criptography.dll
 C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.pdb
 C:\git\study\ксзи\criptography\obj\Debug\net6.0\criptography.genruntimeconfig.cache
 C:\git\study\ксзи\criptography\obj\Debug\net6.0\ref\criptography.dll
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\bin\Debug\net6.0\criptography.exe
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\bin\Debug\net6.0\criptography.deps.json
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\bin\Debug\net6.0\criptography.runtimeconfig.json
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\bin\Debug\net6.0\criptography.dll
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\bin\Debug\net6.0\criptography.pdb
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.csproj.AssemblyReference.cache
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.GeneratedMSBuildEditorConfig.editorconfig
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.AssemblyInfoInputs.cache
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.AssemblyInfo.cs
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.csproj.CoreCompileInputs.cache
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.dll
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\refint\criptography.dll
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.pdb
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\criptography.genruntimeconfig.cache
+D:\Софья Зименкова\учёба\6 сем\ксзи\criptography\obj\Debug\net6.0\ref\criptography.dll

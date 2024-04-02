@@ -1,0 +1,15 @@
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\bin\Debug\net7.0\Laba3.exe
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\bin\Debug\net7.0\Laba3.deps.json
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\bin\Debug\net7.0\Laba3.runtimeconfig.json
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\bin\Debug\net7.0\Laba3.dll
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\bin\Debug\net7.0\Laba3.pdb
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.csproj.AssemblyReference.cache
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.AssemblyInfoInputs.cache
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.AssemblyInfo.cs
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.csproj.CoreCompileInputs.cache
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.dll
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\refint\Laba3.dll
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.pdb
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\Laba3.genruntimeconfig.cache
+C:\Users\dlyai\Desktop\Криптографические средства\Laba3\obj\Debug\net7.0\ref\Laba3.dll
