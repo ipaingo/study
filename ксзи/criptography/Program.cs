@@ -170,21 +170,25 @@ void generateRSAKeys(BigInteger e, out BigInteger d, out BigInteger n, out BigIn
         // генерирует случайные простые p и q.
         p = getRandomPrime();
         q = getRandomPrime();
-        n = p * q;
-        f = (p - 1) * (q - 1);
+        n = p * q;              // модуль.
+        f = (p - 1) * (q - 1);  // функция Эйлера.
     }
     while (GCD(e, f) != 1);
 
-    // закрытый ключ d генерируется с помощью расширенного алгоритма Евклида.
+    // секретная экспонента d генерируется с помощью расширенного алгоритма Евклида.
     GCDex(e, f, out d, out BigInteger y);
     d = (d % f + f) % f;
 }
 
 
-// получает электронную подпись.
+// получает цифровую подпись.
 BigInteger getCert(in BigInteger m, in BigInteger d, in BigInteger n, in BigInteger p, in BigInteger q)
 {
-    // для вычисления используется китайская теорема об остатках.
+    // для быстрого вычисления используется китайская теорема об остатках.
+    // вместо того, чтобы возводить сообщение m в степень d,
+    // мы используем тот факт, что p и q взаимнопростые,
+    // а значит мы можем возвести в меньшую степень по модулю (что будет проще),
+    // после чего китайскими ухищрениями вычислим остаток от деления на n меньшего числа.
     var r1 = BinPow(m % p, d % (p - 1), p);
     var r2 = BinPow(m % q, d % (q - 1), q);
 
@@ -197,32 +201,32 @@ BigInteger getCert(in BigInteger m, in BigInteger d, in BigInteger n, in BigInte
     return (r1 * m1 * q + r2 * m2 * p) % n;
 }
 
-// проверка электронной подписи.
+// проверка цифровой подписи.
 bool validateCert(in BigInteger m, in BigInteger cert, in BigInteger e, BigInteger n)
 {
     return m == BinPow(cert, e, n);
 }
 
 
-BigInteger m = 1111;
-BigInteger e = 65537;
+BigInteger m = 1111;    // сообщение.
+BigInteger e = 65537;   // по условию открытая экспонента задается пользователем.
 BigInteger n, d, p, q;
 generateRSAKeys(e, out d, out n, out p, out q);
 
-Console.WriteLine($"Открытый ключ (n, e): ({n}, {e})");
-Console.WriteLine($"Закрытый ключ (n, d): ({n}, {d})");
+Console.WriteLine($"Открытый ключ (e, n): ({e}, {n})");
+Console.WriteLine($"Закрытый ключ (d, n): ({d}, {n})");
 
 var cert = getCert(m, d, n, p, q);
 
-Console.WriteLine("Электронная подпись:");
+Console.WriteLine("Цифровая подпись:");
 Console.WriteLine(cert);
 
 if (validateCert(m, cert, e, n))
-    Console.WriteLine("Электронная подпись действительна.");
+    Console.WriteLine("Цифровая подпись действительна.");
 else
-    Console.WriteLine("Электронная подпись недействительна.");
+    Console.WriteLine("Цифровая подпись недействительна.");
 
 if (validateCert(m, cert + 4, e, n))
-    Console.WriteLine("Измененная электронная подпись действительна.");
+    Console.WriteLine("Измененная цифровая подпись действительна.");
 else
-    Console.WriteLine("Измененная электронная подпись недействительна.");
+    Console.WriteLine("Измененная цифровая подпись недействительна.");
