@@ -3,27 +3,25 @@
 <head>
 </head>
 <body>
-<canvas id="canvas3D" width="500" height="433"></canvas>
+<canvas id="c" width="500" height="500"></canvas>
 <script src="gl-matrix-min.js"></script>
 
-<script id="shader-fs" type="x-shader/x-fragment">
-// Фрагментный шейдер
+<script id="shader-fragments" type="x-shader/x-fragment">
 varying highp vec4 v_color;
 void main(void) {
     gl_FragColor = v_color;
 }
 </script>
 
-<script id="shader-vs" type="x-shader/x-vertex">
-// Вершинный шейдер
-attribute vec3 a_vertex_position;
-attribute vec3 a_vertex_color;
+<script id="shader-vertices" type="x-shader/x-vertex">
+attribute vec3 a_position;
+attribute vec3 a_color;
 varying highp vec4 v_color;
 uniform mat4 uMVMatrix;
 uniform mat4 uPMatrix;
 void main(void) {
-    gl_Position = uPMatrix * uMVMatrix * vec4(a_vertex_position, 1.0);
-    v_color = vec4(a_vertex_color, 1.0);
+    gl_Position = uPMatrix * uMVMatrix * vec4(a_position, 1.0);
+    v_color = vec4(a_color, 1.0);
 }
 </script>
 
@@ -38,64 +36,58 @@ let mvMatrix = mat4.create()
 let pMatrix = mat4.create()
 let xx = 0, yy = -2, zz = 0
 let xy_angle = 0, z_angle = 0
-let pyramid_angle = 0
+let rotation_angle = 0
 
-const canvas = document.getElementById("canvas3D")
-try {
+const canvas = document.getElementById("c")
+try
+{
     gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
 }
-catch(e) {
+catch(e)
+{
     console.log(e)
 }
 
-function init_shaders() {
-    let fragment_shader = get_shader(gl.FRAGMENT_SHADER, 'shader-fs')
-    let vertex_shader = get_shader(gl.VERTEX_SHADER, 'shader-vs')
-    
+function createShader() {
+    var source = document.getElementById('shader-fragments').innerHTML
+    var fragment_shader = gl.createShader(gl.FRAGMENT_SHADER)
+    gl.shaderSource(fragment_shader, source)
+    gl.compileShader(fragment_shader)
+
+    var source = document.getElementById('shader-vertices').innerHTML
+    var vertex_shader = gl.createShader(gl.VERTEX_SHADER)
+    gl.shaderSource(vertex_shader, source)
+    gl.compileShader(vertex_shader)
+
     shader_program = gl.createProgram()
     gl.attachShader(shader_program, fragment_shader)
     gl.attachShader(shader_program, vertex_shader)
 
     gl.linkProgram(shader_program)
-        
     gl.useProgram(shader_program)
 
-    shader_program.vertexPositionAttribute = gl.getAttribLocation(shader_program, "a_vertex_position")
+    shader_program.vertexPositionAttribute = gl.getAttribLocation(shader_program, "a_position")
     gl.enableVertexAttribArray(shader_program.vertexPositionAttribute)
-    shader_program.vertexColorAttribute = gl.getAttribLocation(shader_program, "a_vertex_color")
+    shader_program.vertexColorAttribute = gl.getAttribLocation(shader_program, "a_color")
     gl.enableVertexAttribArray(shader_program.vertexColorAttribute)
 
     shader_program.MVMatrix = gl.getUniformLocation(shader_program, "uMVMatrix")
     shader_program.ProjMatrix = gl.getUniformLocation(shader_program, "uPMatrix")
 }
 
-function get_shader(type, id) {
-    var source = document.getElementById(id).innerHTML
-    var shader = gl.createShader(type)
-    gl.shaderSource(shader, source)
-    gl.compileShader(shader)
-    
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        alert("Ошибка компиляции шейдера: " + gl.getShaderInfoLog(shader))
-        gl.deleteShader(shader) 
-        return null
-    }
-    return shader  
-}
-
-function generate_buffers() {
+function generateBuffers() {
 
     let vertices = [
         -0.5, -0.5, -0.5,
          0.5, -0.5, -0.5,
          0.5, -0.5,  0.5,
         -0.5, -0.5,  0.5,
-        // 0.0,  Math.sin(2 * Math.PI/3) - 0.5,  0.0,
+         0.0,  Math.sin(2 * Math.PI/3) - 0.5,  0.0,
 
         -0.5, -0.5, -0.5,
          0.5, -0.5, -0.5,
          0.0,  Math.sin(2 * Math.PI/3) - 0.5,  0.0,
-         
+
          0.5, -0.5, -0.5,
          0.5, -0.5,  0.5,
          0.0,  Math.sin(2 * Math.PI/3) - 0.5,  0.0,
@@ -109,14 +101,6 @@ function generate_buffers() {
           0.0,  Math.sin(2 * Math.PI/3) - 0.5,  0.0,
     ]
 
-    // let indices = [
-    //     0, 1, 2, 2, 3, 0,
-    //     0, 1, 4,
-    //     1, 2, 4,
-    //     2, 3, 4,
-    //     3, 0, 4,
-    // ]
-    
     let indices = [
         0, 1, 2, 2, 3, 0,
         4, 5, 6,
@@ -136,13 +120,14 @@ function generate_buffers() {
     index_buffer.numberOfItems = indices.length
 
     let color_sides = [
-        [1.0, 0.0, 0.0],  // Красный
-        [0.0, 1.0, 0.0],  // Зелёный
-        [0.0, 0.0, 1.0],  // Синий
-        [1.0, 1.0, 0.0],  // Жёлтый
-        [0.0, 1.0, 1.0],  // Бирюзовый
+        [1.0, 0.0, 0.0], // 0 - красный
+        [0.0, 1.0, 0.0], // 1 - зеленый
+        [0.0, 0.0, 1.0], // 2 - синий
+        [1.0, 1.0, 0.0], // 3 - желтый
+        [1.0, 0.0, 1.0], // 4 - фиолетовый
     ]
 
+    // заливка каждой грани
     let color_indices = [
         0, 0, 0, 0,
         1, 1, 1,
@@ -150,6 +135,15 @@ function generate_buffers() {
         3, 3, 3,
         4, 4, 4
     ]
+
+    // градиент
+    // let color_indices = [
+    //     0, 0, 0, 0,
+    //     1, 2, 3,
+    //     1, 3, 4,
+    //     1, 4, 0,
+    //     1, 0, 2
+    // ]
 
     let colors = []
     for (let i = 0; i < color_indices.length; i++) {
@@ -163,95 +157,71 @@ function generate_buffers() {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW)
 }
 
-function draw() {    
+function draw() {
     gl.clear(gl.COLOR_BUFFER_BIT)
 
     gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer)
-    gl.vertexAttribPointer(shader_program.vertexPositionAttribute, 
+    gl.vertexAttribPointer(shader_program.vertexPositionAttribute,
         vertex_buffer.itemSize, gl.FLOAT, false, 0, 0)
 
     gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer)
-    gl.vertexAttribPointer(shader_program.vertexColorAttribute, 
+    gl.vertexAttribPointer(shader_program.vertexColorAttribute,
         color_buffer.itemSize, gl.FLOAT, false, 0, 0)
-     
+
     gl.enable(gl.DEPTH_TEST)
-    
+
     gl.drawElements(gl.TRIANGLES, index_buffer.numberOfItems, gl.UNSIGNED_SHORT, 0)
 }
 
-function setup_matrix() {
+function setupMatrix() {
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight)
     mat4.perspective(pMatrix, 1.04, gl.viewportWidth / gl.viewportHeight, 0.01, 100.0)
     mat4.identity(mvMatrix)
     mat4.lookAt(mvMatrix, [xx, zz, yy], [xx - Math.sin(xy_angle), zz, yy + Math.cos(xy_angle)], [0, 1, 0])
-    // mat4.translate(mvMatrix, mvMatrix, [0, zz, -2.0])
-    mat4.rotate(mvMatrix, mvMatrix, pyramid_angle, [0, 1, 0])
+    mat4.rotate(mvMatrix, mvMatrix, rotation_angle, [0, 1, 0])
 
     gl.uniformMatrix4fv(shader_program.ProjMatrix, false, pMatrix)
     gl.uniformMatrix4fv(shader_program.MVMatrix, false, mvMatrix)
 }
 
-function update_view() {
-    gl.clearColor(0.0, 0.0, 0.0, 1)
+function updateView() {
+    gl.clearColor(1.0, 1.0, 1.0, 1)
     gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT)
-    setup_matrix()
+    setupMatrix()
 
-    draw()  
+    draw()
 }
 
-function on_keydown(event) {
+function keyControls(event) {
     console.log(event.keyCode)
     switch(event.keyCode) {
-        case 39:  // Вправо
-            xx += -Math.cos(xy_angle) * 0.01;
-            yy += -Math.sin(xy_angle) * 0.01;
+        case 37: // вправо
+            rotateObject(-1)
             break
-        case 37:  // Влево
-            xx -= -Math.cos(xy_angle) * 0.01;
-            yy -= -Math.sin(xy_angle) * 0.01;
-            break
-        case 38:  // Вперёд
-            xx += Math.sin(xy_angle) * 0.01;
-            yy += Math.cos(xy_angle) * 0.01;
-            break
-        case 40:  // Назад
-            xx -= Math.sin(xy_angle) * 0.01;
-            yy -= Math.cos(xy_angle) * 0.01;
-            break
-        case 16:  // Вниз
-            zz -= 0.01
-            break
-        case 32:  // Вверх
-            zz += 0.01
+        case 39: // влево
+            rotateObject(1)
             break
     }
-
-    
 }
-   
-function rotate_pyramid() {
-    pyramid_angle = (pyramid_angle + Math.PI / 180) % (2 * Math.PI)
 
-    update_view()
-    
-    setTimeout(rotate_pyramid, 25)
+function rotateObject(angle) {
+    rotation_angle = (rotation_angle + angle * Math.PI / 180) % (2 * Math.PI)
+    updateView()
 }
 
 window.onload=function(){
     gl.viewportWidth = canvas.width
     gl.viewportHeight = canvas.height
 
-    init_shaders()
-    generate_buffers()
-    gl.clearColor(0.0, 0.0, 0.0, 1)
+    createShader()
+    generateBuffers()
+    gl.clearColor(1.0, 1.0, 1.0, 1)
     gl.clear(gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT)
-    setup_matrix()
+    setupMatrix()
 
-    draw()  
-
-    setTimeout(rotate_pyramid, 25)
+    draw()
 }
 
-window.addEventListener('keydown', on_keydown);
+window.addEventListener('keydown', keyControls);
 </script>
 </html>
