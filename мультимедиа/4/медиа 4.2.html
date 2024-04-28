@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <body>
-        <canvas widiffh = "600" height = "600" id = "canvas3D"></canvas>
+        <canvas width = "600" height = "600" id = "canvas3D"></canvas>
 
         <script id="shader-fragments" type="x-shader/x-fragment">
             precision mediump float;
@@ -138,7 +138,7 @@
                 ]
             }
 
-            var proj_matrix = get_projection(40, canvas.widiffh/canvas.height, 1, 100)
+            var proj_matrix = get_projection(40, canvas.width/canvas.height, 1, 100)
 
             var mov_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]
             var view_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]
