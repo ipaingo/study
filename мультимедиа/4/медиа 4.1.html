@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+    <body>
+        <canvas widiffh = "600" height = "600" id = "canvas3D"></canvas>
+
+        <script id="shader-fragments" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec3 vColor;
+            void main(void) {
+                gl_FragColor = vec4(vColor, 1.);
+            }
+        </script>
+        
+        <script id="shader-vertices" type="x-shader/x-vertex">
+            attribute vec3 position;
+            uniform mat4 Pmatrix;
+            uniform mat4 Vmatrix;
+            uniform mat4 Mmatrix;
+            attribute vec3 color;
+            varying vec3 vColor;
+
+            void main(void) {
+                gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position, 1.);
+                vColor = color;
+            }
+        </script>
+
+        <script>
+            var canvas = document.getElementById('canvas3D')
+            gl = canvas.getContext('experimental-webgl')
+
+            var vertices = [
+            -1, -1, -1,
+            -1, -1,  1,
+             1, -1,  1,
+             1, -1, -1,
+             0,  1,  0
+            ]
+
+            var colors = [
+            1, 0, 0,
+            0, 1, 0,
+            0, 0, 1,
+            1, 1, 0,
+            1, 0, 1
+            ]
+
+            var indices = [
+            0, 1, 2,
+            0, 2, 3,
+            0, 1, 4,
+            0, 3, 4,
+            1, 2, 4,
+            2, 3, 4
+            ]
+
+            var vertex_buffer = gl.createBuffer ()
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer)
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW)
+
+            var color_buffer = gl.createBuffer ()
+            gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer)
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW)
+
+            var index_buffer = gl.createBuffer ()
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer)
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW)
+
+            var source = document.getElementById('shader-vertices').innerHTML
+            var vertex_shader = gl.createShader(gl.VERTEX_SHADER)
+            gl.shaderSource(vertex_shader, source)
+            gl.compileShader(vertex_shader)
+
+            var source = document.getElementById('shader-fragments').innerHTML
+            var fragment_shader = gl.createShader(gl.FRAGMENT_SHADER)
+            gl.shaderSource(fragment_shader, source)
+            gl.compileShader(fragment_shader)
+
+            var shader_program = gl.createProgram()
+            gl.attachShader(shader_program, vertex_shader)
+            gl.attachShader(shader_program, fragment_shader)
+            gl.linkProgram(shader_program)
+
+            var Pmatrix = gl.getUniformLocation(shader_program, "Pmatrix")
+            var Vmatrix = gl.getUniformLocation(shader_program, "Vmatrix")
+            var Mmatrix = gl.getUniformLocation(shader_program, "Mmatrix")
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer)
+            var position = gl.getAttribLocation(shader_program, "position")
+            gl.vertexAttribPointer(position, 3, gl.FLOAT, false,0,0) 
+
+            gl.enableVertexAttribArray(position)
+            gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer)
+            var color = gl.getAttribLocation(shader_program, "color")
+            gl.vertexAttribPointer(color, 3, gl.FLOAT, false,0,0) 
+
+            gl.enableVertexAttribArray(color)
+            gl.useProgram(shader_program)
+
+
+            function get_projection(angle, a, zMin, zMax) {
+                var ang = Math.tan((angle*.5)*Math.PI/180)
+                return [
+                    0.5/ang, 0 , 0, 0,
+                    0, 0.5*a/ang, 0, 0,
+                    0, 0, -(zMax+zMin)/(zMax-zMin), -1,
+                    0, 0, (-2*zMax*zMin)/(zMax-zMin), 0
+                ]
+            }
+
+            var proj_matrix = get_projection(40, canvas.widiffh/canvas.height, 1, 100)
+
+            var mov_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]
+            var view_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]
+
+            view_matrix[14] = view_matrix[14]-6
+
+            function rotateX(m, angle) {
+                var c = Math.cos(angle)
+                var s = Math.sin(angle)
+                var mv1 = m[1], mv5 = m[5], mv9 = m[9]
+
+                m[1] = m[1]*c-m[2]*s
+                m[5] = m[5]*c-m[6]*s
+                m[9] = m[9]*c-m[10]*s
+
+                m[2] = m[2]*c+mv1*s
+                m[6] = m[6]*c+mv5*s
+                m[10] = m[10]*c+mv9*s
+            }
+
+            function rotateY(m, angle) {
+                var c = Math.cos(angle)
+                var s = Math.sin(angle)
+                var mv0 = m[0], mv4 = m[4], mv8 = m[8]
+
+                m[0] = c*m[0]+s*m[2]
+                m[4] = c*m[4]+s*m[6]
+                m[8] = c*m[8]+s*m[10]
+
+                m[2] = c*m[2]-s*mv0
+                m[6] = c*m[6]-s*mv4
+                m[10] = c*m[10]-s*mv8
+            }
+
+            function rotateZ(m, angle) {
+                var c = Math.cos(angle)
+                var s = Math.sin(angle)
+                var mv0 = m[0], mv4 = m[4], mv8 = m[8]
+
+                m[0] = c*m[0]-s*m[1]
+                m[4] = c*m[4]-s*m[5]
+                m[8] = c*m[8]-s*m[9]
+
+                m[1]=c*m[1]+s*mv0
+                m[5]=c*m[5]+s*mv4
+                m[9]=c*m[9]+s*mv8
+            }
+
+            var prev_time = 0
+            var direction = 1
+            var draw = function(time) {
+                var diff = time - prev_time
+
+                if (direction == 1) 
+                    rotateY(mov_matrix, diff*0.001)
+                if (direction == 0) 
+                    rotateX(mov_matrix, diff*0.001)
+                if (direction == 2) 
+                    rotateZ(mov_matrix, diff*0.001)
+                prev_time = time
+
+                gl.enable(gl.DEPTH_TEST)
+                gl.depthFunc(gl.LEQUAL)
+                gl.clearColor(1.0, 1.0, 1.0, 0.9)
+                gl.clearDepth(1.0)
+
+                gl.viewport(0.0, 0.0, canvas.width, canvas.height)
+                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+                gl.uniformMatrix4fv(Pmatrix, false, proj_matrix)
+                gl.uniformMatrix4fv(Vmatrix, false, view_matrix)
+                gl.uniformMatrix4fv(Mmatrix, false, mov_matrix)
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer)
+                gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0)
+
+                window.requestAnimationFrame(draw)
+            }
+
+            function keyControls(event) {
+                switch(event.keyCode) {
+                    case 88:
+                        direction = 0
+                        break
+                    case 89:
+                        direction = 1
+                        break
+                    case 90:
+                        direction = 2
+                        break
+                }
+            }
+            draw(0) 
+            window.addEventListener('keydown', keyControls)
+        </script>
+        <p>Нажмите X, Y или Z, чтобы изменить направление вращения.</p>
+    </body>
+</html>
