@@ -13,3 +13,17 @@ C:\Users\dlyai\Desktop\Криптографические средства\Laba2
 C:\Users\dlyai\Desktop\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.pdb
 C:\Users\dlyai\Desktop\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.genruntimeconfig.cache
 C:\Users\dlyai\Desktop\Криптографические средства\Laba2.4\obj\Debug\net7.0\ref\Laba2.4.dll
+C:\git\study\Криптографические средства\Laba2.4\bin\Debug\net7.0\Laba2.4.exe
+C:\git\study\Криптографические средства\Laba2.4\bin\Debug\net7.0\Laba2.4.deps.json
+C:\git\study\Криптографические средства\Laba2.4\bin\Debug\net7.0\Laba2.4.runtimeconfig.json
+C:\git\study\Криптографические средства\Laba2.4\bin\Debug\net7.0\Laba2.4.dll
+C:\git\study\Криптографические средства\Laba2.4\bin\Debug\net7.0\Laba2.4.pdb
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.AssemblyInfoInputs.cache
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.AssemblyInfo.cs
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.csproj.CoreCompileInputs.cache
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.dll
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\refint\Laba2.4.dll
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.pdb
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\Laba2.4.genruntimeconfig.cache
+C:\git\study\Криптографические средства\Laba2.4\obj\Debug\net7.0\ref\Laba2.4.dll

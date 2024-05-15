@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\dlyai\\.nuget\\packages\\": {}
+    "C:\\Users\\szime\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba2.4\\Laba2.4.csproj",
+      "projectUniqueName": "C:\\git\\study\\Криптографические средства\\Laba2.4\\Laba2.4.csproj",
       "projectName": "Laba2.4",
-      "projectPath": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba2.4\\Laba2.4.csproj",
-      "packagesPath": "C:\\Users\\dlyai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba2.4\\obj\\",
+      "projectPath": "C:\\git\\study\\Криптографические средства\\Laba2.4\\Laba2.4.csproj",
+      "packagesPath": "C:\\Users\\szime\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\study\\Криптографические средства\\Laba2.4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dlyai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\szime\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
