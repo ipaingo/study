@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba3\\Laba3.csproj": {}
+    "C:\\git\\study\\Криптографические средства\\Laba3\\Laba3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba3\\Laba3.csproj": {
+    "C:\\git\\study\\Криптографические средства\\Laba3\\Laba3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba3\\Laba3.csproj",
+        "projectUniqueName": "C:\\git\\study\\Криптографические средства\\Laba3\\Laba3.csproj",
         "projectName": "Laba3",
-        "projectPath": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba3\\Laba3.csproj",
-        "packagesPath": "C:\\Users\\dlyai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dlyai\\Desktop\\Криптографические средства\\Laba3\\obj\\",
+        "projectPath": "C:\\git\\study\\Криптографические средства\\Laba3\\Laba3.csproj",
+        "packagesPath": "C:\\Users\\szime\\.nuget\\packages\\",
+        "outputPath": "C:\\git\\study\\Криптографические средства\\Laba3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dlyai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\szime\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

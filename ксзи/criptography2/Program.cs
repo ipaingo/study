@@ -41,10 +41,9 @@ bool isMaybePrime(BigInteger prime)
 {
     for (int i = 0; i < lowPrimes.Count; i++)
     {
-        int lp = lowPrimes[i];
-        if (lp == prime)
+        if (lowPrimes[i] == prime)
             return true;
-        if (prime % lp == 0)
+        if (prime % lowPrimes[i] == 0)
             return false;
     }
 
@@ -105,7 +104,7 @@ BigInteger RandBigIntegerInRange(BigInteger minValue, BigInteger maxValue)
     }
 }
 
-/// функция генерации случайного простого числа.
+// функция генерации случайного простого числа.
 BigInteger getRandomPrime()
 {
     while (true)
@@ -145,7 +144,7 @@ BigInteger GCD(BigInteger a, BigInteger b)
     return a;
 }
 
-// функция вычисления закрытого ключа. расширенный алгоритм Евклида.
+// расширенный алгоритм Евклида. используется для нахождения обратного по модулю числа.
 BigInteger GCDex(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
 {
     if (a == 0)
@@ -161,30 +160,29 @@ BigInteger GCDex(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
 }
 
 // функция поиска первообразного корня.
-BigInteger GeneratePrimitiveRoot(BigInteger a)
+BigInteger GeneratePrimitiveRoot(BigInteger p)
 {
     var f = new List<BigInteger>();
-    var p = a - 1;
-    for (var i = 2; i * i <= p; i++)
+    var n = p - 1;
+    for (var i = 2; i*i <= n; i++)
     {
-        if (p % i == 0)
+        if (n % i == 0)
         {
             f.Add(i);
-            while (p % i == 0)
-                p /= i;
+            while (n % i == 0)
+                n = n / i;
         }
     }
-    if (p != 1)
-        f.Add(p);
+    if (n != 1)
+        f.Add(n);
 
-    p = a - 1;
-    for (var i = 2; i < a; i++)
+    n = p - 1;
+    for (var i = 2; i < p; i++)
     {
         bool flag = true;
         foreach (var k in f)
-        {
-            flag = flag && (BinPow(i, p / k, a) != -1);
-        }
+            flag = flag && (BinPow(i, n / k, p) != 1);
+
         if (flag)
             return i;
     }
@@ -193,7 +191,7 @@ BigInteger GeneratePrimitiveRoot(BigInteger a)
 }
 
 // функция генерации ключей для схемы Эль-Гамаля.
-void GenerateElGamalKeys(out BigInteger y, out BigInteger g, out BigInteger p, out BigInteger x)
+void GenerateElgamalKeys(out BigInteger y, out BigInteger g, out BigInteger p, out BigInteger x)
 {
     p = getRandomPrime();
     g = GeneratePrimitiveRoot(p);
@@ -207,22 +205,22 @@ void GenerateCert(in BigInteger p, in BigInteger g, in BigInteger x, in BigInteg
     BigInteger k, k_inv;
 
     do
-        k = RandBigIntegerInRange(2, p - 2); // случайное число k от 1 до p-1.
-    while (GCD(k, p - 1) != 1); // k и p-1 должны быть взаимопростыми.
+        k = RandBigIntegerInRange(2, p - 2); // случайное число k от 1 до n-1.
+    while (GCD(k, p - 1) != 1); // k и n-1 должны быть взаимопростыми.
 
-    r = BinPow(g, k, p); // r = g^k mod p.
-    GCDex(k, p - 1, out k_inv, out BigInteger y); // k^-1 mod (p-1).
+    r = BinPow(g, k, p); // r = g^k mod n.
+    GCDex(k, p - 1, out k_inv, out BigInteger y); // k^-1 mod (n-1).
 
-    k_inv = (k_inv % (p - 1) + (p - 1)) % (p - 1);
+    k_inv = (k_inv % (p - 1) + (p - 1)) % (p - 1); // нужно, чтобы k_inv было в пределах от 0 до p-1.
 
     s = (m - x * r) * k_inv % (p - 1);
-    s = (s % (p - 1) + (p - 1)) % (p - 1);
+    s = (s % (p - 1) + (p - 1)) % (p - 1); // аналогично с k_inv.
 }
 
 // проверка цифровой подписи.
 bool ValidateCert(BigInteger p, BigInteger g, BigInteger y, BigInteger m, BigInteger r, BigInteger s)
 {
-    if (r <= 0 || r >= p || s <= 0 || s >= p - 1) // 0<r<p и 0<s<p-1
+    if (r <= 0 || r >= p || s <= 0 || s >= p - 1) // 0<r<n и 0<s<n-1
         return false;
 
     var v1 = BinPow(y, r, p) * BinPow(r, s, p) % p;
@@ -231,30 +229,24 @@ bool ValidateCert(BigInteger p, BigInteger g, BigInteger y, BigInteger m, BigInt
 }
 
 
-BigInteger m = 1111;
-GenerateElGamalKeys(out var y, out var g, out var p, out var x);
+BigInteger m = 1111; // сообщение.
+BigInteger y, g, p, x;
 
-Console.WriteLine($"Public Key: (p: {p}, g: {g}, y: {y})");
-Console.WriteLine($"Private Key: (p: {p}, g: {g}, x: {x})");
+GenerateElgamalKeys(out y, out g, out p, out x);
+
+Console.WriteLine($"Открытый ключ: (n: {p}, g: {g}, y: {y})");
+Console.WriteLine($"Закрытый ключ: (n: {p}, g: {g}, x: {x})");
 
 GenerateCert(p, g, x, m, out var r, out var s);
 
-Console.WriteLine($"Signature: (r: {r}, s: {s})");
+Console.WriteLine($"Цифровая подпись: (r: {r}, s: {s})");
 
 if (ValidateCert(p, g, y, m, r, s))
-{
-    Console.WriteLine("Signature is valid");
-}
+    Console.WriteLine("Цифровая подпись действительна.");
 else
-{
-    Console.WriteLine("Signature is invalid");
-}
+    Console.WriteLine("Цифровая подпись недействительна.");
 
 if (ValidateCert(p, g, y, m, r + 4, s + 4))
-{
-    Console.WriteLine("Tampered signature is valid");
-}
+    Console.WriteLine("Измененная цифровая подпись действительна.");
 else
-{
-    Console.WriteLine("Tampered signature is invalid");
-}
+    Console.WriteLine("Измененная цифровая подпись недействительна.");

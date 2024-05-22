@@ -1,0 +1,14 @@
+C:\git\study\ксзи\criptography3\bin\Debug\net6.0\criptography3.exe
+C:\git\study\ксзи\criptography3\bin\Debug\net6.0\criptography3.deps.json
+C:\git\study\ксзи\criptography3\bin\Debug\net6.0\criptography3.runtimeconfig.json
+C:\git\study\ксзи\criptography3\bin\Debug\net6.0\criptography3.dll
+C:\git\study\ксзи\criptography3\bin\Debug\net6.0\criptography3.pdb
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.AssemblyInfoInputs.cache
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.AssemblyInfo.cs
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.csproj.CoreCompileInputs.cache
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.dll
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\refint\criptography3.dll
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.pdb
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\criptography3.genruntimeconfig.cache
+C:\git\study\ксзи\criptography3\obj\Debug\net6.0\ref\criptography3.dll
