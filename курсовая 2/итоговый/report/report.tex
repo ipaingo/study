@@ -22,6 +22,45 @@
 \usepackage{float}
 %\usepackage{courier}
 
+
+% для поддержки джаваскрипта. сурс - tex.stackexchange.com %
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.95,.95,.95}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.53, 0.26, 0.75}
+\definecolor{maroon}{rgb}{0.7, 0.24, 0.2}
+\definecolor{cobalt}{rgb}{0.03, 0.44, 0.73}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{cobalt}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{maroon}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
 \makeatother
@@ -325,14 +364,14 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=400px]{/diagrams/PagesDiagram.png}
+\includegraphics[width=\textwidth]{/diagrams/PagesDiagram.png}
 \caption{Диаграмма процессов предметной области: навигация по веб-сайту.}
 \label{fig:diagrampages}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=400px]{/diagrams/ProjectDiagram.png}
+\includegraphics[width=\textwidth]{/diagrams/ProjectDiagram.png}
 \caption{Диаграмма процессов предметной области: структура проекта.}
 \label{fig:diagramproject}
 \end{figure}
@@ -487,7 +526,7 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=400px]{/diagrams/vaDiagram.png}
+\includegraphics[width=\textwidth]{/diagrams/vaDiagram.png}
 \caption{Диаграмма высокоуровневой архитектуры.}
 \label{fig:diagramarchitecture}
 \end{figure}
@@ -625,7 +664,7 @@ Angular — платформа для разработки веб-приложе
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=400px]{/diagrams/newCode.png}
+\includegraphics[width=\textwidth]{/diagrams/newCode.png}
 \caption{Пример изменения разметки после перевода.}
 \label{fig:diagramnewcode}
 \end{figure}
@@ -642,10 +681,246 @@ Angular — платформа для разработки веб-приложе
 
 Установщик npm формирует файл зависимостей, поэтому при установке готового проекта на React на другой рабочий компьютер необходимо в терминале выполнить команду \texttt{npm install}. Тогда все необходимые библиотеки будут установлены автоматически в соответствии с файлом зависимостей.
 
-\subsection{Настройка взаимодействия с API}
+\subsection{Запросы к API и отрисовка страницы в зависимости от ответа}
 Для взаимодействия с API были реализованы несколько функций, совершающих fetch-запросы и возвращающих ответы в зависимости от введенных параметров.
 
 
+\begin{lstlisting}[language=JavaScript, caption={Вспомогательная функция, использующаяся для осуществления fetch-запросов с параметрами.}]
+export async function fetchSomeAPI(link, method = "GET", body = {}) {
+    let options = { method: method, }
+    if (method == 'POST' || method == 'PATCH') {
+        options.body = JSON.stringify(body)
+        options.headers = { 'Content-Type': 'application/json; charset=UTF-8', }
+    }
+
+    const response = await fetch(link, options)
+    if (!response.ok) {
+        throw { status: response.status, errors: JSON.parse(await response.text() || "{}")?.errors }
+    }
+    try {
+        let data = await response.json()
+        return data
+    } catch (err) {
+
+    }
+}
+\end{lstlisting}
+
+Для аутентификации пользователя используется компонент AuthProvider, функция ReAuth которого совершает запрос к API с попыткой получить пользователя, возвращает информацию о том, что пользователь не прошел аутентификацию, если проверка была неуспешной, возвращает информацию о пользователе в случае успеха.
+
+
+\begin{lstlisting}[language=JavaScript, caption={Компонент AuthProvider, необходимый для аутентификации пользователя.}]
+function AuthProvider(props) {
+    const [user, setUser] = useState(undefined);
+    const [gotUser, setGotUser] = useState(false);
+
+    async function ReAuth() {
+        console.log("okay, try to get me")
+        let rsp = await fetch("/api/whoami",
+        {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+        })
+        console.log(rsp)
+        if (!rsp.ok) {
+            console.log("what")
+            setUser(undefined)
+            return
+        }
+
+        try {
+            rsp = await rsp.json()
+            console.log("user")
+            console.log(rsp)
+        } catch (err) {
+            rsp = null
+            console.log("no user :(")
+        }
+
+        setUser(rsp)
+    }
+
+    const value = {
+        user,
+        ReAuth,
+        gotUser,
+    };
+
+
+    useEffect(() => {
+        ReAuth();
+    }, [])
+
+    useEffect(() => {
+        setGotUser(user !== undefined)
+    }, [user])
+
+    return <AuthContext.Provider value={value} {...props} />;
+}
+\end{lstlisting}
+
+Функции с fetch-запросами вызываются в коде для получения необходимой для отрисовки информации.
+
+
+\begin{lstlisting}[language=JavaScript, caption={Код на JavaScript, получающий необходимую информацию для отрисовки главной страницы.}]
+function Home() {
+
+    const { user } = useContext(AuthContext);
+
+    const [recentProjects, setRecentProjects] = useState([]);
+
+    const [popularProjects, setPopularProjects] = useState([]);
+
+    async function GetRecentProjects() {
+        if (!user)
+            return
+
+        try {
+            let projects = (await fetchUser(user.id, true)).projects
+            projects.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            setRecentProjects(projects)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    async function GetPopularProjects() {
+        try {
+            let projects = await fetchProjects(4)
+            projects.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            setPopularProjects(projects)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    useEffect(() => {
+        GetRecentProjects();
+    }, [user]);
+
+    useEffect(() => {
+        GetPopularProjects();
+    }, []);
+
+
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = '/create';
+        navigate(path);
+    }
+<...>
+\end{lstlisting}
+
+React Bootsrap предоставляет разработчику большую библиотеку готовых компонент, которые были использованы при написании кода. Далее приведен пример JSX-разметки со вставками кода на JavaScript, отрисовывающий главную страницу веб-сайта.
+
+\begin{lstlisting}[language=HTML, caption={Код на JSX, отрисовывающий главную страницу.}]
+<Header />
+<Container className="mt-5">
+    <Row>
+        <Col sm={6} className="text-left pe-5">
+            <h2 className="mb-4">Recent projects:</h2>
+            {recentProjects.map((project, i) =>
+                <Container className="text-left pb-2" key={project.id}>
+                    <Stack direction="horizontal" gap="10" className="border rounded p-3 mt-1">
+                        <img
+                            width={60}
+                            height={60}
+                            src={placeholder}
+                            alt="thumbnail"
+                        />
+                        <Container className="text-left text-break">
+                            <Link to={"/projects/" + project.handle} className="link-primary">
+                                {project.name}
+                            </Link>
+                            <br /> {project.description}
+                        </Container>
+                    </Stack>
+                </Container>
+            )}
+
+            <h2 className="my-4">Trending projects:</h2>
+            {popularProjects.map((project, i) =>
+                <Container className="text-left pb-2" key={project.id}>
+                    <Stack direction="horizontal" gap="10" className="border rounded p-3 mt-1">
+                        <img
+                            width={60}
+                            height={60}
+                            src={placeholder}
+                            alt="thumbnail"/>
+                        <Container className="text-left text-break">
+                            <Link to={"/projects/" + project.handle} className="link-primary">
+                                {project.name}
+                            </Link>
+                            <br /> {project.description}
+                        </Container>
+                    </Stack>
+                </Container>
+            )}
+
+
+        </Col>
+        <Col className="border-top border-start rounded py-1 mt-3 ps-3">
+            <h5 className="py-2 border-bottom" >
+                What is Desman Translate?
+            </h5>
+            <p>
+                <...>
+            </p>
+            <h5 className="py-2 border-bottom">
+                How does this work?
+            </h5>
+            <p>
+                <...>
+            </p>
+            <p>
+                <...>
+            </p>
+            <p>Have a lot of fun...</p>
+            {user && 
+                <Button variant="primary"
+                    onClick={routeChange}>
+                    Create a project
+                </Button>
+            }
+        </Col>
+    </Row>
+</Container>
+<Footer />
+\end{lstlisting}
+
+Результат работы кода, описанного выше:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{/manual/home.png}
+\caption{Главная страница сайта.}
+\label{fig:pagehome}
+\end{figure}
+
+\subsection{Сборка и установка сервиса}
+
+\subsubsection{Установка сервера}
+\begin{enumerate}
+\item Перейти по ссылке на страницу репозитория на сайте GitHub.com: https://github.com/Neprim/DesmanTranslateBackend.
+\item Установить базу данных MongoD: https://www.mongodb.com/try/download/community.
+\item Скачать и разархивировать проект или клонировать git-репозиторий на сервере или в локальном хранилище.
+\item Настроить конфигурационный файл .env: \verb|JWT_SECRET| - параметр для шифровки cookie-файлов.
+\item Открыть терминал, перейти в папку скачанного проекта, убедиться, что пользователь имеет установщик пакетов npm и node. Выполнить команду \verb|npm install|.
+\item В терминале выполнить команду \verb|node index.js| - сервер запущен.
+\end{enumerate}
+
+\subsubsection{Установка клиента}
+\begin{enumerate}
+\item Перейти по ссылке на страницу репозитория в GutHub.com: https://github.com/ipaingo/Desman-Translate-frontend.
+\item Скачать и разархивировать проект или клонировать git-репозиторий на сервере или в локальном хранилище.
+\item Открыть терминал, перейти в папку скачанного проекта, убедиться, что пользователь имеет установщик пакетов npm и node. Выполнить команду \verb|npm install|.
+\item Если необходимо запустить сайт на локальном сервере – написать команду в терминале \verb|npm start|. Сайт будет доступен по адресу \verb|http://localhost:3000/|
+\item Если необходимо развернуть сайт на сервере – написать команду \verb|npm run build|. Создастся директория \verb|build| – это готовое приложение, которое можно разместить на сервере.
+\end{enumerate}
 %%% Глава 3           %%%
 %%%                   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
