@@ -1,9 +1,7 @@
 import pymongo
 import re
 
-
 email_validate_pattern = r"^\S+@\S+\.\S+$"
-
 
 db_client = pymongo.MongoClient("mongodb://localhost:27017/")
 current_db = db_client["foundation"]
@@ -11,20 +9,19 @@ collection_organisation = current_db["organisation"]
 collection_user = current_db["user"]
 collection_app = current_db["app"]
 
-
 organisation_example = {
-    "owner": "name",
-    "name": "cool_name",
+    "owner": "Создатель",
+    "name": "Пример организации",
     "members": [
         {
-            "name": "mem_name",
-            "graduation": "Ученая степень",
-            "role": "Квасогон"
+            "name": "Участник1",
+            "graduation": "Кандидат наук",
+            "role": "Исследователь"
         },
         {
-            "name": "mem2_name",
-            "graduation": "Ученая степень",
-            "role": "Обама"
+            "name": "Участник2",
+            "graduation": "Кандидат наук",
+            "role": "Эксперт"
         }
     ]
 }
@@ -32,8 +29,8 @@ organisation_example = {
 user_example = {
     "name": "FIO",
     "mail": "mail@mail.mail",
-    "login": "jopa",
-    "password": "pwd"
+    "login": "loglog",
+    "password": "pwdpwd"
 }
 
 
@@ -55,7 +52,7 @@ def register(name, mail, login, pwd, repeated_pwd, grad):
         }
     )
     collection_organisation.insert_one({
-        "owner": name,
+        "owner": login,
         "name": "",
         "members": [
             {
@@ -108,7 +105,6 @@ def get_apps(login):
     return list(collection_app.find({"sender": login}))
 
 
-
 # Возвраты: 1 - неверный логин, 2 - неверный пароль. В случае успеха возвращает логин
 def try_authorize(login, pwd):
     if not collection_user.find_one({"login": login}):
@@ -117,4 +113,3 @@ def try_authorize(login, pwd):
     if log:
         return log["login"]
     return 2
-

@@ -48,3 +48,6 @@ urllib3==2.1.0
 virtualenv==20.25.0
 wasabi==1.1.2
 weasel==0.3.4
+
+pymongo~=4.7.2
+tkcalendar~=1.6.1
