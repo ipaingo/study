@@ -1,0 +1,38 @@
+<mxfile host="Electron" modified="2024-06-20T21:42:27.541Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.3 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="LkTe5zSNxCZjfh7sz8Ef" version="24.5.3" type="device">
+  <diagram name="Страница — 1" id="aLC5qzp9SZ8um2zbT6g_">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-1" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://se.cs.petrsu.ru/w/images/8/8f/PACT_tInterface.png;" vertex="1" parent="1">
+          <mxGeometry x="10" y="280" width="1200" height="364" as="geometry" />
+        </mxCell>
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-3" value="Страница генерации отчета" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#61C2F3;strokeColor=#61C2F3;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="480" y="580" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-4" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.358;exitY=0.522;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" target="aHy2Rceg0Lzy20iOsXqe-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="431.6" y="479.00800000000004" as="sourcePoint" />
+            <mxPoint x="502.55999999999995" y="588.5799999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-8" value="&quot;Сгенерировать&lt;div style=&quot;font-size: 9px;&quot;&gt;отчёт&quot;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="aHy2Rceg0Lzy20iOsXqe-4">
+          <mxGeometry x="0.201" y="-1" relative="1" as="geometry">
+            <mxPoint x="-16" y="22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.61;exitY=-0.012;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#fc9829;exitPerimeter=0;" edge="1" parent="1" source="aHy2Rceg0Lzy20iOsXqe-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="523.2" y="586.6200000000001" as="sourcePoint" />
+            <mxPoint x="434.6" y="470.00800000000004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aHy2Rceg0Lzy20iOsXqe-7" value="&quot;Назад&quot;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;labelBackgroundColor=none;" vertex="1" connectable="0" parent="aHy2Rceg0Lzy20iOsXqe-6">
+          <mxGeometry x="-0.1507" y="1" relative="1" as="geometry">
+            <mxPoint x="-7" y="-27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
