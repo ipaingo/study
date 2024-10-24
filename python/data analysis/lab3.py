@@ -4,7 +4,6 @@ import matplotlib as mpl
 from matplotlib.ticker import MaxNLocator
 
 def create_dict():
-    dict_capacitive_devices = dict()
     with open("n_log2.txt", "r", encoding="utf-8") as file:
         text = file.readlines()
 
