@@ -1,0 +1,11 @@
+def create_time(begin, end):
+    arr = []
+    for i in range(begin, end+1):
+        arr.append("14:"+'{:02d}'.format(i)+":00,000")
+    return arr
+
+
+def time_to_int(time, begin):
+    time = list(map(int, re.split(r'[:,]', time)))
+    begin = list(map(int, re.split(r'[:,]', begin)))
+    return time[3] - begin[3] + (time[2] - begin[2])*1000 + (time[1] - begin[1])*1000*60

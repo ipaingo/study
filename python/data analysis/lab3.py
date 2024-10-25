@@ -19,40 +19,28 @@ def create_dict():
         volume = search_result.group(2)
         dict_volumes[line_time] = volume
     return dict_volumes
-        
-
-def create_time(begin, end):
-    arr = []
-    for i in range(begin, end+1):
-        arr.append("14:"+'{:02d}'.format(i)+":00,000")
-    return arr
-
-
-def time_to_int(time, begin):
-    time = list(map(int, re.split(r'[:,]', time)))
-    begin = list(map(int, re.split(r'[:,]', begin)))
-    return time[3] - begin[3] + (time[2] - begin[2])*1000 + (time[1] - begin[1])*1000*60
 
 def sort_dict(d):
     time = range(10, 70, 10)
     
     times = list(map(lambda x: f"15:{'{:02}'.format(x)}:00,000", time))
-    ret = dict()
+    # print(times)
+    ans = dict()
     index = 0
-    previous = list(d.items())[0]
-    current = list()
+
+    curr = list()
     for time, v in d.items():
-        print(time, index)
-        current.append(int(v))
+        # print(time, index)
+        curr.append(int(v))
         if time >= times[index]:
-            print(current)
-            ret[index] = sum(current)/len(current)
+            # print(current)
+            ans[index] = sum(curr)/len(curr)
             index += 1
+            curr = list()
         if index > len(times):
             break
-        previous = (time, v)
-    ret[index] = sum(current)/len(current)
-    return ret
+    ans[index] = sum(curr)/len(curr)
+    return ans
     
 
 dict_volumes = create_dict()
@@ -70,7 +58,7 @@ ax1.legend(loc="upper left")
 
 
 sorted_dict = sort_dict(dict_volumes)
-print(sorted_dict)
+# print(sorted_dict)
 ax2.plot(sorted_dict.keys(), sorted_dict.values(), label="A00000000002")
 ax2.legend(loc="upper left")
 ax2.set_xticks(range(0, 6))
