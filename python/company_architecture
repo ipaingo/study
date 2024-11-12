@@ -1,0 +1,48 @@
+digraph company_architecture {
+	rankdir=TB size="8,5"
+	node [color=lightblue shape=ellipse style=filled]
+	data_center [label="Централизованное хранилище данных"]
+	integration_bus [label="Интеграционная шина данных"]
+	customer_data [label="Данные о клиентах"]
+	project_data [label="Проектные данные"]
+	finance_data [label="Финансовые данные"]
+	employee_data [label="Данные сотрудников"]
+	data_center -> customer_data
+	data_center -> project_data
+	data_center -> finance_data
+	data_center -> employee_data
+	node [color=lightgreen shape=box style=filled]
+	erp_system [label="ERP-система (1С)"]
+	crm_system [label="CRM-система"]
+	support_portal [label="Портал техподдержки"]
+	project_mgmt [label="Система управления проектами"]
+	bi_system [label="BI-система"]
+	customer_data -> crm_system
+	project_data -> project_mgmt
+	finance_data -> erp_system
+	data_center -> bi_system
+	integration_bus -> crm_system
+	integration_bus -> erp_system
+	integration_bus -> bi_system
+	integration_bus -> support_portal
+	integration_bus -> project_mgmt
+	crm_system -> support_portal
+	crm_system -> project_mgmt
+	erp_system -> bi_system
+	erp_system -> crm_system
+	node [color=lightcoral shape=box3d style=filled]
+	servers [label="Серверная инфраструктура"]
+	database [label="СУБД"]
+	security [label="Системы безопасности (VPN, антивирусы)"]
+	network [label="Сетевая инфраструктура"]
+	email_service [label="Сервис электронной почты"]
+	erp_system -> database
+	crm_system -> database
+	project_mgmt -> database
+	bi_system -> database
+	support_portal -> servers
+	integration_bus -> servers
+	servers -> network
+	network -> security
+	security -> email_service
+}
