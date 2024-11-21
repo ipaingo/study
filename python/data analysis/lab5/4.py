@@ -9,7 +9,7 @@ distr = uniform.cdf(range(-5, 11)) # функция распределения
 print(res)
 print(f"Плотность(0): {dens[0]}\nФункция распределения(0): {distr[0]}")
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 12))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 8))
 
 
 ax1.plot(res, dens)

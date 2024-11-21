@@ -7,7 +7,7 @@ def f(y, x):
 
 y0 = 1
 
-step = 2
+step = 200
 x_output = np.linspace(0, 4, step)
     
 y_result = odeint(f, y0, x_output)
@@ -17,7 +17,7 @@ print(y_result[-1])
 
 
 
-x_output1 = np.linspace(0, 4, step*100)
+x_output1 = np.linspace(0, 4, step//100)
     
 y_result1 = odeint(f, y0, x_output1)
 y_result1 = y_result1[:, 0]
