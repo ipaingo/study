@@ -12,15 +12,9 @@
 		<CopyObjectsMode>false</CopyObjectsMode>
 	</Parameters>
 	<Objects>
-		<Object fullName="CommonPicture.ОбщаяКартинка1">
-			<Properties>
-				<Property name="Picture">
-					<MergeRule>DoNotMerge</MergeRule>
-				</Property>
-			</Properties>
-		</Object>
 		<Object fullNameInSecondConfiguration="CommonPicture.Кар">
-			<MergeRule>DoNotMerge</MergeRule>
+			<MergeRule>GetFromSecondConfiguration</MergeRule>
+			<ObjectOrder>GetFromMainConfiguration</ObjectOrder>
 		</Object>
 	</Objects>
 </Settings>
