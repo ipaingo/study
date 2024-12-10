@@ -35,11 +35,6 @@
 			path = mobile;
 			sourceTree = "<group>";
 		};
-		5776FF762CD0C23F00204A4D /* mobileTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = mobileTests;
-			sourceTree = "<group>";
-		};
 		5776FF802CD0C23F00204A4D /* mobileUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = mobileUITests;
@@ -76,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				5776FF652CD0C23E00204A4D /* mobile */,
-				5776FF762CD0C23F00204A4D /* mobileTests */,
 				5776FF802CD0C23F00204A4D /* mobileUITests */,
 				5776FF642CD0C23E00204A4D /* Products */,
 			);
@@ -129,9 +123,6 @@
 			);
 			dependencies = (
 				5776FF752CD0C23F00204A4D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5776FF762CD0C23F00204A4D /* mobileTests */,
 			);
 			name = mobileTests;
 			packageProductDependencies = (
@@ -396,6 +387,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mobile/Preview Content\"";
+				DEVELOPMENT_TEAM = 53RCN49JD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -424,6 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mobile/Preview Content\"";
+				DEVELOPMENT_TEAM = 53RCN49JD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
