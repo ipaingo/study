@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    // @Binding var task4data: [Photo]
-    // var loader: PhotoLoader
     
     var body: some View {
         NavigationSplitView {
@@ -17,27 +15,22 @@ struct ContentView: View {
                 NavigationLink {
                     Task1View()
                 } label: {
-                    Text("Task 1")
+                    Text("Задание 1")
                 }
                 NavigationLink {
                     Task2View()
                 } label: {
-                    Text("Task 2")
+                    Text("Задание 2")
                 }
                 NavigationLink {
                     Task3View()
                 } label: {
-                    Text("Task 3")
-                }
-                NavigationLink {
-                    Task4View()
-                } label: {
-                    Text("Task 4")
+                    Text("Задание 3")
                 }
             }
-            .navigationTitle("Tasks")
+            .navigationTitle("Меню")
         } detail: {
-            Text("Mobile development project")
+            Text("Проект по мобильной разработке на СвИфТе")
         }
     }
 }

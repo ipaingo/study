@@ -53,8 +53,8 @@ struct Task2View: View {
             
             HStack {
                 Button(action: {
-                    botsPick = gameVariants.randomElement() ?? "Scissors"
-                    usersPick = "Rock"
+                    botsPick = gameVariants.randomElement() ?? "✂️"
+                    usersPick = "🪨"
                     runGame()
                 }, label: {
                     Text("🪨")
@@ -64,8 +64,8 @@ struct Task2View: View {
                 .disabled(!isRunning)
                 
                 Button(action: {
-                    botsPick = gameVariants.randomElement() ?? "Scissors"
-                    usersPick = "Paper"
+                    botsPick = gameVariants.randomElement() ?? "✂️"
+                    usersPick = "📜"
                     runGame()
                 }, label: {
                     Text("📜")
@@ -75,8 +75,8 @@ struct Task2View: View {
                 .disabled(!isRunning)
                 
                 Button(action: {
-                    botsPick = gameVariants.randomElement() ?? "Scissors"
-                    usersPick = "Scissors"
+                    botsPick = gameVariants.randomElement() ?? "✂️"
+                    usersPick = "✂️"
                     runGame()
                 }, label: {
                     Text("✂️")
@@ -103,11 +103,6 @@ struct Task2View: View {
                 Stepper("Выигрышный счет: \(winCondition)", value: $winCondition, in: 1...10)
                     .padding(.horizontal)
                 Spacer()
-                Button(action: {
-                    resetGame()
-                }, label: {
-                    Text("Еще раз!")
-                })
                 .buttonStyle(.bordered)
                 .padding(.bottom)
             }
@@ -154,24 +149,25 @@ struct Task2View: View {
         }
     }
     
+    // это просто невыносимо смешно и возможно костыльно, но работает
     func HasP1Won(p1: String, p2: String) -> Int {
         if (p1 == p2) {
             return 0
         }
         switch p1 {
-        case "Rock":
+        case "🪨":
             if (p2 == "✂️") {
                 return 1
             }
             return -1
 
-        case "Scissors":
+        case "✂️":
             if (p2 == "📜") {
                 return 1
             }
             return -1
 
-        case "Paper":
+        case "📜":
             if (p2 == "🪨") {
                 return 1
             }

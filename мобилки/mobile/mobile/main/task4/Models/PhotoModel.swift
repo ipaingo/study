@@ -1,9 +1,7 @@
 //
 //  PhotoModel.swift
 //  sem7project
-//
-//  Created by Mary Grishchenko on 18.09.2024.
-//
+
 
 import Foundation
 import SwiftUI

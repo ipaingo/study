@@ -14,7 +14,6 @@ actor DataGetter {
         self.sourceURL = url
     }
     
-    // lots of warnings but it works
     func LoadData() async throws -> [Currency] {
         self.processedData = []
         let task = URLSession.shared.dataTask(with: self.sourceURL) { data, response, error in
@@ -23,6 +22,7 @@ actor DataGetter {
                 return
             }
             let dataString = String(NSString(data: data, encoding: NSWindowsCP1251StringEncoding) ?? "")
+            print(dataString)
             var rawData = dataString.data(using: String.Encoding(rawValue: NSWindowsCP1251StringEncoding) )!
             let Parser = XMLParser(data: rawData)
             let parseDLGT = CurrencyParser(dataArray: self.processedData)
@@ -58,39 +58,29 @@ final class CurrencyLoader: ObservableObject {
         self.Currencies = Currencies ?? []
         self.rawData = Data()
         self.sourceURL = sURL
-        /*
-        Task {
-            await self.GetData()
-        }
-         */
+
     }
     
     func UpdateData() async -> Void {
-        // maybe add correction code for minimal updates?
     }
     
     func GetData() async -> Void {
         state = .loading
-        /*
-        do {
-            self.Currencies = try await DataGetter.shared.LoadData()
-        } catch {
-            self.error = error
-        }
-         */
         
         let task = URLSession.shared.dataTask(with: self.sourceURL) { data, response, error in
             guard let data = data, error == nil else {
                 print(error ?? "Unknown error")
                 return
             }
-            let dataString = String(NSString(data: data, encoding: NSWindowsCP1251StringEncoding) ?? "")
+            let dataString = (String(NSString(data: data, encoding: NSWindowsCP1251StringEncoding) ?? "").replacingOccurrences(of: "</ValCurs>", with: "")) + "<Valute ID=\"R01821\"><NumCode>643</NumCode><CharCode>RUB</CharCode><Nominal>1</Nominal><Name>Российских рублей</Name><Value>1</Value><VunitRate>1</VunitRate></Valute></ValCurs>"
+            print(dataString)
             self.rawData = dataString.data(using: String.Encoding(rawValue: NSWindowsCP1251StringEncoding) )!
             let Parser = XMLParser(data: self.rawData)
             let parseDLGT = CurrencyParser(dataArray: self.Currencies)
             Parser.delegate = parseDLGT
             self.Currencies = []
             Parser.parse()
+            print(parseDLGT.dataArray)
             self.Currencies = parseDLGT.dataArray
         }
         task.resume()

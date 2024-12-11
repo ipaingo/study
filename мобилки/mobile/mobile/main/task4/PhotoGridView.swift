@@ -1,9 +1,7 @@
 //
 //  PhotoGridView.swift
 //  sem7project
-//
-//  Created by Mary Grishchenko on 24.09.2024.
-//
+
 
 import SwiftUI
 

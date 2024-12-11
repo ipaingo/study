@@ -18,8 +18,6 @@ struct Task1View: View {
                 .font(.title)
                 .foregroundColor(Color.green)
                 .padding(.top, 20.0)
-                
-                
         }
     }
 }

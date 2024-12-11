@@ -33,7 +33,7 @@ struct Task3View: View {
                                 if (amnt > 0) {
                                     ConvertCurrency(amnt: amnt)}})
                             .fontWeight(.bold)
-                            .multilineTextAlignment(.center)
+                            //.multilineTextAlignment(.center)
                         
                         Picker(selection: $CurTypeFrom) {
                             ForEach(currentRates.Currencies, id: \.self) {currency in
@@ -43,7 +43,7 @@ struct Task3View: View {
                         } label: {
                             Text("label!")
                         }
-                        .padding(.vertical)
+                        
                         .onChange(of: CurTypeFrom, perform: {
                             cType in ConvertCurrency(amnt: CurAmntFrom)
                         })
@@ -61,7 +61,7 @@ struct Task3View: View {
                                 if (amnt > 0) {
                                     ConvertCurrencyBackwards(amnt: amnt)}})
                             .fontWeight(.bold)
-                            .multilineTextAlignment(.center)
+                            //.multilineTextAlignment(.center)
                         
                         Picker(selection: $CurTypeTo) {
                             ForEach(currentRates.Currencies, id: \.self) {currency in
@@ -71,7 +71,7 @@ struct Task3View: View {
                         } label: {
                             Text("label!")
                         }
-                        .padding(.vertical)
+                        
                         .onChange(of: CurTypeTo, perform: {
                             cType in ConvertCurrencyBackwards(amnt: CurAmntTo)
                         })
@@ -81,25 +81,7 @@ struct Task3View: View {
                 }
                 
                 Spacer()
-                
-                AsyncButton {
-                    await currentRates.GetData()
-                } label: {
-                    Text("Обновить курс валют")
-                }
-                .buttonStyle(.borderedProminent)
 
-            }
-            .toolbar {
-                AsyncButton {
-                    // currentRates.state = .loading
-                    await currentRates.GetData()
-                } label: {
-                    Image(systemName: "arrow.2.circlepath")
-                        .padding(.trailing, 20.0)
-                        .imageScale(.medium)
-                }
-                
             }
             .task {
                 // await currentRates.GetData()
@@ -128,7 +110,6 @@ struct Task3View: View {
         return formatter
     }()
     
-    // Here be conversion logic
     func ConvertCurrency(amnt: Float) {
         let CFrom = CurTypeFrom!
         let CTo = CurTypeTo!

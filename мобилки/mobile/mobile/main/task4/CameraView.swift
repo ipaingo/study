@@ -1,9 +1,7 @@
 //
 //  CameraView.swift
 //  sem7project
-//
-//  Created by Mary Grishchenko on 25.09.2024.
-//
+
 
 import SwiftUI
 import AVFoundation
