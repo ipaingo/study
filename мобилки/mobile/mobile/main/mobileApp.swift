@@ -2,15 +2,27 @@
 //  mobileApp.swift
 //  mobile
 //
-//  Created by Sofia on 29.10.2024.
-//
 
 import SwiftUI
 
 @main
-struct mobileApp: App {
+struct sem7projectApp: App {
+    // @StateObject private var PhotoController = PhotoLoader(Collection: [], lastID: 0)
     var body: some Scene {
         WindowGroup {
+            /*
+            ContentView(task4data: $PhotoController.Collection,
+                        loader: PhotoController
+            )
+                .task {
+                    do {
+                        try await PhotoController.LoadPhotoInfo()
+                    }
+                    catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+             */
             ContentView()
         }
     }

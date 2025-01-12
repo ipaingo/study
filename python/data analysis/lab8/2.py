@@ -1,16 +1,9 @@
 import re
 import random
-import pymorphy2
+import pymorphy3
 
 import numpy as np
 import pandas as pd
-
-import matplotlib.pyplot as plt
-import matplotlib.lines as lines
-import matplotlib.text as text
-import matplotlib.cm as cm
-
-#import seaborn as sns; sns.set()
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import classification_report, confusion_matrix
@@ -20,8 +13,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, BaggingClassifier, StackingClassifier
 from xgboost import XGBClassifier
 
-from sklearn.model_selection import GridSearchCV
-import itertools
 
 import keras
 from tensorflow.keras.preprocessing.text import Tokenizer
@@ -34,7 +25,7 @@ from keras.layers import Dense, Activation, Dropout, Embedding, LSTM, GRU
 # pd.set_option('display.max_rows', 100)
 # pd.set_option('display.max_columns', 11)
 
-df = pd.read_csv("mails.csv", sep='\t')
+df = pd.read_excel("mails.xlsx")
 
 cls_dic = {1:'Условия подачи',
            2:'Проходной и допустимый балл',
