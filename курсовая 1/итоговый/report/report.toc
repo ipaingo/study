@@ -1,3 +1,0 @@
-\babel@toc {russian}{}\relax 
-\contentsline {section}{Введение}{3}{}%
-\contentsline {section}{\numberline {1}Описание инструментов и технологий}{6}{}%
