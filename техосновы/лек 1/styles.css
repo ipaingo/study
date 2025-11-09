@@ -1,0 +1,17 @@
+* {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color:firebrick;
+}
+
+.reg-form > * {
+  margin-top: 5px;
+  font-size: 14px;
+  width: 400px;
+}
+
+textarea {
+  height: 150px;
+}
