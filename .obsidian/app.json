@@ -1,0 +1,16 @@
+{
+  "alwaysUpdateLinks": true,
+  "livePreview": true,
+  "fileSortOrder": "byCreatedTimeReverse",
+  "promptDelete": false,
+  "pdfExportSettings": {
+    "includeName": false,
+    "pageSize": "A4",
+    "landscape": true,
+    "margin": "0",
+    "downscalePercent": 51
+  },
+  "showInlineTitle": true,
+  "spellcheckLanguages": null,
+  "readableLineLength": false
+}

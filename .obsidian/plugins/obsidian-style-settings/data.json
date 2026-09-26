@@ -1,0 +1,19 @@
+{
+  "obsidian-default-theme@@text-highlight-bg@@dark": "#00BBFF66",
+  "obsidian-default-theme@@text-highlight-bg-active@@dark": "#0072FF7A",
+  "obsidian-default-theme@@text-highlight-bg@@light": "#00BBFF66",
+  "obsidian-default-theme@@text-highlight-bg-active@@light": "#0072FF7A",
+  "blue-topaz-theme@@fancy-hr": "fancy-hr-no-icon",
+  "blue-topaz-theme@@show-url-after-link": true,
+  "blue-topaz-theme@@print-em-color@@dark": "#0097FF",
+  "blue-topaz-theme@@text-highlight-bg-h-dark": 210,
+  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-topaz-nord",
+  "blue-topaz-theme@@font-text-theme": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Microsoft YaHei Light\", sans-serif",
+  "blue-topaz-theme@@font-family-folder-file-title": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Microsoft YaHei Light\", sans-serif",
+  "blue-topaz-theme@@text-highlight-bg-h-light": 210,
+  "blue-topaz-theme@@text-highlight-bg-s-light": 100,
+  "blue-topaz-theme@@text-highlight-bg-l-light": 80,
+  "blue-topaz-theme@@text-highlight-bg-a-light": 0.8,
+  "blue-topaz-theme@@layout-style-options": "layout-style-options-default",
+  "blue-topaz-theme@@hr-for-pagination": true
+}

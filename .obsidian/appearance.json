@@ -1,0 +1,13 @@
+{
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "styles",
+    "notation-colour-blocks",
+    "style"
+  ],
+  "translucency": false,
+  "cssTheme": "Blue Topaz",
+  "theme": "obsidian",
+  "accentColor": "#669bf0",
+  "baseFontSizeAction": true
+}

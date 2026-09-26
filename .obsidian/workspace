@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "d83b12a161c1469a",
+    "type": "split",
+    "children": [
+      {
+        "id": "9db30a3dc2c0f56b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "университет/матанализ/10 ряды Фурье.md",
+            "mode": "source",
+            "source": true
+          }
+        }
+      },
+      {
+        "id": "3cc625b551c36de0",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "университет/матанализ/10 ряды Фурье.md",
+            "mode": "preview",
+            "source": true
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "54c03b1ca1b190db",
+    "type": "split",
+    "children": [
+      {
+        "id": "8af2ac231dd1b48c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "21e1407f18dde155",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "0a0ed203f52eb43f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d92d459e1a391ed0",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 221
+  },
+  "right": {
+    "id": "0c7c226c226db048",
+    "type": "split",
+    "children": [
+      {
+        "id": "df5f379d9eb993e7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "628c91348190f105",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "университет/матанализ/10 ряды Фурье.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b579935168830760",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "университет/матанализ/10 ряды Фурье.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6a5c4e2e55cb1e6e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d1b72cdb2e8dc322",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "университет/матанализ/10 ряды Фурье.md"
+              }
+            }
+          },
+          {
+            "id": "ec7d3a6ca136d0d0",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "648e5a2af7f5a84b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "3cc625b551c36de0",
+  "lastOpenFiles": [
+    "университет/матанализ/9 ряд Тейлора.md",
+    "университет/матанализ/10 ряды Фурье.md",
+    "университет/матанализ/8 функциональные ряды.md",
+    "университет/матанализ/вложения/Pasted image 20221018085420.png",
+    "университет/численные методы/численные методы.pdf",
+    "университет/иностранный язык/ин яз 3 сем/vocabulary education.md",
+    "университет/иностранный язык/ин яз 3 сем/vocabulary education homework.md",
+    "университет/иностранный язык/ин яз 3 сем/education in China.md",
+    "университет/матанализ/7 ряды с произвольными членами.md",
+    "университет/матанализ/6 знакоположительные ряды.md"
+  ]
+}
