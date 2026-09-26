@@ -1,0 +1,73 @@
+pageType: content
+background:
+  type: solid
+  color: "#F1F1F1"
+elements:
+  - elementId: Google Shape;71;p15
+    elementType: image
+    bounds: [595, 21.3, 103.8, 18.5]
+    cropShape:
+      shapeName: rect
+    src: media/image-2.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;72;p15
+    elementType: text
+    bounds: [29.3, 67.6, 427.5, 31.6]
+    content:
+      text: |-
+        <p style="text-align: left; line-height: 1.5; margin-top: 0px; margin-left: 0px;">Задачи для B2В</p>
+      color: $dk1
+      fontSize: 30
+      bold: true
+      italic: false
+      fontFamily: Arial, Arial
+      lineHeight: 1.5
+      letterSpacing: 0
+      marginTop: 0
+      wrap: true
+      align:
+        - left
+        - top
+  - elementId: Google Shape;73;p15
+    elementType: shape
+    bounds: [27, 106.4, 664.5, 277.6]
+    shapeName: roundRect
+    adjustments:
+      - 5935
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;74;p15-shape
+    elementType: shape
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: "#FF922D"
+  - elementId: Google Shape;74;p15-text
+    elementType: text
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">маркетинговые стратегии</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;75;p15
+    elementType: text
+    bounds: [49, 123.6, 620.5, 175.3]
+    content:
+      text: |-
+        <p style="text-align: left; line-height: 1.15; margin-top: 0px; margin-left: 0px;"><span style="color: $dk1; font-family: Open Sans, Open Sans;"><strong>Провести анализ ситуации:</strong></span></p><ul><li style="text-align: left; line-height: 1.15; margin-top: 12px; margin-left: 36px; list-style-type: '● ';">Проанализируйте рынок: какие факторы формируют спрос, почему сейчас окно для облачной WMS.</li><li style="text-align: left; line-height: 1.15; margin-top: 0px; margin-left: 36px; list-style-type: '● ';">Проведите анализ конкурентов: где на карте «сложность/цена внедрения ↔ гибкость» находится продукт и какая зона свободна.</li><li style="text-align: left; line-height: 1.15; margin-top: 0px; margin-left: 36px; list-style-type: '● ';">Опишите целевой сегмент и всех участников сделки через их боли (склад, ИТ, финансы).</li><li style="text-align: left; line-height: 1.15; margin-top: 0px; margin-left: 36px; list-style-type: '● ';">Сформулируйте ценностное предложение — по одному сообщению на каждую роль.</li><li style="text-align: left; line-height: 1.15; margin-top: 0px; margin-left: 36px; list-style-type: '● ';">Поставьте ключевую маркетинговую задачу по SMART (учитывая, что цель — SQL и пайплайн, а не мгновенные продажи).</li></ul>
+      color: $dk1
+      fontFamily: Open Sans, Open Sans
+      lineHeight: 1.15
+      wrap: true
+      align:
+        - left
+        - top

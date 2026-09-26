@@ -1,0 +1,73 @@
+pageType: content
+background:
+  type: solid
+  color: "#F1F1F1"
+elements:
+  - elementId: Google Shape;158;p23
+    elementType: image
+    bounds: [595, 21.3, 103.8, 18.5]
+    cropShape:
+      shapeName: rect
+    src: media/image-2.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;159;p23
+    elementType: shape
+    bounds: [25.8, 134, 663.9, 258.7]
+    shapeName: roundRect
+    adjustments:
+      - 5935
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;160;p23
+    elementType: text
+    bounds: [28.5, 67.3, 663.1, 21.6]
+    content:
+      text: |-
+        <p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;">Цель по SMART</p>
+      wrap: true
+      align:
+        - left
+        - top
+      style: $text2
+  - elementId: Google Shape;161;p23-shape
+    elementType: shape
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: "#FF922D"
+  - elementId: Google Shape;161;p23-text
+    elementType: text
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">маркетинговые стратегии</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;162;p23-shape
+    elementType: shape
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;162;p23-text
+    elementType: text
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">анализ</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1

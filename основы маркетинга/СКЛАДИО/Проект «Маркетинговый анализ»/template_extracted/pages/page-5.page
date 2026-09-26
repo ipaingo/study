@@ -1,0 +1,122 @@
+pageType: content
+background:
+  type: solid
+  color: "#F1F1F1"
+elements:
+  - elementId: Google Shape;90;p17
+    elementType: image
+    bounds: [595, 21.3, 103.8, 18.5]
+    cropShape:
+      shapeName: rect
+    src: media/image-2.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;91;p17
+    elementType: shape
+    bounds: [25.8, 134, 663.9, 258.7]
+    shapeName: roundRect
+    adjustments:
+      - 5935
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;92;p17
+    elementType: text
+    bounds: [28.5, 67.3, 663.1, 21.6]
+    content:
+      text: |-
+        <p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;">Карта конкурентов - текущая ситуация B2C</p><p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;"><span style="font-size: 35px;"></span></p>
+      wrap: true
+      align:
+        - left
+        - top
+      style: $text2
+  - elementId: Google Shape;93;p17-shape
+    elementType: shape
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: "#FF922D"
+  - elementId: Google Shape;93;p17-text
+    elementType: text
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">маркетинговые стратегии</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;94;p17-shape
+    elementType: shape
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;94;p17-text
+    elementType: text
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">анализ</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;95;p17
+    elementType: shape
+    bounds: [355.7, 162.2, 0, 206.8]
+    shapeName: straightConnector1
+    border:
+      style: solid
+      width: 0.75
+      color: $dk2
+  - elementId: Google Shape;96;p17
+    elementType: shape
+    bounds: [50.9, 264.5, 617.2, 0]
+    shapeName: straightConnector1
+    border:
+      style: solid
+      width: 0.75
+      color: $dk2
+  - elementId: Google Shape;97;p17
+    elementType: text
+    bounds: [368.3, 168.3, 345.1, 15.9]
+    content:
+      text: |-
+        <p style="text-align: left; margin-top: 0px; margin-left: 0px;">Высокая цена</p>
+      wrap: true
+      align:
+        - left
+        - top
+      style: $text3
+  - elementId: Google Shape;98;p17
+    elementType: text
+    bounds: [41, 278.2, 345.1, 15.9]
+    content:
+      text: |-
+        <p style="text-align: left; margin-top: 0px; margin-left: 0px;">Медийность</p>
+      wrap: true
+      align:
+        - left
+        - top
+      style: $text3
+  - elementId: Google Shape;99;p17
+    elementType: text
+    bounds: [566.8, 278.2, 345.1, 15.9]
+    content:
+      text: |-
+        <p style="text-align: left; margin-top: 0px; margin-left: 0px;">Доказательность</p>
+      wrap: true
+      align:
+        - left
+        - top
+      style: $text3

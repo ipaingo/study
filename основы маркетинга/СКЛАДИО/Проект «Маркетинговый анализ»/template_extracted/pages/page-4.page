@@ -1,0 +1,82 @@
+pageType: content
+background:
+  type: solid
+  color: "#F1F1F1"
+elements:
+  - elementId: Google Shape;80;p16
+    elementType: text
+    bounds: [28.4, 67.6, 663.1, 145]
+    content:
+      text: |-
+        <ol><li style="text-align: left; line-height: 1.5; margin-top: 0px; margin-left: 36px;">Анализ рынка</li></ol><p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;"><span style="font-size: 20px;"></span></p>
+      color: $dk1
+      fontSize: 30
+      bold: true
+      italic: false
+      fontFamily: Arial, Arial
+      letterSpacing: 0
+      marginTop: 0
+      wrap: true
+      align:
+        - left
+        - top
+  - elementId: Google Shape;81;p16-shape
+    elementType: shape
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: "#FF922D"
+  - elementId: Google Shape;81;p16-text
+    elementType: text
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">маркетинговые стратегии</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;82;p16-shape
+    elementType: shape
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: $lt1
+  - elementId: Google Shape;82;p16-text
+    elementType: text
+    bounds: [190.8, 21.3, 90.7, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">анализ</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;83;p16
+    elementType: image
+    bounds: [598.1, 311.5, 100.7, 72.3]
+    cropShape:
+      shapeName: rect
+    src: media/image-3.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;84;p16
+    elementType: image
+    bounds: [595, 21.3, 103.8, 18.5]
+    cropShape:
+      shapeName: rect
+    src: media/image-2.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;85;p16
+    elementType: shape
+    bounds: [47.6, 113.9, 620.5, 38.8]
+    shapeName: rect

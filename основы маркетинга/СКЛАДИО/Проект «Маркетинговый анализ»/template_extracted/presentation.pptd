@@ -1,0 +1,49 @@
+version: v2
+theme:
+  colors:
+    dk1: "#000000"
+    lt1: "#FFFFFF"
+    dk2: "#595959"
+    lt2: "#EEEEEE"
+    accent1: "#4285F4"
+    accent2: "#212121"
+    accent3: "#78909C"
+    accent4: "#FFAB40"
+    accent5: "#0097A7"
+    accent6: "#EEFF41"
+    hlink: "#0097A7"
+    folHlink: "#0097A7"
+  textStyles:
+    text1:
+      color: $dk1
+      fontSize: 10
+      fontFamily: Arial, Arial
+      bold: true
+      italic: false
+      marginTop: 0
+    text2:
+      color: $dk1
+      fontSize: 30
+      fontFamily: Arial, Arial
+      bold: true
+      italic: false
+      lineHeight: 1
+      letterSpacing: 0
+      marginTop: 0
+    text3:
+      color: $dk2
+      fontSize: 13
+      marginTop: 0
+size: [720, 405]
+pages:
+  - pages/page-1.page
+  - pages/page-2.page
+  - pages/page-3.page
+  - pages/page-4.page
+  - pages/page-5.page
+  - pages/page-6.page
+  - pages/page-7.page
+  - pages/page-8.page
+  - pages/page-9.page
+  - pages/page-10.page
+  - pages/page-11.page

@@ -1,0 +1,57 @@
+pageType: content
+background:
+  type: solid
+  color: "#F1F1F1"
+elements:
+  - elementId: Google Shape;54;p13
+    elementType: image
+    bounds: [0, 0, 720, 405]
+    cropShape:
+      shapeName: rect
+    src: media/image-1.png
+    fit:
+      mode: fill
+  - elementId: Google Shape;55;p13
+    elementType: text
+    bounds: [28.4, 67.6, 663.1, 133]
+    content:
+      text: |-
+        <p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;"><span style="font-size: 35px;"><strong>Проектная работа </strong></span></p><p style="text-align: left; line-height: 1; margin-top: 0px; margin-left: 0px;"><span style="font-size: 20px;">«Маркетинговый анализ»</span></p>
+      color: $dk1
+      italic: false
+      fontFamily: Inter, Inter
+      lineHeight: 1
+      letterSpacing: 0
+      marginTop: 0
+      wrap: true
+      align:
+        - left
+        - top
+  - elementId: Google Shape;56;p13-shape
+    elementType: shape
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    shapeName: roundRect
+    adjustments:
+      - 50000
+    fill:
+      type: solid
+      color: "#FF922D"
+  - elementId: Google Shape;56;p13-text
+    elementType: text
+    bounds: [21.3, 21.3, 169.5, 24.2]
+    content:
+      text: |-
+        <p style="text-align: center; margin-top: 0px; margin-left: 0px;">маркетинговые стратегии</p>
+      wrap: true
+      align:
+        - center
+        - middle
+      style: $text1
+  - elementId: Google Shape;57;p13
+    elementType: image
+    bounds: [595, 21.3, 103.8, 18.5]
+    cropShape:
+      shapeName: rect
+    src: media/image-2.png
+    fit:
+      mode: fill
