@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дерево метрик TechGourmet</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #22303f;
+    padding: 28px 20px 60px;
+  }
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; color: #16283e; }
+  .sub { font-size: 13px; color: #6a7b8f; margin-top: 5px; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
+    margin: 16px 0 6px; font-size: 12px; color: #4a5b70;
+    background: #ffffff; border: 1px solid #dfe6ee; border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .legend b { color: #22303f; }
+  .dot { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+  .chip-demo {
+    display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-right: 5px;
+    background: #eef2f7; border: 1px solid #d4dde6; color: #4a5b70;
+  }
+  .tree { position: relative; margin-top: 10px; min-width: 1360px; }
+  .row { display: flex; justify-content: center; gap: 18px; padding: 34px 0 0; }
+  .row:first-child { padding-top: 4px; }
+  svg.edges { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 0; }
+  .node {
+    position: relative; z-index: 1; width: 196px; background: #ffffff;
+    border: 1px solid #d5dde6; border-radius: 10px; padding: 9px 11px 10px;
+    box-shadow: 0 1px 3px rgba(30,50,80,.08);
+    border-top: 3px solid #8fa3b8;
+  }
+  .node .lvl { font-size: 9.5px; letter-spacing: .4px; text-transform: uppercase; color: #7b8ca0; font-weight: 700; }
+  .node .name { font-size: 12.5px; font-weight: 700; margin-top: 2px; line-height: 1.25; }
+  .node .val { font-size: 14.5px; font-weight: 800; margin-top: 3px; color: #16283e; }
+  .node .f { font-size: 10.5px; color: #66788d; margin-top: 3px; line-height: 1.3; }
+  .chips { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip {
+    font-size: 9.5px; padding: 1px 7px; border-radius: 8px; font-weight: 600;
+    background: #eef2f7; border: 1px solid #d4dde6; color: #51637a;
+  }
+  .chip.prio { background: #e2f4e8; border-color: #59b57e; color: #1d7a43; }
+  .chip.guard { background: #fdeee2; border-color: #e8a765; color: #a05a17; }
+  .chip.assum { background: #fdf6dd; border-color: #d9b84a; color: #8a6d12; }
+  .chip.input { background: #f0eef9; border-color: #a99ad4; color: #5b4a96; }
+  /* уровни */
+  .n-lvl0 { background: #22344d; border-color: #22344d; border-top-color: #0e1c2e; color: #fff; }
+  .n-lvl0 .lvl, .n-lvl0 .f { color: #b9c7d8; }
+  .n-lvl0 .val { color: #ffd66e; }
+  .n-lvl0f { border-top-color: #5b7ba6; background: #eef3f9; }
+  .n-lvl1 { border: 2px solid #dfa825; border-top-width: 3px; background: #fff6dd; box-shadow: 0 2px 8px rgba(223,168,37,.25); }
+  .n-prio { border: 2px solid #2f9e5b; border-top-width: 3px; box-shadow: 0 2px 8px rgba(47,158,91,.22); }
+  .n-input { border-style: dashed; background: #fbfcfe; }
+  .n-mix { border-style: dashed; border-top-color: #d9b84a; background: #fffdf2; }
+  .edge-lbl {
+    position: absolute; z-index: 2; transform: translate(-50%, -50%);
+    font-size: 10.5px; color: #3d4f66; background: #ffffff;
+    border: 1px solid #d8e0e8; border-radius: 8px; padding: 1px 7px;
+    box-shadow: 0 1px 2px rgba(30,50,80,.10); white-space: nowrap; pointer-events: none;
+  }
+  .foot { font-size: 11.5px; color: #6a7b8f; margin-top: 26px; line-height: 1.5; }
+  @media (max-width: 1400px) { .scroll { overflow-x: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Дерево метрик TechGourmet — от бизнес-результата до рычагов</h1>
+  <div class="sub">Состав, текущие значения и формулы связей — по файлу 03_Дерево_метрик.md (20 метрик, 4 уровня + финансовая цепочка 0ф). Сверху вниз: бизнес-результат → факторы → рычаги.</div>
+
+  <div class="legend">
+    <span><b>Условные обозначения:</b></span>
+    <span><span class="dot" style="background:#22344d"></span>ур. 0 — бизнес-результат</span>
+    <span><span class="dot" style="background:#5b7ba6"></span>ур. 0ф — финансовая цепочка</span>
+    <span><span class="dot" style="background:#dfa825"></span>ур. 1 — NSM</span>
+    <span><span class="dot" style="background:#8fa3b8"></span>ур. 2 — продуктовые факторы</span>
+    <span><span class="dot" style="background:#59b57e"></span>🟢 приоритетные метрики</span>
+    <span><span class="chip-demo" style="border-style:dashed">input</span>пунктир — input-влияние (не формула)</span>
+    <span><span class="chip-demo">guardrail</span>балансирующие метрики (часть 4)</span>
+    <span><span class="chip-demo" style="background:#fdf6dd;border-color:#d9b84a;color:#8a6d12">допущение</span>принято в части 1</span>
+  </div>
+
+  <div class="scroll">
+  <div class="tree" id="tree">
+    <svg class="edges" id="edgesvg" width="100%" height="100%"></svg>
+
+    <!-- Ур. 0 -->
+    <div class="row">
+      <div class="node n-lvl0" id="n-profit">
+        <div class="lvl">Уровень 0</div>
+        <div class="name">Операционная прибыль</div>
+        <div class="val">10,0 млн руб./мес</div>
+        <div class="f">= Валовая прибыль − OPEX</div>
+        <div class="chips"><span class="chip guard">цель: 40 млн (+300%)</span></div>
+      </div>
+    </div>
+
+    <!-- Ур. 0ф -->
+    <div class="row">
+      <div class="node n-lvl0f" id="n-gp">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">Валовая прибыль</div>
+        <div class="val">32,4 млн руб.</div>
+        <div class="f">= Выручка × Gross Margin (18%)</div>
+      </div>
+      <div class="node n-lvl0f" id="n-opex">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">Постоянные OPEX</div>
+        <div class="val">22,4 млн руб.</div>
+        <div class="f">ограничение, не рычаг</div>
+        <div class="chips"><span class="chip assum">допущение ч. 1</span></div>
+      </div>
+    </div>
+
+    <!-- Выручка / GM -->
+    <div class="row">
+      <div class="node n-lvl0f" id="n-rev">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">Выручка</div>
+        <div class="val">180 млн руб.</div>
+        <div class="f">= GMV + Прочая выручка</div>
+      </div>
+      <div class="node n-lvl0f" id="n-gm">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">Gross Margin</div>
+        <div class="val">18%</div>
+        <div class="f">= Валовая прибыль / Выручка</div>
+        <div class="chips"><span class="chip guard">guardrail: не ниже базы</span></div>
+      </div>
+    </div>
+
+    <!-- GMV / прочая / микс -->
+    <div class="row">
+      <div class="node n-lvl0f" id="n-gmv">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">GMV</div>
+        <div class="val">168 млн руб.</div>
+        <div class="f">= Заказы × Средний чек</div>
+      </div>
+      <div class="node n-lvl0f" id="n-other">
+        <div class="lvl">Уровень 0ф</div>
+        <div class="name">Прочая выручка</div>
+        <div class="val">12 млн руб.</div>
+        <div class="f">выручка по брифу − GMV; постоянна</div>
+        <div class="chips"><span class="chip assum">допущение ч. 1 (А1)</span></div>
+      </div>
+      <div class="node n-mix" id="n-mix">
+        <div class="lvl">Уровень 3</div>
+        <div class="name">Доля высокомаржинальных ресторанов в GMV</div>
+        <div class="val">≈40%</div>
+        <div class="f">input → Gross Margin</div>
+        <div class="chips"><span class="chip assum">допущение</span><span class="chip input">input</span></div>
+      </div>
+    </div>
+
+    <!-- Заказы / чек -->
+    <div class="row">
+      <div class="node n-lvl0f" id="n-ord">
+        <div class="lvl">Транзитный узел</div>
+        <div class="name">Заказы</div>
+        <div class="val">120 000</div>
+        <div class="f">= NSM × Fядра + Разовые × 1</div>
+      </div>
+      <div class="node n-prio" id="n-check">
+        <div class="lvl">Уровень 2</div>
+        <div class="name">Средний чек 🟢</div>
+        <div class="val">1 400 руб.</div>
+        <div class="f">= GMV / Заказы</div>
+        <div class="chips"><span class="chip prio">эл. к прибыли 3,02</span></div>
+      </div>
+    </div>
+
+    <!-- NSM -->
+    <div class="row">
+      <div class="node n-lvl1" id="n-nsm">
+        <div class="lvl">Уровень 1 — NSM</div>
+        <div class="name">Клиенты с 2+ заказами в месяц 🟢</div>
+        <div class="val">13 300</div>
+        <div class="f">= MAU × Доля повторных</div>
+        <div class="chips"><span class="chip prio">целевое ~50 800 (доля 45%)</span></div>
+      </div>
+    </div>
+
+    <!-- Ур. 2 -->
+    <div class="row">
+      <div class="node n-prio" id="n-dp">
+        <div class="lvl">Уровень 2</div>
+        <div class="name">Доля повторных клиентов 🟢</div>
+        <div class="val">13,3%</div>
+        <div class="f">= NSM / MAU</div>
+        <div class="chips"><span class="chip prio">эл. к прибыли 0,50</span></div>
+      </div>
+      <div class="node n-prio" id="n-fj">
+        <div class="lvl">Уровень 2</div>
+        <div class="name">Frequency ядра 🟢</div>
+        <div class="val">2,5 / мес</div>
+        <div class="f">= (Заказы − MAU) / NSM</div>
+        <div class="chips"><span class="chip prio">эл. к прибыли 0,84</span></div>
+      </div>
+      <div class="node" id="n-mau">
+        <div class="lvl">Уровень 2</div>
+        <div class="name">Активные клиенты (MAU)</div>
+        <div class="val">100 000</div>
+        <div class="f">= Новые платящие + Удержанные/реактивированные</div>
+      </div>
+    </div>
+
+    <!-- Ур. 3 -->
+    <div class="row">
+      <div class="node n-input" id="n-ontime">
+        <div class="lvl">Уровень 3 — операционный</div>
+        <div class="name">Доля вовремя-доставок</div>
+        <div class="val">89%</div>
+        <div class="f">input → Доля повторных (лаг 2-4 недели)</div>
+        <div class="chips"><span class="chip input">input</span></div>
+      </div>
+      <div class="node n-input" id="n-cancel">
+        <div class="lvl">Уровень 3 — операционный</div>
+        <div class="name">Доля отмен</div>
+        <div class="val">6%</div>
+        <div class="f">input → Доля повторных и GM (компенсации)</div>
+        <div class="chips"><span class="chip input">input</span><span class="chip guard">guardrail</span></div>
+      </div>
+      <div class="node n-input" id="n-nps">
+        <div class="lvl">Уровень 3 — операционный</div>
+        <div class="name">NPS</div>
+        <div class="val">35</div>
+        <div class="f">input → Доля повторных</div>
+        <div class="chips"><span class="chip input">input</span><span class="chip guard">guardrail ч. 2</span></div>
+      </div>
+      <div class="node n-input" id="n-comp">
+        <div class="lvl">Уровень 3 — операционный</div>
+        <div class="name">Доля жалоб / возвратов</div>
+        <div class="val">3%</div>
+        <div class="f">input → Доля повторных</div>
+        <div class="chips"><span class="chip input">input</span></div>
+      </div>
+      <div class="node" id="n-new">
+        <div class="lvl">Уровень 3 — маркетинговый</div>
+        <div class="name">Новые пользователи</div>
+        <div class="val">12 000 / мес</div>
+        <div class="f">= 1 200 платящих при CR 10% → MAU</div>
+      </div>
+      <div class="node" id="n-cr">
+        <div class="lvl">Уровень 3 — маркетинговый</div>
+        <div class="name">CR регистрация → покупка</div>
+        <div class="val">10%</div>
+        <div class="f">= Новые платящие / Новые пользователи → MAU</div>
+      </div>
+      <div class="node n-input" id="n-ret">
+        <div class="lvl">Уровень 3 — маркетинговый</div>
+        <div class="name">Кросс-месячный retention + реактивации</div>
+        <div class="val">32%</div>
+        <div class="f">замыкает MAU: база × retention + реактивации + новые</div>
+        <div class="chips"><span class="chip assum">допущение ч. 1</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="node" id="n-cpa">
+        <div class="lvl">Уровень 3 — маркетинговый</div>
+        <div class="name">CPA</div>
+        <div class="val">1 200 руб.</div>
+        <div class="f">= Маркетинговые затраты / Новые платящие → стоимость роста MAU</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="node" id="n-org">
+        <div class="lvl">Уровень 3 — маркетинговый</div>
+        <div class="name">Доля органического трафика</div>
+        <div class="val">15%</div>
+        <div class="f">input → эффективный CPA</div>
+        <div class="chips"><span class="chip input">input</span></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="foot">
+    Проверка дерева (п. 4 файла 03_Дерево_метрик.md): вовремя 89% → Доля повторных → NSM → Заказы → GMV → Выручка → Валовая прибыль → Прибыль — 2 шага до NSM, обрывов нет.
+    База сходится с брифом (10,0 млн прибыли), целевое состояние — с целью части 1 (run-rate 41,1 млн/мес, +311%).
+  </div>
+</div>
+
+<script>
+const edges = [
+  { f: "n-profit", t: "n-gp",    lbl: "Прибыль = ВП − OPEX" },
+  { f: "n-profit", t: "n-opex",  lbl: "вычитается, не рычаг", dash: true },
+  { f: "n-gp",     t: "n-rev",   lbl: "ВП = Выручка × GM" },
+  { f: "n-gp",     t: "n-gm",    lbl: "ВП = Выручка × GM" },
+  { f: "n-rev",    t: "n-gmv",   lbl: "Выручка = GMV + Прочая" },
+  { f: "n-rev",    t: "n-other", lbl: "+ 12 млн руб." },
+  { f: "n-gm",     t: "n-mix",   lbl: "input → GM", dash: true },
+  { f: "n-gmv",    t: "n-ord",   lbl: "GMV = Заказы × Чек" },
+  { f: "n-gmv",    t: "n-check", lbl: "× Чек 1 400 руб." },
+  { f: "n-ord",    t: "n-nsm",   lbl: "Заказы = NSM × Fядра + Разовые × 1" },
+  { f: "n-nsm",    t: "n-dp",    lbl: "NSM = MAU × Доля повторных" },
+  { f: "n-nsm",    t: "n-fj",    lbl: "NSM × Fядра" },
+  { f: "n-nsm",    t: "n-mau",   lbl: "NSM / Доля повторных" },
+  { f: "n-dp",     t: "n-ontime", lbl: "input → (лаг 2-4 нед)", dash: true },
+  { f: "n-dp",     t: "n-cancel", lbl: "input → ДП и GM", dash: true },
+  { f: "n-dp",     t: "n-nps",    lbl: "input → (guardrail)", dash: true },
+  { f: "n-dp",     t: "n-comp",   lbl: "input →", dash: true },
+  { f: "n-mau",    t: "n-new",   lbl: "1 200 платящих → MAU" },
+  { f: "n-mau",    t: "n-cr",    lbl: "CR → новые платящие" },
+  { f: "n-mau",    t: "n-ret",   lbl: "база × 32% + реактивации" },
+  { f: "n-new",    t: "n-cpa",   lbl: "затраты = CPA × платящие" },
+  { f: "n-cpa",    t: "n-org",   lbl: "органика ↓ эфф. CPA", dash: true }
+];
+
+function draw() {
+  const tree = document.getElementById("tree");
+  const svg = document.getElementById("edgesvg");
+  const tr = tree.getBoundingClientRect();
+  svg.setAttribute("width", tr.width);
+  svg.setAttribute("height", tr.height);
+  svg.innerHTML =
+    '<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">' +
+    '<path d="M0,0 L8,4 L0,8 z" fill="#8fa0b3"/></marker></defs>';
+  // удалить старые подписи
+  document.querySelectorAll(".edge-lbl").forEach(e => e.remove());
+
+  edges.forEach(ed => {
+    const a = document.getElementById(ed.f).getBoundingClientRect();
+    const b = document.getElementById(ed.t).getBoundingClientRect();
+    const x1 = a.left + a.width / 2 - tr.left;
+    const y1 = a.bottom - tr.top;
+    const x2 = b.left + b.width / 2 - tr.left;
+    const y2 = b.top - tr.top;
+    const dy = Math.max(28, (y2 - y1) / 2);
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", `M ${x1} ${y1} C ${x1} ${y1 + dy}, ${x2} ${y2 - dy}, ${x2} ${y2 - 3}`);
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "#8fa0b3");
+    path.setAttribute("stroke-width", "1.6");
+    if (ed.dash) path.setAttribute("stroke-dasharray", "5 4");
+    path.setAttribute("marker-end", "url(#arr)");
+    svg.appendChild(path);
+
+    const mid = document.createElement("div");
+    mid.className = "edge-lbl";
+    mid.textContent = ed.lbl;
+    // середина кривой при t=0.5 для кубического Безье
+    const mx = (x1 + 3 * x1 + 3 * x2 + x2) / 8;
+    const my = (y1 + 3 * (y1 + dy) + 3 * (y2 - dy) + y2) / 8;
+    mid.style.left = mx + "px";
+    mid.style.top = (my - 2) + "px";
+    tree.appendChild(mid);
+  });
+}
+
+window.addEventListener("load", draw);
+window.addEventListener("resize", draw);
+</script>
+</body>
+</html>
