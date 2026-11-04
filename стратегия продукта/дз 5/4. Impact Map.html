@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Impact Map – TechGourmet, квартал</title>
+<style>
+  body { font-family: -apple-system, Arial, sans-serif; font-size: 13px; margin: 24px; color: #222; }
+  h1 { font-size: 18px; }
+  .tree { display: flex; align-items: flex-start; gap: 0; }
+  .col { display: flex; flex-direction: column; gap: 18px; margin-right: 28px; }
+  .box { border: 1px solid #999; border-radius: 6px; padding: 8px 10px; max-width: 300px; background: #fff; }
+  .goal  { background: #f8e1ec; border-color: #c2185b; font-weight: bold; max-width: 220px; align-self: center; }
+  .actor { background: #e1e0f0; border-color: #5e35b1; font-weight: bold; max-width: 200px; }
+  .impact { background: #e3f0fb; border-color: #1976d2; }
+  .proj { background: #e6f4ea; border-color: #388e3c; max-width: 260px; }
+  .row { display: flex; align-items: flex-start; gap: 28px; }
+  .metric { color: #555; }
+  .tag { display: inline-block; font-size: 11px; border-radius: 4px; padding: 0 5px; margin-left: 4px; }
+  .bet { background: #c8e6c9; }
+  .defer { background: #ffe9b3; }
+  .warn { background: #ffd6d6; }
+  .out { background: #f5f5f5; border-color: #999; }
+  .branch { display: flex; flex-direction: column; gap: 10px; border-left: 2px solid #bbb; padding-left: 14px; }
+  h2 { font-size: 15px; margin-top: 32px; }
+  table { border-collapse: collapse; }
+  td, th { border: 1px solid #999; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #eee; }
+  .legend span { margin-right: 14px; }
+</style>
+</head>
+<body>
+
+<h1>Impact Map – TechGourmet, квартал (шаг 4)</h1>
+
+<p class="legend">
+  Легенда:
+  <span class="tag bet">ставка квартала</span>
+  <span class="tag defer">отложено / зависимость</span>
+  <span class="tag warn">спорные данные, сначала перепроверка</span>
+</p>
+
+<div class="tree">
+
+  <!-- Уровень 0: цель -->
+  <div class="col">
+    <div class="box goal">
+      ЦЕЛЬ: прибыль x4 за год<br>
+      (с 10 до 40+ млн руб./мес)<br>
+      <span class="metric">база 10 млн руб./мес – допущение из ДЗ 2, откалибровано под бриф; мост к x4 через драйверы – см. шаг 1</span><br><br>
+      Маркеры квартала:<br>
+      retention 30 -&gt; 35%<br>
+      LTV 4000 -&gt; 4300 руб.<br>
+      чек 1500 -&gt; 1600 руб.
+    </div>
+  </div>
+
+  <!-- Уровень 1-3: акторы -> импакты -> проекты -->
+  <div class="col">
+
+    <!-- Актор 1 -->
+    <div class="row">
+      <div class="box actor">Новые пользователи (первые 30 дней)</div>
+      <div class="branch">
+        <div class="row">
+          <div class="box impact">Доходят до первого заказа<br><span class="metric">конверсия в заказ 12 -&gt; 15%; конверсия оплаты 85 -&gt; 95%</span></div>
+          <div class="branch">
+            <div class="box proj">П3 Редизайн UX/UI <span class="tag bet">ставка 2</span></div>
+            <div class="box proj">П11 Оплата в 1 клик <span class="tag bet">ставка 2</span></div>
+            <div class="box proj">П13 Улучшение поиска</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box impact">Возвращаются за вторым заказом<br><span class="metric">доля новичков с повторным заказом 15 -&gt; 30%+</span></div>
+          <div class="branch">
+            <div class="box proj">П5 Программа лояльности <span class="tag bet">ставка 2</span></div>
+            <div class="box proj">П3 Редизайн UX/UI (онбординг) <span class="tag bet">ставка 2</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Актор 2 -->
+    <div class="row">
+      <div class="box actor">Постоянные клиенты</div>
+      <div class="branch">
+        <div class="row">
+          <div class="box impact">Заказывают чаще<br><span class="metric">retention 30 -&gt; 35%; frequency x1,4 за год</span></div>
+          <div class="branch">
+            <div class="box proj">П5 Программа лояльности <span class="tag bet">ставка 2</span></div>
+            <div class="box proj">П9 Подписка</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box impact">Увеличивают средний чек<br><span class="metric">1500 -&gt; 1600 руб.</span></div>
+          <div class="branch">
+            <div class="box proj">П7 Апсейл в корзине <span class="tag bet">ставка 3</span></div>
+            <div class="box proj">П15 Алгоритм ранжирования <span class="tag warn">пилот опровергнут (парадокс Симпсона), сначала репилот</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box impact">Быстрее находят нужное и пробуют новое<br><span class="metric">открытия карточек ресторанов на пользователя: база не измерена (измерить одним запросом аналитику до старта) -&gt; +30% (экспертная оценка); жалобы "не могу найти блюдо"</span></div>
+          <div class="branch">
+            <div class="box proj">П16 Персональные подборки</div>
+            <div class="box proj">П13 Улучшение поиска</div>
+            <div class="box proj">П18 КБЖУ-фильтры – только дешевый тест спроса, не разворот в ЗОЖ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Актор 3 -->
+    <div class="row">
+      <div class="box actor">Рестораны-партнеры</div>
+      <div class="branch">
+        <div class="row">
+          <div class="box impact">Готовят вовремя и держат качество базы<br><span class="metric">жалобы 3% -&gt; 2% заказов (база из брифа ДЗ 2, цель экспертная); качество новых партнеров не ниже базы (вместо цели "200 -&gt; 250 ресторанов")</span></div>
+          <div class="branch">
+            <div class="box proj">П1 Интеграция с ресторанами <span class="tag defer">отложен до результатов ставки 1 (зависимость зафиксирована в брифе)</span></div>
+            <div class="box proj out">Эксклюзивная сеть со SLA – вне портфеля, эскалация на CEO, дедлайн 6 недель</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Актор 4 -->
+    <div class="row">
+      <div class="box actor">Логистика (курьеры и платформа)</div>
+      <div class="branch">
+        <div class="row">
+          <div class="box impact">Курьеры доставляют быстрее и больше заказов в смену<br><span class="metric">время доставки 45 -&gt; 35 мин; заказов на курьера +25%</span></div>
+          <div class="branch">
+            <div class="box proj">П2 Умная маршрутизация <span class="tag bet">ставка 1</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box impact">Пиковый спрос обслуживается без деградации<br><span class="metric">0 деградаций в пик (запас нагрузки +150%); доля самовывоза 0 -&gt; 5-10% заказов (экспертная оценка)</span></div>
+          <div class="branch">
+            <div class="box proj">П6 Самовывоз <span class="tag warn">данные листа ожидания – самоселекция, сначала валидация спроса</span></div>
+            <div class="box proj out">Аудит пиковой нагрузки (запас +150%) – вне портфеля, аналитическая задача Разработки 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Актор 5 -->
+    <div class="row">
+      <div class="box actor">Служба поддержки</div>
+      <div class="branch">
+        <div class="row">
+          <div class="box impact">Решает проблемы быстрее и дешевле<br><span class="metric">время решения 24 ч -&gt; 2 ч; затраты на компенсации -30%</span></div>
+          <div class="branch">
+            <div class="box proj">П12 Редактор компенсаций <span class="tag bet">ставка 3</span></div>
+            <div class="box proj">П8 Чаты с поддержкой<br><span class="metric">Reach – расчет из доли жалоб 3% заказов (допущение ДЗ 2)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<h2>Не легли на карту (4 из 18)</h2>
+<table>
+  <tr><th>Проект</th><th>Почему не лег</th></tr>
+  <tr><td>П4 Маркетинг в новых регионах (15 млн руб.)</td><td>Non-goal 1. Ни один импакт карты не требует роста базы платным привлечением: при LTV/CAC ~ 0,4 и 15% повторных заказов новые пользователи в среднем убыточны. Цель "10 000 новых" заменена на "повторный заказ новичков &gt;= 30%".</td></tr>
+  <tr><td>П17 Агрессивные скидки</td><td>Non-goal 2. Меняет поведение клиента в сторону промо-зависимости – противоречит политике "без демпинга"; -3 п.п. маржи = -54% прибыли (ДЗ 2).</td></tr>
+  <tr><td>П10 Серверный BDUI (12 млн руб., 16 недель)</td><td>Платформенная ставка с горизонтом больше квартала: не меняет поведение ни одного актора в горизонте карты. Поддерживающий фит, но неподъемен при риске урезания бюджета на 20%.</td></tr>
+  <tr><td>П14 Сторис (4 млн руб.)</td><td>Работает на рекламный доход, а не на поведение по пути к цели "прибыль x4 через удержание". Пилот не доказывает эффект: самоселекция (сторис смотрят более вовлеченные) и промежуточная метрика (время в приложении, а не заказы) – см. аудит, шаг 2.</td></tr>
+</table>
+
+<p>Покрытие портфеля: на карте 14 проектов (П1, П2, П3, П5, П6, П7, П8, П9, П11, П12, П13, П15, П16, П18), не легли 4 (П4, П10, П14, П17) – это аргументы для решений на шаге 6. Проекты П3, П5 и П13 работают на два импакта сразу – при перерисовке в draw.io вести от них две стрелки.</p>
+
+</body>
+</html>
