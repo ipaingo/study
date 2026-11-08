@@ -147,7 +147,7 @@
         <div class="lvl">Уровень 0ф</div>
         <div class="name">Прочая выручка</div>
         <div class="val">12 млн руб.</div>
-        <div class="f">выручка по брифу − GMV; постоянна</div>
+        <div class="f">выручка по брифу − GMV; ≈100 руб./заказ (7% чека) — сервисный сбор; постоянна</div>
         <div class="chips"><span class="chip assum">допущение ч. 1 (А1)</span></div>
       </div>
       <div class="node n-mix" id="n-mix">
@@ -292,27 +292,27 @@
 <script>
 const edges = [
   { f: "n-profit", t: "n-gp",    lbl: "Прибыль = ВП − OPEX" },
-  { f: "n-profit", t: "n-opex",  lbl: "вычитается, не рычаг", dash: true },
+  { f: "n-profit", t: "n-opex",  lbl: "Прибыль = ВП − 22,4 млн (фикс)" },
   { f: "n-gp",     t: "n-rev",   lbl: "ВП = Выручка × GM" },
-  { f: "n-gp",     t: "n-gm",    lbl: "ВП = Выручка × GM" },
+  { f: "n-gp",     t: "n-gm",    lbl: "GM = ВП / Выручка = 18%" },
   { f: "n-rev",    t: "n-gmv",   lbl: "Выручка = GMV + Прочая" },
-  { f: "n-rev",    t: "n-other", lbl: "+ 12 млн руб." },
-  { f: "n-gm",     t: "n-mix",   lbl: "input → GM", dash: true },
+  { f: "n-rev",    t: "n-other", lbl: "Прочая = Выручка − GMV = 12 млн" },
+  { f: "n-gm",     t: "n-mix",   lbl: "input → GM (качественная связь)", dash: true },
   { f: "n-gmv",    t: "n-ord",   lbl: "GMV = Заказы × Чек" },
-  { f: "n-gmv",    t: "n-check", lbl: "× Чек 1 400 руб." },
+  { f: "n-gmv",    t: "n-check", lbl: "Чек = GMV / Заказы = 1 400 руб." },
   { f: "n-ord",    t: "n-nsm",   lbl: "Заказы = NSM × Fядра + Разовые × 1" },
   { f: "n-nsm",    t: "n-dp",    lbl: "NSM = MAU × Доля повторных" },
-  { f: "n-nsm",    t: "n-fj",    lbl: "NSM × Fядра" },
-  { f: "n-nsm",    t: "n-mau",   lbl: "NSM / Доля повторных" },
+  { f: "n-nsm",    t: "n-fj",    lbl: "Заказы ядра = NSM × Fядра" },
+  { f: "n-nsm",    t: "n-mau",   lbl: "MAU = NSM / Доля повторных" },
   { f: "n-dp",     t: "n-ontime", lbl: "input → (лаг 2-4 нед)", dash: true },
   { f: "n-dp",     t: "n-cancel", lbl: "input → ДП и GM", dash: true },
   { f: "n-dp",     t: "n-nps",    lbl: "input → (guardrail)", dash: true },
   { f: "n-dp",     t: "n-comp",   lbl: "input →", dash: true },
-  { f: "n-mau",    t: "n-new",   lbl: "1 200 платящих → MAU" },
-  { f: "n-mau",    t: "n-cr",    lbl: "CR → новые платящие" },
-  { f: "n-mau",    t: "n-ret",   lbl: "база × 32% + реактивации" },
-  { f: "n-new",    t: "n-cpa",   lbl: "затраты = CPA × платящие" },
-  { f: "n-cpa",    t: "n-org",   lbl: "органика ↓ эфф. CPA", dash: true }
+  { f: "n-mau",    t: "n-new",   lbl: "MAU += Новые платящие = Новые × CR" },
+  { f: "n-mau",    t: "n-cr",    lbl: "Новые платящие = 12 000 × 10% = 1 200" },
+  { f: "n-mau",    t: "n-ret",   lbl: "MAU = База × 32% + реактивации + новые" },
+  { f: "n-new",    t: "n-cpa",   lbl: "Затраты на маркетинг = CPA × Новые платящие" },
+  { f: "n-cpa",    t: "n-org",   lbl: "Эфф. CPA = CPA × (1 − доля органики 15%)", dash: true }
 ];
 
 function draw() {
