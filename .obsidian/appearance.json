@@ -9,5 +9,6 @@
   "cssTheme": "Blue Topaz",
   "theme": "obsidian",
   "accentColor": "#669bf0",
-  "baseFontSizeAction": true
+  "baseFontSizeAction": true,
+  "showRibbon": true
 }
